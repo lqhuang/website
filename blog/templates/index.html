@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block title %}Index{% endblock %}
+
+{% block content -%}
+  <div class="container">
+    <div class="jumbotron">
+      <img class="img-responsive" src="{{url_for('.static', filename='img/cover.jpg')}}" alt="cover">
+    </div>
+
+    <div class="col-sm-8">
+      我经常在想要在主页上写上什么话，能够让意外发现这里的你觉得不期而遇的。
+      <br> 但是一直没有结果。
+      <br>
+      <br> 一直没有什么目标，最希望的事是成为一个有意思的人。
+      <br> 但是可能失败了。
+    </div>
+
+    <div class="col-sm-4">
+      <p> I don't know </p>
+    </div>
+  </div>
+{%- endblock content %}

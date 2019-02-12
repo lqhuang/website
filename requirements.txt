@@ -1,0 +1,5 @@
+flask
+flask-bootstrap
+Flask-FlatPages
+python-markdown-math
+Pygments

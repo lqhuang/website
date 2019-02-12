@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="renderer" content="webkit">
+    <title>Resume of Lanqing Huang</title>
+    <link rel="icon" type="image/x-icon" href="{{ url_for('resume.static', filename='img/favicon.ico') }}">
+    <link rel="stylesheet" href="{{ url_for('resume.static', filename='css/reset.css') }}">
+    <link rel="stylesheet" href="{{ url_for('resume.static', filename='css/main.css') }}">
+    <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+    <script src="{{ url_for('resume.static', filename='js/navFixed-1.0.1.min.js') }}"></script>
+    <script src="{{ url_for('resume.static', filename='js/main.js') }}"></script>
+</head>
+
+<body>
+    <section id="block-firstPage">
+        <p class="blockTitle">Hello World!</p>
+        <div id="fstPage-down">
+            <a href="#block-intro" hideFocus="true"></a>
+        </div>
+    </section>
+
+    <section id="block-nav">
+        <header class="container">
+            <a class="fl" href="#block-firstPage" id="logo" hideFocus="true">Lanqing Huang</a>
+            <nav class="fr">
+                <a href="#block-intro" id="nav-intro" hideFocus="true">About me</a>
+                <a href="#block-eduEXP" id="nav-eduEXP" hideFocus="true">Education</a>
+                <a href="#block-skill" id="nav-skill" hideFocus="true">Skills</a>
+                <a href="#block-prjEXP" id="nav-prjEXP" hideFocus="true">Research</a>
+                <a href="#block-wantMore" id="nav-wantMore" hideFocus="true">Contact me</a>
+                <a href="/resume/cn" id="nav-cn" hideFocus="true">中文版</a>
+            </nav>
+        </header>
+    </section>
+
+    <section id="block-intro">
+        <div class="container">
+            <div id="intro-icon">
+                <a class="link" href="http://github.com/lqhuang" id="link-github" hideFocus="true" target="_blank">GitHub</a>
+                <a class="link" href="https://www.linkedin.com/in/lqhuang" id="link-linkedin" hideFocus="true">Linkedin</a>
+                <img id="myphoto" src="{{ url_for('resume.static', filename='img/myphoto.png') }}">
+                <a class="link" href="/" id="link-blog" hideFocus="true">Blog</a>
+                <a class="link" href="mailto:&#108;&#113;&#104;&#117;&#97;&#110;&#103;&#64;&#111;&#117;&#116;&#108;&#111;&#111;&#107;&#46;&#99;&#111;&#109;" id="link-email" hideFocus="true">E-mail</a>
+            </div>
+
+            <div id="intro-text">
+                <ul class="fl">
+                    <li><span>Name</span> | Lanqing Huang (黄岚青)</li>
+                    <li><span>Tel.</span> | 18810556337</li>
+                    <li><span>Mail</span> | <a href="mailto:&#108;&#113;&#104;&#117;&#97;&#110;&#103;&#64;&#111;&#117;&#116;&#108;&#111;&#111;&#107;&#46;&#99;&#111;&#109;" hideFocus="true">&#108;&#113;&#104;&#117;&#97;&#110;&#103;&#64;&#111;&#117;&#116;&#108;&#111;&#111;&#107;&#46;&#99;&#111;&#109;</a></li>
+                    <li><span>    </span> | <a href="mailto:&#104;&#105;&#46;&#108;&#97;&#110;&#113;&#105;&#110;&#103;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#109;" hideFocus="true">&#104;&#105;&#46;&#108;&#97;&#110;&#113;&#105;&#110;&#103;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#109;</a></li>
+                    <li><span>Localtion</span> | BEIJING - HAIDIAN</li>
+                    <li><span>GitHub</span> | <a href="http://github.com/lqhuang" hideFocus="true" target="_blank">Click to enter</a></li>
+                    <li><span>Linkedin</span> | <a href="https://www.linkedin.com/in/lqhuang" hideFocus="true">Click to enter</a></li>
+                    <li><span>Blog</span> | <a href="/" hideFocus="true">Click to enter</a></li>
+                </ul>
+                <div class="fr">
+                    <p>I am a Doubi<br>Geek & Nerd<br>Learn physics<br>Stay hungry, stay foolish</p>
+                    <p>Too young<br>Too simple<br>Sometimes naive</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="block-eduEXP">
+        <div class="container">
+            <div class="work-title">
+                <h2>Education</h2>
+            </div>
+            <div class="workEXP-main">
+                <ul class="timebox">
+                    <li class="time0">2011.09 - 2015.06</li>
+                    <li class="time1">2015.09 - Now</li>
+                </ul>
+                <div class="timeline"></div>
+                <ul class="workbox">
+                    <li class="work-intro0">
+                        <label class="work-place">Beijing Normal University</label>
+                        <label class="work-position">Liyun College</label>
+                        <label class="work-do">Class for talented student in science</label>
+                    </li>
+                    <li class="work-intro1">
+                        <label class="work-place">Computational Science Research Center</label>
+                        <label class="work-position">Complex Systems Division</label>
+                        <label class="work-do">Computational Biology</label>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="block-skill">
+        <div class="container">
+            <div class="skill-title">
+                <h2>Knowledge & Skills</h2>
+            </div>
+            <div class="skills">
+                <ul class="skill-courses">
+                    <li>Course</li>
+                    <li>量子力学</li>
+                    <li>统计物理</li>
+                    <li>数字图像处理(清华)</li>
+                    <li>统计推断(清华)</li>
+                    <li>模式识别(清华)</li>
+                    <li>深度学习(北大)</li>
+                </ul>
+                <ul class="skill-work">
+                    <li>Work</li>
+                    <li>Physics</li>
+                    <li>Computational Biology</li>
+                    <li>Algorithm</li>
+                    <li>Deep Learning</li>
+                </ul>
+                <ul class="skill-frame">
+                    <li>Frames</li>
+                    <li>Sencitifc Computing</li>
+                    <li>Tensorflow/Caffe</li>
+                    <li>Bayesian Approach</li>
+                </ul>
+                <ul class="skill-tech">
+                    <li>Tools</li>
+                    <li>Python</li>
+                    <li>Matlab</li>
+                    <li>C++</li>
+                    <li>R</li>
+                    <li>MPI</li>
+                    <li>Linux</li>
+                    <li>Git</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="block-prjEXP">
+        <div class="container">
+            <div class="prjEXP-title">
+                <h2>Research</h2>
+            </div>
+            <ul class="prjs">
+                <li class="prj" id="prj-network">
+                    <div class="prj-logo"></div>
+                    <h3 class="prj-title">Complex Network</h3>
+                    <p class="prj-intro">Build an experiment system of Coupled Map Lattices (CML) system.</p>
+                </li>
+
+                <li class="prj" id="prj-cryoem">
+                    <div class="prj-logo"></div>
+                    <h3 class="prj-title">3D reconstruction</h3>
+                    <p class="prj-intro">Utilze correlation function to improve a Bayesian approach based reconstruction method in single particle problem. Up to 100-fold speedup.</p>
+                </li>
+
+                <li class="prj" id="prj-deeplearning">
+                    <div class="prj-logo"></div>
+                    <h3 class="prj-title">Deep Learning</h3>
+                    <p class="prj-intro">Research Deep Learning application in XFEL area.</p>
+                </li>
+            </ul>
+        </div>
+    </section>
+
+    <section id="block-wantMore">
+        <p>Hire me!<br>
+            <a href="mailto:&#104;&#105;&#46;&#108;&#97;&#110;&#113;&#105;&#110;&#103;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#109;" hideFocus="true">&#104;&#105;&#46;&#108;&#97;&#110;&#113;&#105;&#110;&#103;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#109;</a>
+        </p>
+    </section>
+</body>
+
+</html>

@@ -1,0 +1,28 @@
+# Pages
+pages/
+
+# Picture
+# *.png
+# *.jpg
+
+# macOS
+.DS_Store
+
+# Editor config
+/.vscode
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Flask stuff:
+instance/
+.webassets-cache
+
+# Rope project settings
+.ropeproject

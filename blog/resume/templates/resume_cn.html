@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="renderer" content="webkit">
+    <title>黄岚青的简介</title>
+    <link rel="icon" type="image/x-icon" href="{{ url_for('resume.static', filename='img/favicon.ico') }}">
+    <link rel="stylesheet" href="{{ url_for('resume.static', filename='css/reset.css') }}">
+    <link rel="stylesheet" href="{{ url_for('resume.static', filename='css/main.css') }}">
+    <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+    <script src="{{ url_for('resume.static', filename='js/navFixed-1.0.1.min.js') }}"></script>
+    <script src="{{ url_for('resume.static', filename='js/main.js') }}"></script>
+</head>
+
+<body>
+    <section id="block-firstPage">
+        <p class="blockTitle">Hello World!</p>
+        <div id="fstPage-down">
+            <a href="#block-intro" hideFocus="true"></a>
+        </div>
+    </section>
+
+    <section id="block-nav">
+        <header class="container">
+            <a class="fl" href="#block-firstPage" id="logo" hideFocus="true">Lanqing Huang</a>
+            <nav class="fr">
+                <a href="#block-intro" id="nav-intro" hideFocus="true">个人简介</a>
+                <a href="#block-eduEXP" id="nav-eduEXP" hideFocus="true">教育经历</a>
+                <a href="#block-skill" id="nav-skill" hideFocus="true">专业技能</a>
+                <a href="#block-prjEXP" id="nav-prjEXP" hideFocus="true">研究经历</a>
+                <a href="#block-wantMore" id="nav-wantMore" hideFocus="true">联系邮箱</a>
+                <a href="/resume/en" id="nav-en" hideFocus="true">English Version</a>
+            </nav>
+        </header>
+    </section>
+
+    <section id="block-intro">
+        <div class="container">
+            <div id="intro-icon">
+                <a class="link" href="http://github.com/lqhuang" id="link-github" hideFocus="true" target="_blank">GitHub</a>
+                <a class="link" href="https://www.linkedin.com/in/lqhuang" id="link-linkedin" hideFocus="true">Linkedin</a>
+                <img id="myphoto" src="{{ url_for('resume.static', filename='img/myphoto.png') }}">
+                <a class="link" href="/" id="link-blog" hideFocus="true">Blog</a>
+                <a class="link" href="mailto:&#108;&#113;&#104;&#117;&#97;&#110;&#103;&#64;&#111;&#117;&#116;&#108;&#111;&#111;&#107;&#46;&#99;&#111;&#109;" id="link-email" hideFocus="true">E-mail</a>
+            </div>
+
+            <div id="intro-text">
+                <ul class="fl">
+                    <li><span>Name</span> | 黄岚青</li>
+                    <li><span>Tel.</span> | 18810556337</li>
+                    <li><span>Mail</span> | <a href="mailto:&#108;&#113;&#104;&#117;&#97;&#110;&#103;&#64;&#111;&#117;&#116;&#108;&#111;&#111;&#107;&#46;&#99;&#111;&#109;" hideFocus="true">&#108;&#113;&#104;&#117;&#97;&#110;&#103;&#64;&#111;&#117;&#116;&#108;&#111;&#111;&#107;&#46;&#99;&#111;&#109;</a></li>
+                    <li><span>    </span> | <a href="mailto:&#104;&#105;&#46;&#108;&#97;&#110;&#113;&#105;&#110;&#103;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#109;" hideFocus="true">&#104;&#105;&#46;&#108;&#97;&#110;&#113;&#105;&#110;&#103;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#109;</a></li>
+                    <li><span>Localtion</span> | 北京 - 海淀</li>
+                    <li><span>GitHub</span> | <a href="http://github.com/lqhuang" hideFocus="true" target="_blank">点击进入</a></li>
+                    <li><span>Linkedin</span> | <a href="https://www.linkedin.com/in/lqhuang" hideFocus="true">点击进入</a></li>
+                    <li><span>Blog</span> | <a href="/" hideFocus="true">点击进入</a></li>
+                </ul>
+                <div class="fr">
+                    <p>我是一个傻逗逗<br>Geek & Nerd<br>物理的学习锻炼出了强大的思维能力</p>
+                    <p>完美主义者<br>有对齐的强迫症<br>不午睡会死星人</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="block-eduEXP">
+        <div class="container">
+            <div class="work-title">
+                <h2>教 育 经 历</h2>
+            </div>
+            <div class="workEXP-main">
+                <ul class="timebox">
+                    <li class="time0">2011.09 - 2015.06</li>
+                    <li class="time1">2015.09 - Now</li>
+                </ul>
+                <div class="timeline"></div>
+                <ul class="workbox">
+                    <li class="work-intro0">
+                        <label class="work-place">北京师范大学</label>
+                        <label class="work-position">励耘学院</label>
+                        <label class="work-do">拔尖人才理科实验班(物理)</label>
+                    </li>
+                    <li class="work-intro1">
+                        <label class="work-place">北京计算科学研究中心</label>
+                        <label class="work-position">复杂系统实验室</label>
+                        <label class="work-do">计算生物学</label>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="block-skill">
+        <div class="container">
+            <div class="skill-title">
+                <h2>知识与技能</h2>
+            </div>
+            <div class="skills">
+                <ul class="skill-courses">
+                    <li>Course</li>
+                    <li>量子力学</li>
+                    <li>统计物理</li>
+                    <li>数字图像处理(清华)</li>
+                    <li>统计推断(清华)</li>
+                    <li>模式识别(清华)</li>
+                    <li>深度学习(北大)</li>
+                </ul>
+                <ul class="skill-work">
+                    <li>Work</li>
+                    <li>物理</li>
+                    <li>计算生物学</li>
+                    <li>算法开发</li>
+                    <li>大数据处理</li>
+                    <li>深度学习</li>
+                </ul>
+                <ul class="skill-frame">
+                    <li>Frames</li>
+                    <li>Sencitifc Computing</li>
+                    <li>Tensorflow/Caffe</li>
+                    <li>Bayesian Approach</li>
+                </ul>
+                <ul class="skill-tech">
+                    <li>Tools</li>
+                    <li>Python</li>
+                    <li>Matlab</li>
+                    <li>C++</li>
+                    <li>R</li>
+                    <li>MPI</li>
+                    <li>Linux</li>
+                    <li>Git</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="block-prjEXP">
+        <div class="container">
+            <div class="prjEXP-title">
+                <h2>研 究 经 历</h2>
+            </div>
+            <ul class="prjs">
+                <li class="prj" id="prj-network">
+                    <div class="prj-logo"></div>
+                    <h3 class="prj-title">复杂网络</h3>
+                    <p class="prj-intro">利用光学平台构建耦合映像格子系统(a system of Coupled Map Lattices system)实现复杂网络的快速计算。成功应用于图像加密解密过程。</p>
+                </li>
+
+                <li class="prj" id="prj-cryoem">
+                    <div class="prj-logo"></div>
+                    <h3 class="prj-title">3D重构算法改进</h3>
+                    <p class="prj-intro">在冷冻电镜领域的贝叶斯算法基础上，利用关联函数图像对定向问题进行优化，使得重建速度得到约100倍的提高。</p>
+                </li>
+
+                <li class="prj" id="prj-deeplearning">
+                    <div class="prj-logo"></div>
+                    <h3 class="prj-title">深度学习</h3>
+                    <p class="prj-intro">深度学习应用在X射线衍射光谱中的图像识别系统</p>
+                </li>
+            </ul>
+        </div>
+    </section>
+
+    <section id="block-wantMore">
+        <p>Hire me!<br>
+            <a href="mailto:&#108;&#113;&#104;&#117;&#97;&#110;&#103;&#64;&#111;&#117;&#116;&#108;&#111;&#111;&#107;&#46;&#99;&#111;&#109;" hideFocus="true">&#108;&#113;&#104;&#117;&#97;&#110;&#103;&#64;&#111;&#117;&#116;&#108;&#111;&#111;&#107;&#46;&#99;&#111;&#109;</a>
+        </p>
+    </section>
+</body>
+
+</html>

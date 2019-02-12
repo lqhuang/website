@@ -1,2 +1,9 @@
 # lqhuang-blog
-A website powered by Flask
+
+- "What are you doing?"
+- "Nothing."
+- "Nothing is good."
+
+## To be done
+
+Working on this...

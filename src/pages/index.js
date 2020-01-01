@@ -10,6 +10,7 @@ const pageQuery = graphql`
     site {
       siteMetadata {
         title
+        author
       }
     }
   }
@@ -17,14 +18,14 @@ const pageQuery = graphql`
 
 const Index = (props) => {
   const data = useStaticQuery(pageQuery)
-  const siteTitle = data.site.siteMetadata.title
+  const { siteTitle, author } = data.site.siteMetadata.title
   const { location } = props
 
   return (
     <Layout location={location} title={siteTitle}>
       <SEO
         title="Index"
-        keywords={['blog', 'lqhuang']}
+        keywords={['blog', author]}
       />
     </Layout>
   )

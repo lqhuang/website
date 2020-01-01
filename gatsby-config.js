@@ -1,11 +1,11 @@
 module.exports = {
   siteMetadata: {
-    title: 'Lanqing Huang', // `Lanqing Huang Blog`,
+    title: 'lqhuang.io',
     author: 'Lanqing Huang',
     description: 'A blog to record life',
     siteUrl: 'https://lqhuang.github.io/',
     social: {
-      twitter: 'lqhuang',
+      twitter: 'lqhuang1',
       github: 'lqhuang',
       linkedin: 'lqhuang',
       instgram: 'lanqing.huang',
@@ -18,15 +18,13 @@ module.exports = {
         path: `${__dirname}/contents/blog`,
         name: 'blog',
       },
-    },
-    {
+    }, {
       resolve: 'gatsby-source-filesystem',
       options: {
         path: `${__dirname}/contents/assets`,
         name: 'assets',
       },
-    },
-    {
+    }, {
       // markdown rendering
       resolve: 'gatsby-transformer-remark',
       options: {
@@ -36,8 +34,7 @@ module.exports = {
             options: {
               maxWidth: 590,
             },
-          },
-          {
+          }, {
             resolve: 'gatsby-remark-responsive-iframe',
             options: {
               wrapperStyle: 'margin-bottom: 1.0725rem',
@@ -54,9 +51,10 @@ module.exports = {
     {
       resolve: 'gatsby-plugin-google-analytics',
       options: {
-        // trackingId: `ADD YOUR TRACKING ID HERE`,
+      // trackingId: `ADD YOUR TRACKING ID HERE`,
       },
     },
+    'gatsby-plugin-theme-ui',
     'gatsby-plugin-feed',
     {
       resolve: 'gatsby-plugin-manifest',

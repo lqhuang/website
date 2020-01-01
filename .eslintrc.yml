@@ -1,17 +1,30 @@
-env:
-  browser: true
-  es6: true
-globals:
-  Atomics: readonly
-  SharedArrayBuffer: readonly
 parserOptions:
   ecmaVersion: 2018
   sourceType: module
   ecmaFeatures:
     jsx: true
+env:
+  browser: true
+  node: true
+  es6: true
+  es2020: true
+globals:
+  graphql: true
+  __PATH_PREFIX__: true
+# extends: "airbnb-base"
 extends: airbnb
-# "extends": "airbnb-base"
+# extends: "airbnb/hooks"
 plugins:
   - react
+  - react-hooks
 rules:
   semi: ["error", "never"]
+  react/jsx-filename-extension: ["warn", { "extensions": [".js", ".jsx"] }]
+  react/react-in-jsx-scope: "off"
+  react/jsx-one-expression-per-line: ["warn", { "allow": "single-child" }]
+  react/prop-types: "off"
+  react-hooks/rules-of-hooks: "error"
+  react-hooks/exhaustive-deps: "warn"
+  object-curly-newline: "off"
+  # graphql/template-strings:
+  import/prefer-default-export: "off"

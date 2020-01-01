@@ -1,6 +1,9 @@
 const path = require('path')
 const { createFilePath } = require('gatsby-source-filesystem')
 
+// https://www.gatsbyjs.org/docs/creating-and-modifying-pages/#removing-trailing-slashes
+const replacePath = (pagePath) => (pagePath === '/' ? pagePath : pagePath.replace(/\/$/, ''))
+
 exports.createPages = ({ graphql, actions }) => {
   const { createPage } = actions
 
@@ -38,7 +41,7 @@ exports.createPages = ({ graphql, actions }) => {
       const next = index === 0 ? null : posts[index - 1].node
 
       createPage({
-        path: post.node.fields.slug,
+        path: replacePath(post.node.fields.slug),
         component: blogPost,
         context: {
           slug: post.node.fields.slug,
@@ -50,6 +53,10 @@ exports.createPages = ({ graphql, actions }) => {
   })
 }
 
+/**
+ * https://www.gatsbyjs.org/docs/creating-slugs-for-pages/#create-slugs-in-gatsby-nodejs
+ * https://www.gatsbyjs.org/docs/mdx/programmatically-creating-pages/#generate-slugs
+ */
 exports.onCreateNode = ({ node, actions, getNode }) => {
   const { createNodeField } = actions
 
@@ -61,4 +68,17 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
       value,
     })
   }
+}
+
+exports.onCreateWebpackConfig = ({ actions, getConfig }) => {
+  const config = getConfig()
+  const contextSrc = path.join(config.context, 'src')
+  // https://webpack.js.org/configuration/resolve/#resolvealias
+  // https://webpack.js.org/configuration/resolve/#resolvemodules
+  actions.setWebpackConfig({
+    resolve: {
+      alias: { src: contextSrc },
+      // modules: [path.resolve(__dirname), "node_modules"],
+    },
+  })
 }

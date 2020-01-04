@@ -1,83 +1,126 @@
-/* eslint-disable react/prefer-stateless-function */
 import React from 'react'
 import { Link, graphql } from 'gatsby'
 
 import Layout from 'src/components/layout'
 import SEO from 'src/components/seo'
-import { rhythm, scale } from 'src/utils/typography'
 
-const BlogPostTemplate = (props) => {
+
+function Pagination(props) {
+  const { previous, next } = props
+  return (
+    <ul
+      style={{
+        display: 'flex',
+        flexWrap: 'wrap',
+        justifyContent: 'space-between',
+        listStyle: 'none',
+        padding: 0,
+      }}
+    >
+      <li>
+        {previous && (
+        <Link to={previous.fields.slug} rel="prev">
+          {`← ${previous.frontmatter.title}`}
+        </Link>
+        )}
+      </li>
+      <li>
+        {next && (
+        <Link to={next.fields.slug} rel="next">
+          {`${next.frontmatter.title} →`}
+        </Link>
+        )}
+      </li>
+    </ul>
+  )
+}
+
+
+function BlogPostTemplate(props) {
   const post = props.data.markdownRemark
   const siteTitle = props.data.site.siteMetadata.title
   const { previous, next } = props.pageContext
+  const { location } = props
+
+  const { excerpt, html: postHtml, tableOfContents } = post
+  const { title: postTitle, date: postDate, tags, modified } = post.frontmatter
+
+
+  const genTagSection = (tagsArray) => {
+    if (tagsArray === null || tagsArray === undefined) {
+      return null
+    }
+    const tagsLink = tagsArray.map(
+      (tag, i) => (
+        <span key={tag}><Link to={tag}>{tags[i]}</Link></span>
+      ),
+    ).reduce((prev, curr) => [prev, ', ', curr])
+
+    return (
+      <span
+        css={{
+          fontStyle: 'normal',
+          textAlign: 'left',
+        }}
+      >
+        {' '}
+        &middot; tags:
+        {' '}
+        {tagsLink}
+      </span>
+    )
+  }
+  const tagSection = genTagSection(post.fields.tagSlugs)
 
   return (
-    <Layout location={props.location} title={siteTitle}>
-      <SEO title={post.frontmatter.title} description={post.excerpt} />
-      <h1>{post.frontmatter.title}</h1>
-      <p
-        style={{
-          ...scale(-1 / 5),
-          display: 'block',
-          marginBottom: rhythm(1),
-          marginTop: rhythm(-1),
-        }}
-      >
-        {post.frontmatter.date}
-      </p>
-      <div dangerouslySetInnerHTML={{ __html: post.html }} />
-      <hr
-        style={{
-          marginBottom: rhythm(1),
-        }}
-      />
+    <Layout location={location} title={siteTitle}>
+      <SEO title={postTitle} description={excerpt} />
+      <h1>{postTitle}</h1>
 
-      <ul
-        style={{
-          display: 'flex',
-          flexWrap: 'wrap',
-          justifyContent: 'space-between',
-          listStyle: 'none',
-          padding: 0,
-        }}
-      >
-        <li>
-          {previous && (
-          <Link to={previous.fields.slug} rel="prev">
-            ← {previous.frontmatter.title}
-          </Link>
-          )}
-        </li>
-        <li>
-          {next && (
-          <Link to={next.fields.slug} rel="next">
-            {next.frontmatter.title} →
-          </Link>
-          )}
-        </li>
-      </ul>
+      <p>
+        {postDate !== null && postDate}
+        {modified !== null && modified !== postDate && ` · ${modified}`}
+        {tagSection !== null && tagSection}
+      </p>
+
+      {/* {tableOfContents !== ''
+        && <p dangerouslySetInnerHTML={{ __html: tableOfContents }} />} */}
+
+      <p dangerouslySetInnerHTML={{ __html: postHtml }} />
+
+      <hr />
+      <Pagination previous={previous} next={next} />
+
     </Layout>
   )
 }
 
+
 export default BlogPostTemplate
 
 export const pageQuery = graphql`
-  query BlogPostBySlug($slug: String!) {
-    site {
-      siteMetadata {
-        title
-        author
-      }
-    }
-    markdownRemark(fields: { slug: { eq: $slug } }) {
-      id
-      excerpt(pruneLength: 160)
-      html
-      frontmatter {
-        title
-        date(formatString: "MMMM DD, YYYY")
-      }
+query BlogPostBySlug($slug: String!) {
+  site {
+    siteMetadata {
+      title
+      author
     }
   }
+  markdownRemark(fields: { slug: { eq: $slug } }) {
+    id
+    excerpt(pruneLength: 144)
+    html
+    fields {
+      slug
+      tagSlugs
+    }
+    tableOfContents
+    frontmatter {
+      title
+      date(formatString: "MMMM DD, YYYY")
+      modified(formatString: "MMMM DD, YYYY")
+      tags
+    }
+  }
+}
 `

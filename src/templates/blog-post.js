@@ -1,8 +1,11 @@
-import React from 'react'
+/** @jsx jsx */
+import { jsx } from 'theme-ui'
 import { Link, graphql } from 'gatsby'
 
 import Layout from 'src/components/layout'
 import SEO from 'src/components/seo'
+
+import 'katex/dist/katex.min.css'
 
 
 function Pagination(props) {

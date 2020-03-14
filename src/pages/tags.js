@@ -1,4 +1,5 @@
-import React from 'react'
+/** @jsx jsx */
+import { jsx } from 'theme-ui'
 import { Link, graphql } from 'gatsby'
 import kebabCase from 'lodash/kebabCase'
 import Layout from 'src/components/layout'

@@ -1,4 +1,5 @@
-import React from 'react'
+/** @jsx jsx */
+import { jsx } from 'theme-ui'
 
 import Layout from 'src/components/layout'
 import SEO from 'src/components/seo'
@@ -14,10 +15,14 @@ function About(props) {
       <SEO title="About" />
       <h3>{author}</h3>
       <p>
-        Who is a young, simple and naïve guy. Follow him on
+        A young, simple and naïve guy. Follow him on
         {' '}
-        <a href={`https://twitter.com/${social.twitter}`}>Twitter</a>, <a href={`https://twitter.com/${social.github}`}>Github</a>.
+        <a href={`https://twitter.com/${social.twitter}`}>Twitter</a>
+        {', '}
+        <a href={`https://github.com/${social.github}`}>Github</a>
+        .
       </p>
+
     </Layout>
   )
 }

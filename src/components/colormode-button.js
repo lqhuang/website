@@ -1,7 +1,8 @@
 /** @jsx jsx */
 import { jsx } from 'theme-ui'
 
-// Adapted from: https://codepen.io/aaroniker/pen/KGpXZo and https://github.com/narative/gatsby-theme-novela/blob/master/%40narative/gatsby-theme-novela/src/components/Navigation/Navigation.Header.tsx
+// Adapted from: https://codepen.io/aaroniker/pen/KGpXZo
+// and https://github.com/narative/gatsby-theme-novela/blob/master/%40narative/gatsby-theme-novela/src/components/Navigation/Navigation.Header.tsx
 
 const ColormodeButton = ({ isDark, toggle }) => (
   <button

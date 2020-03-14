@@ -1,10 +1,10 @@
-import React from 'react'
+/** @jsx jsx */
+import { jsx } from 'theme-ui'
 import { Link, graphql, useStaticQuery } from 'gatsby'
 
-import Bio from 'src/components/bio'
 import Layout from 'src/components/layout'
 import SEO from 'src/components/seo'
-import { rhythm } from 'src/utils/typography'
+
 
 const pageQuery = graphql`
   query {
@@ -22,8 +22,8 @@ const pageQuery = graphql`
             slug
           }
           frontmatter {
-            date(formatString: "MMMM DD, YYYY")
             title
+            date(formatString: "MMMM DD, YYYY")
           }
         }
       }
@@ -46,18 +46,14 @@ const BlogIndex = (props) => {
       {posts.map(({ node }) => {
         const title = node.frontmatter.title || node.fields.slug
         return (
-          <div key={node.fields.slug}>
-            <h3
-              style={{
-                marginBottom: rhythm(1 / 4),
-              }}
-            >
+          <div key={node.fields.slug} sx={{ marginBottom: 4 }}>
+            <h3 sx={{ marginBottom: 1 }}>
               <Link style={{ boxShadow: 'none' }} to={node.fields.slug}>
                 {title}
               </Link>
             </h3>
             {node.frontmatter.date !== null && <small>{node.frontmatter.date}</small>}
-            <p dangerouslySetInnerHTML={{ __html: node.excerpt }} />
+            <p sx={{ marginY: 1 }} dangerouslySetInnerHTML={{ __html: node.excerpt }} />
           </div>
         )
       })}

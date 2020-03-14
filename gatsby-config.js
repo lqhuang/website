@@ -5,7 +5,7 @@ module.exports = {
     description: 'A blog to record life',
     siteUrl: 'https://lqhuang.github.io/',
     social: {
-      twitter: 'lqhuang1',
+      twitter: '_lqhuang',
       github: 'lqhuang',
       linkedin: 'lqhuang',
       instgram: 'lanqing.huang',
@@ -32,12 +32,13 @@ module.exports = {
           {
             resolve: 'gatsby-remark-images',
             options: {
-              maxWidth: 590,
+              maxWidth: '100%',
             },
           }, {
-            resolve: 'gatsby-remark-responsive-iframe',
+            resolve: 'gatsby-remark-katex',
             options: {
-              wrapperStyle: 'margin-bottom: 1.0725rem',
+              // Add any KaTeX options from https://github.com/KaTeX/KaTeX/blob/master/docs/options.md here
+              strict: 'ignore',
             },
           },
           'gatsby-remark-prismjs',
@@ -55,6 +56,7 @@ module.exports = {
       },
     },
     'gatsby-plugin-theme-ui',
+    'gatsby-theme-style-guide',
     'gatsby-plugin-feed',
     {
       resolve: 'gatsby-plugin-manifest',
@@ -70,11 +72,5 @@ module.exports = {
     },
     'gatsby-plugin-offline',
     'gatsby-plugin-react-helmet',
-    {
-      resolve: 'gatsby-plugin-typography',
-      options: {
-        pathToConfigModule: 'src/utils/typography',
-      },
-    },
   ],
 }

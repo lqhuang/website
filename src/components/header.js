@@ -8,14 +8,17 @@ import ColormodeButton from './colormode-button'
 
 
 const Navigation = () => (
-  <nav sx={{ 'a:not(:last-of-type)': { mr: 3 }, fontSize: [1, '18px'], '.active': { color: 'heading' } }}>
+  <nav sx={{ 'a:not(:last-of-type)': { mr: 3 }, fontSize: 2, '.active': { color: 'heading' } }}>
     <Styled.a key="blog" as={Link} activeClassName="active" to="/blog" rel="blog posts">
       Blog
     </Styled.a>
-    <Styled.a key="photograph" as={Link} activeClassName="active" to="/photograph" rel="photos">
+    <Styled.a key="reading notes" as={Link} to="/notes" rel="notes posts">
+      Digest
+    </Styled.a>
+    <Styled.a key="photograph" as={Link} to="/photograph" rel="photos">
       Photograph
     </Styled.a>
-    <Styled.a key="about" as={Link} activeClassName="active" to="/about" rel="about">
+    <Styled.a key="about" as={Link} to="/about" rel="about">
       About
     </Styled.a>
   </nav>
@@ -40,7 +43,7 @@ function Header() {
           aria-label={`${siteTitle} - Back to home`}
           sx={{ color: 'heading', textDecoration: 'none' }}
         >
-          <h1 sx={{ my: 0, fontWeight: 'medium', fontSize: [3, 4] }}>{siteTitle}</h1>
+          <h1 sx={{ my: 0, fontWeight: 'medium', fontSize: [4, 5] }}>{siteTitle}</h1>
         </Link>
       </Flex>
       <Flex
@@ -48,7 +51,9 @@ function Header() {
           variant: 'dividers.bottom',
           alignItems: 'center',
           justifyContent: 'space-between',
-          mt: 3,
+          mt: 2,
+          mb: 2,
+          paddingBottom: 2,
           color: 'secondary',
           a: { color: 'secondary', ':hover': { color: 'heading' } },
           flexFlow: 'wrap',

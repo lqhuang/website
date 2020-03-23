@@ -3,20 +3,26 @@ parserOptions:
   sourceType: module
   ecmaFeatures:
     jsx: true
+
 env:
   browser: true
   node: true
   es6: true
   es2020: true
+
 globals:
   graphql: true
   __PATH_PREFIX__: true
-# extends: "airbnb-base"
-extends: airbnb
-# extends: "airbnb/hooks"
+
+extends:
+  # - airbnb-base
+  - airbnb
+  - airbnb/hooks
+
 plugins:
   - react
   - react-hooks
+
 rules:
   semi: ["error", "never"]
   react/jsx-filename-extension: ["warn", { "extensions": [".js", ".jsx"] }]
@@ -28,3 +34,12 @@ rules:
   object-curly-newline: "off"
   # graphql/template-strings:
   import/prefer-default-export: "off"
+
+settings:
+  ## fix "Unable to resolve path to module"
+  ## https://github.com/benmosher/eslint-plugin-import#resolvers
+  import/resolver:
+    node:
+      extensions: [".js", ".jsx", ".ts", ".tsx"]
+      paths:
+        - "./"

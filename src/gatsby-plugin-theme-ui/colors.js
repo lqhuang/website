@@ -34,7 +34,7 @@ export const appleDark = {
   highlight: '#666666',
   muted: '#f6f6f6',
   // variants
-  toggleIcon: 'CBD5E0',
+  toggleIcon: '#CBD5E0',
   divider: '#2D3748',
   heading: 'white',
 }

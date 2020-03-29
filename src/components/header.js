@@ -9,7 +9,7 @@ import ColormodeButton from './colormode-button'
 
 const Navigation = () => (
   <nav sx={{ 'a:not(:last-of-type)': { mr: 3 }, fontSize: 2, '.active': { color: 'heading' } }}>
-    <Styled.a key="blog" as={Link} activeClassName="active" to="/blog" rel="blog posts">
+    <Styled.a key="blog" as={Link} to="/blog" rel="blog posts">
       Blog
     </Styled.a>
     <Styled.a key="reading notes" as={Link} to="/notes" rel="notes posts">

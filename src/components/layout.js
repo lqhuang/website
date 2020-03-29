@@ -21,6 +21,11 @@ const Normalize = () => (
         backgroundColor: 'primary',
         color: 'white',
       },
+      hr: {
+        boxSizing: 'content-box',
+        height: 0,
+        overflow: 'visible',
+      },
       table: {
         // whiteSpace: 'normal',
         borderCollapse: 'collapse',
@@ -45,7 +50,8 @@ const Layout = (props) => {
       <Normalize />
       {/* <Seo /> */}
       <Container sx={{
-        maxWidth: ['100%', '100%', '61.8%', '50%'],
+        paddingX: 4,
+        maxWidth: ['100%', '100%', '61.8%', '61.8%', '50%'],
       }}
       >
         <Header />

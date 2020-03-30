@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import { jsx } from 'theme-ui'
+import { jsx, Styled } from 'theme-ui'
 import { Link, graphql } from 'gatsby'
 
 import Layout from 'src/components/layout'
@@ -16,10 +16,10 @@ function TagRoute(props) {
 
   return (
     <Layout location={location}>
-      <h1>
+      <Styled.h1>
         {data.allMarkdownRemark.totalCount}
         {` posts tagged with "${pageContext.tag}"`}
-      </h1>
+      </Styled.h1>
       <ul>{postLinks}</ul>
       <p>
         <Link to="/tags/">Browse all tags</Link>

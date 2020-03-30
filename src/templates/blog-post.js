@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import { jsx } from 'theme-ui'
+import { jsx, BaseStyles } from 'theme-ui'
 import { Link, graphql } from 'gatsby'
 
 import Layout from 'src/components/layout'
@@ -78,22 +78,30 @@ function BlogPostTemplate(props) {
   return (
     <Layout location={location} title={siteTitle}>
       <SEO title={postTitle} description={excerpt} />
-      <h1>{postTitle}</h1>
+      <BaseStyles>
+        <h1>{postTitle}</h1>
 
-      <p>
-        {postDate !== null && postDate}
-        {modified !== null && modified !== postDate && ` · ${modified}`}
-        {tagSection !== null && tagSection}
-      </p>
+        <p sx={{
+          mb: 3,
+          a: {
+            textDecoration: 'underline 1px solid',
+          },
+        }}
+        >
+          {postDate !== null && postDate}
+          {modified !== null && modified !== postDate && ` · ${modified}`}
+          {tagSection !== null && tagSection}
+        </p>
 
-      {/* {tableOfContents !== ''
+        {/* {tableOfContents !== ''
         && <p dangerouslySetInnerHTML={{ __html: tableOfContents }} />} */}
 
-      <p dangerouslySetInnerHTML={{ __html: postHtml }} />
+        {/* eslint-disable-next-line react/no-danger */}
+        <p dangerouslySetInnerHTML={{ __html: postHtml }} />
+        <hr />
+      </BaseStyles>
 
-      <hr />
       <Pagination previous={previous} next={next} />
-
     </Layout>
   )
 }

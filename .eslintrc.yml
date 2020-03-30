@@ -34,6 +34,7 @@ rules:
   object-curly-newline: "off"
   # graphql/template-strings:
   import/prefer-default-export: "off"
+  react/jsx-props-no-spreading: ["error", {"custom": "ignore", "explicitSpread":  "ignore"}]
 
 settings:
   ## fix "Unable to resolve path to module"

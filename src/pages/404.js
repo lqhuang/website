@@ -1,31 +1,21 @@
 /** @jsx jsx */
-import { jsx } from 'theme-ui'
-import { graphql } from 'gatsby'
+import { jsx, Styled } from 'theme-ui'
 
 import Layout from 'src/components/layout'
 import SEO from 'src/components/seo'
+import { useSiteMetadata } from 'src/hooks/use-site-metadata'
 
 const NotFoundPage = (props) => {
-  const { data, location } = props
-  const siteTitle = data.site.siteMetadata.title
+  const { location } = props
+  const { title: siteTitle } = useSiteMetadata()
 
   return (
     <Layout location={location} title={siteTitle}>
       <SEO title="404: Not Found" />
-      <h1>Not Found</h1>
-      <p>You just hit a route that doesn&#39;t exist... the sadness.</p>
+      <Styled.h1>Not Found</Styled.h1>
+      <Styled.p>You just hit a route that doesn&#39;t exist... the sadness.</Styled.p>
     </Layout>
   )
 }
 
 export default NotFoundPage
-
-export const pageQuery = graphql`
-  query {
-    site {
-      siteMetadata {
-        title
-      }
-    }
-  }
-`

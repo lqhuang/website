@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import { jsx } from 'theme-ui'
+import { jsx, Styled } from 'theme-ui'
 import { Link, graphql, useStaticQuery } from 'gatsby'
 
 import Layout from 'src/components/layout'
@@ -47,12 +47,25 @@ const BlogIndex = (props) => {
         const title = node.frontmatter.title || node.fields.slug
         return (
           <div key={node.fields.slug} sx={{ marginBottom: 4 }}>
-            <h3 sx={{ marginBottom: 1 }}>
-              <Link style={{ boxShadow: 'none' }} to={node.fields.slug}>
+            <Styled.h3>
+              <Link
+                sx={{
+                  textDecoration: 'none',
+                  ':hover': {
+                    textDecoration: 'underline',
+                    textDecorationSkip: 'ink',
+                    textDecorationSkipInk: 'all',
+                    textUnderlineOffset: '12%',
+                  },
+                }}
+                style={{ boxShadow: 'none' }}
+                to={node.fields.slug}
+              >
                 {title}
               </Link>
-            </h3>
+            </Styled.h3>
             {node.frontmatter.date !== null && <small>{node.frontmatter.date}</small>}
+            {/* eslint-disable-next-line react/no-danger */}
             <p sx={{ marginY: 1 }} dangerouslySetInnerHTML={{ __html: node.excerpt }} />
           </div>
         )

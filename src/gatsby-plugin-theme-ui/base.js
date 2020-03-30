@@ -1,12 +1,13 @@
 import { appleLight, appleDark } from './colors'
 import { typoScale, mdxStyles } from './typography'
+import { MOBILE_WIDTH, DEFAULT_WIDTH, LARGE_DISPLAY_WIDTH } from './breakpoints'
 
 const space = [0, 4, 8, 16, 32, 64, 128, 256, 512]
 // const space = [0, '0.25rem', '0.5rem', '1rem', '2rem', '4rem', '8rem', '16rem', '32rem']
-const breakpoints = ['640px', '768px', '1024px', '1280px']
+const breakpoints = [MOBILE_WIDTH, DEFAULT_WIDTH, LARGE_DISPLAY_WIDTH]
 
 const colors = {
-  // ...appleDark,
+  ...appleLight,
   transparent: 'transparent',
   modes: {
     light: appleLight,

@@ -85,19 +85,16 @@ const headingStyles = {
 const mdxStyles = {
   ...headingStyles,
   root: {
+    color: 'text',
     fontFamily: 'body',
     lineHeight: 'body',
     fontWeight: 'body',
-    // color: 'text',
-    // backgroundColor: 'background',
   },
   a: {
     color: 'primary',
     textDecoration: 'none',
     ':hover': {
       textDecoration: 'underline',
-    },
-    '&:hover': {
       color: 'secondary',
     },
   },
@@ -108,6 +105,7 @@ const mdxStyles = {
     fontWeight: 'body',
     // '--baseline-multiplier': 0.179,
     // '--x-height-multiplier': 0.35,
+    mb: 3,
   },
   table: {
     borderCollapse: 'collapse',
@@ -124,9 +122,10 @@ const mdxStyles = {
     borderBottomWidth: '1px',
   },
   hr: {
-    bg: 'muted',
-    border: 0,
+    background: 'hsla(0, 0%, 0%, 0.1)',
+    border: 'none',
     height: '1px',
+    // marginBottom: 'calc(1em - 1px)',
   },
 }
 

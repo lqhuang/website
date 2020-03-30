@@ -15,9 +15,9 @@ const Navigation = () => (
     <Styled.a key="reading notes" as={Link} to="/notes" rel="notes posts">
       Digest
     </Styled.a>
-    <Styled.a key="photograph" as={Link} to="/photograph" rel="photos">
+    {/* <Styled.a key="photograph" as={Link} to="/photograph" rel="photos">
       Photograph
-    </Styled.a>
+    </Styled.a> */}
     <Styled.a key="about" as={Link} to="/about" rel="about">
       About
     </Styled.a>
@@ -25,10 +25,11 @@ const Navigation = () => (
 )
 
 
-function Header() {
+function Header(props) {
   const { title: siteTitle } = useSiteMetadata()
   const [colorMode, setColorMode] = useColorMode()
   const isDark = colorMode === 'dark'
+  const { children, ...remainProps } = props
 
   const toggleColorMode = (event) => {
     event.preventDefault()
@@ -36,14 +37,15 @@ function Header() {
   }
 
   return (
-    <header sx={{ marginBottom: [3, 4] }}>
+    // eslint-disable-next-line react/jsx-props-no-spreading
+    <header {...remainProps}>
       <Flex sx={{ alignItems: 'center', justifyContent: 'space-between' }}>
         <Link
           to="/"
           aria-label={`${siteTitle} - Back to home`}
           sx={{ color: 'heading', textDecoration: 'none' }}
         >
-          <h1 sx={{ my: 0, fontWeight: 'medium', fontSize: [4, 5] }}>{siteTitle}</h1>
+          <Styled.h1 sx={{ my: 2, fontWeight: 'medium' }}>{siteTitle}</Styled.h1>
         </Link>
       </Flex>
       <Flex
@@ -51,11 +53,11 @@ function Header() {
           variant: 'dividers.bottom',
           alignItems: 'center',
           justifyContent: 'space-between',
-          mt: 2,
-          mb: 2,
+          // mt: 0,
+          // mb: 2,
           paddingBottom: 2,
-          color: 'secondary',
-          a: { color: 'secondary', ':hover': { color: 'heading' } },
+          color: 'toggleIcon',
+          a: { color: 'toggleIcon', ':hover': { color: 'heading' } },
           flexFlow: 'wrap',
         }}
       >

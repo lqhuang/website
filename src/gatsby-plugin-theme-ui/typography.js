@@ -47,25 +47,26 @@ const commonHeading = {
   lineHeight: 'heading',
   fontWeight: 'heading',
   color: 'heading',
-  m: 0,
-  mb: 1,
+  mt: [3, 4],
+  mb: 3,
+  ':before': {
+    content: '# ',
+    color: 'secondary',
+  },
 }
 
 const headingStyles = {
   h1: {
     ...commonHeading,
     fontSize: [5, 6, 7],
-    mt: 2,
   },
   h2: {
     ...commonHeading,
     fontSize: [4, 5, 6],
-    mt: 2,
   },
   h3: {
     ...commonHeading,
     fontSize: [3, 4, 5],
-    mt: 3,
   },
   h4: {
     ...commonHeading,
@@ -78,7 +79,6 @@ const headingStyles = {
   h6: {
     ...commonHeading,
     fontSize: 1,
-    mb: 2,
   },
 }
 
@@ -91,11 +91,11 @@ const mdxStyles = {
     fontWeight: 'body',
   },
   a: {
-    color: 'primary',
+    color: 'secondary',
     textDecoration: 'none',
     ':hover': {
       textDecoration: 'underline',
-      color: 'secondary',
+      color: 'text',
     },
   },
   p: {
@@ -114,6 +114,7 @@ const mdxStyles = {
       borderBottomStyle: 'solid',
       borderBottomColor: 'hsla(0,0%,0%,0.12)',
     },
+    margin: 3,
   },
   th: {
     borderBottomWidth: '2px',

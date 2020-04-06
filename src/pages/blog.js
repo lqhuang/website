@@ -47,7 +47,13 @@ const BlogIndex = (props) => {
         const title = node.frontmatter.title || node.fields.slug
         return (
           <div key={node.fields.slug} sx={{ marginBottom: 4 }}>
-            <Styled.h3>
+            <Styled.h3 sx={{
+              ':before': {
+                content: '# ',
+                color: 'secondary',
+              },
+            }}
+            >
               <Link
                 sx={{
                   textDecoration: 'none',

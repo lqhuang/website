@@ -43,7 +43,7 @@ module.exports = {
           },
           'gatsby-remark-prismjs',
           'gatsby-remark-copy-linked-files',
-          'gatsby-remark-smartypants',
+          // 'gatsby-remark-smartypants',
         ],
       },
     },
@@ -61,7 +61,7 @@ module.exports = {
     {
       resolve: 'gatsby-plugin-manifest',
       options: {
-        name: 'Lanqing Huang Blog',
+        name: 'Blog of Lanqing Huang',
         short_name: 'lqhuang-blog',
         start_url: '/',
         background_color: '#ffffff',

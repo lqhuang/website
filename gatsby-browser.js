@@ -1,5 +1,8 @@
 // custom typefaces
-import 'typeface-montserrat'
-import 'typeface-merriweather'
+// import 'typeface-inter'
+import 'typeface-zilla-slab'
+import 'typeface-noto-serif-sc'
+import 'typeface-noto-sans-sc'
+
 // markdown codeblock
 import 'prismjs/themes/prism.css'

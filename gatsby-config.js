@@ -12,19 +12,22 @@ module.exports = {
     },
   },
   plugins: [
+    'gatsby-plugin-typescript',
     {
       resolve: 'gatsby-source-filesystem',
       options: {
         path: `${__dirname}/contents/blog`,
         name: 'blog',
       },
-    }, {
+    },
+    {
       resolve: 'gatsby-source-filesystem',
       options: {
         path: `${__dirname}/contents/assets`,
         name: 'assets',
       },
-    }, {
+    },
+    {
       // markdown rendering
       resolve: 'gatsby-transformer-remark',
       options: {
@@ -34,7 +37,8 @@ module.exports = {
             options: {
               maxWidth: '100%',
             },
-          }, {
+          },
+          {
             resolve: 'gatsby-remark-katex',
             options: {
               // Add any KaTeX options from https://github.com/KaTeX/KaTeX/blob/master/docs/options.md here
@@ -52,7 +56,7 @@ module.exports = {
     {
       resolve: 'gatsby-plugin-google-analytics',
       options: {
-      // trackingId: `ADD YOUR TRACKING ID HERE`,
+        // trackingId: `ADD YOUR TRACKING ID HERE`,
       },
     },
     'gatsby-plugin-theme-ui',

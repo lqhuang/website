@@ -3,13 +3,14 @@ const path = require('path')
 const { createFilePath } = require('gatsby-source-filesystem')
 
 // https://www.gatsbyjs.org/docs/creating-and-modifying-pages/#removing-trailing-slashes
-const replacePath = (pagePath) => (pagePath === '/' ? pagePath : pagePath.replace(/\/$/, ''))
+const replacePath = (pagePath) =>
+  pagePath === '/' ? pagePath : pagePath.replace(/\/$/, '')
 
 exports.createPages = ({ graphql, actions }) => {
   const { createPage } = actions
 
-  const blogPost = path.resolve('./src/templates/blog-post.js')
-  const tagPage = path.resolve('src/templates/tag-page.js')
+  const blogPost = path.resolve('src/templates/blog-post.jsx')
+  const tagPage = path.resolve('src/templates/tag-page.jsx')
   return graphql(
     `
       {

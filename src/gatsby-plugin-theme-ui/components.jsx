@@ -5,22 +5,14 @@ import { jsx, Styled } from 'theme-ui'
 
 import Prism from '@theme-ui/prism'
 
-
 const heading = (Tag) => (props) => {
   if (!props.id) {
-    return (
-      <Tag {...props}>
-        {props.children}
-      </Tag>
-    )
+    return <Tag {...props}>{props.children}</Tag>
   }
   return (
     <Tag {...props}>
-      <Styled.a
-        href={`#${props.id}`}
-      >
-        {props.children}
-      </Styled.a>
+      Not work???
+      <Styled.a href={`#${props.id}`}>{props.children}</Styled.a>
     </Tag>
   )
 }
@@ -33,4 +25,4 @@ const components = {
   code: Prism,
 }
 
-export { components }
+export default components

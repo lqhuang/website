@@ -89,7 +89,7 @@ function BlogPostTemplate(props) {
         }}
         >
           {postDate !== null && postDate}
-          {modified !== null && modified !== postDate && ` · ${modified}`}
+          {/* {modified !== null && modified !== postDate && ` · ${modified}`} */}
           {tagSection !== null && tagSection}
         </p>
 
@@ -129,7 +129,7 @@ query BlogPostBySlug($slug: String!) {
     frontmatter {
       title
       date(formatString: "MMMM DD, YYYY")
-      modified(formatString: "MMMM DD, YYYY")
+      # modified(formatString: "MMMM DD, YYYY")
       tags
     }
   }

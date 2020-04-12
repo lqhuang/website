@@ -12,7 +12,7 @@ const heading = (Tag) => (props) => {
   return (
     <Tag {...props}>
       Not work???
-      <Styled.a href={`#${props.id}`}>{props.children}</Styled.a>
+      <Styled.a href={`#${props.id}`}>#{props.children}</Styled.a>
     </Tag>
   )
 }

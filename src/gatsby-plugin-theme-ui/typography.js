@@ -8,6 +8,10 @@ const baseFonts = {
   mono: 'Menlo, Monaco, Consolas, "Courier New", monospace',
 }
 
+// .mac { --monaco-monospace-font: "SF Mono", Monaco, Menlo, Courier, monospace; }
+// .windows { --monaco-monospace-font: Consolas, "Courier New", monospace; }
+// .linux { --monaco-monospace-font: "Ubuntu Mono", "Liberation Mono", "DejaVu Sans Mono", "Courier New", monospace; }
+
 const typoScale = {
   fonts: {
     body: baseFonts.sans,

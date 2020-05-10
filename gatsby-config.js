@@ -1,3 +1,5 @@
+const remarkSlug = require('remark-slug')
+
 module.exports = {
   siteMetadata: {
     title: 'lqhuang.io',
@@ -67,6 +69,12 @@ module.exports = {
       },
     },
     'gatsby-plugin-theme-ui',
+    {
+      resolve: 'gatsby-plugin-mdx',
+      options: {
+        remarkPlugins: [remarkSlug],
+      },
+    },
     'gatsby-theme-style-guide',
     'gatsby-plugin-feed',
     {

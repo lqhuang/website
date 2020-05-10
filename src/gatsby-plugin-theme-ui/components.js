@@ -11,17 +11,18 @@ const heading = (Tag) => (props) => {
   }
   return (
     <Tag {...props}>
-      Not work???
+      Still Not work???
       <Styled.a href={`#${props.id}`}>#{props.children}</Styled.a>
     </Tag>
   )
 }
+
 const components = {
   h1: heading('h1'),
   h2: heading('h2'),
   h3: heading('h3'),
   h4: heading('h4'),
-  pre: (props) => props.children,
+  a: (props) => <a>not work either?{props.children}</a>,
   code: Prism,
 }
 

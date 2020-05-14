@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import { jsx, useColorMode, Styled } from 'theme-ui'
+import { jsx, useColorMode, Styled, Link as A } from 'theme-ui'
 import { Link } from 'gatsby'
 import { Flex } from '@theme-ui/components'
 
@@ -9,18 +9,18 @@ import ColormodeButton from './colormode-button'
 
 const Navigation = () => (
   <nav sx={{ 'a:not(:last-of-type)': { mr: 3 }, fontSize: 2, '.active': { color: 'heading' } }}>
-    <Styled.a key="blog" as={Link} to="/blog" rel="blog posts">
+    <A key="blog" as={Link} to="/blog" rel="blog posts">
       Blog
-    </Styled.a>
-    <Styled.a key="reading notes" as={Link} to="/notes" rel="notes posts">
+    </A>
+    <A key="reading notes" as={Link} to="/notes" rel="notes posts">
       Digest
-    </Styled.a>
-    {/* <Styled.a key="photograph" as={Link} to="/photograph" rel="photos">
+    </A>
+    {/* <A key="photograph" as={Link} to="/photograph" rel="photos">
       Photograph
-    </Styled.a> */}
-    <Styled.a key="about" as={Link} to="/about" rel="about">
+    </A> */}
+    <A key="about" as={Link} to="/about" rel="about">
       About
-    </Styled.a>
+    </A>
   </nav>
 )
 

@@ -1,12 +1,12 @@
 /** @jsx jsx */
 import { jsx, BaseStyles } from 'theme-ui'
 import { Link, graphql } from 'gatsby'
+import { MDXRenderer } from 'gatsby-plugin-mdx'
 
 import Layout from 'src/components/layout'
 import SEO from 'src/components/seo'
 
 import 'katex/dist/katex.min.css'
-
 
 function Pagination(props) {
   const { previous, next } = props
@@ -22,25 +22,24 @@ function Pagination(props) {
     >
       <li>
         {previous && (
-        <Link to={previous.fields.slug} rel="prev">
-          {`← ${previous.frontmatter.title}`}
-        </Link>
+          <Link to={previous.fields.slug} rel="prev">
+            {`← ${previous.frontmatter.title}`}
+          </Link>
         )}
       </li>
       <li>
         {next && (
-        <Link to={next.fields.slug} rel="next">
-          {`${next.frontmatter.title} →`}
-        </Link>
+          <Link to={next.fields.slug} rel="next">
+            {`${next.frontmatter.title} →`}
+          </Link>
         )}
       </li>
     </ul>
   )
 }
 
-
 function BlogPostTemplate(props) {
-  const post = props.data.markdownRemark
+  const post = props.data.mdx
   const siteTitle = props.data.site.siteMetadata.title
   const { previous, next } = props.pageContext
   const { location } = props
@@ -48,16 +47,17 @@ function BlogPostTemplate(props) {
   const { excerpt, html: postHtml, tableOfContents } = post
   const { title: postTitle, date: postDate, tags, modified } = post.frontmatter
 
-
   const genTagSection = (tagsArray) => {
     if (tagsArray === null || tagsArray === undefined) {
       return null
     }
-    const tagsLink = tagsArray.map(
-      (tag, i) => (
-        <span key={tag}><Link to={tag}>{tags[i]}</Link></span>
-      ),
-    ).reduce((prev, curr) => [prev, ', ', curr])
+    const tagsLink = tagsArray
+      .map((tag, i) => (
+        <span key={tag}>
+          <Link to={tag}>{tags[i]}</Link>
+        </span>
+      ))
+      .reduce((prev, curr) => [prev, ', ', curr])
 
     return (
       <span
@@ -67,9 +67,7 @@ function BlogPostTemplate(props) {
         }}
       >
         {' '}
-        &middot; tags:
-        {' '}
-        {tagsLink}
+        &middot; tags: {tagsLink}
       </span>
     )
   }
@@ -81,12 +79,13 @@ function BlogPostTemplate(props) {
       <BaseStyles>
         <h1>{postTitle}</h1>
 
-        <p sx={{
-          mb: 3,
-          a: {
-            textDecoration: 'underline 1px solid',
-          },
-        }}
+        <p
+          sx={{
+            mb: 3,
+            a: {
+              textDecoration: 'underline 1px solid',
+            },
+          }}
         >
           {postDate !== null && postDate}
           {/* {modified !== null && modified !== postDate && ` · ${modified}`} */}
@@ -95,9 +94,7 @@ function BlogPostTemplate(props) {
 
         {/* {tableOfContents !== ''
         && <p dangerouslySetInnerHTML={{ __html: tableOfContents }} />} */}
-
-        {/* eslint-disable-next-line react/no-danger */}
-        <p dangerouslySetInnerHTML={{ __html: postHtml }} />
+        <MDXRenderer>{post.body}</MDXRenderer>
         <hr />
       </BaseStyles>
 
@@ -106,32 +103,32 @@ function BlogPostTemplate(props) {
   )
 }
 
-
 export default BlogPostTemplate
 
 export const pageQuery = graphql`
-query BlogPostBySlug($slug: String!) {
-  site {
-    siteMetadata {
-      title
-      author
+  query BlogPostBySlug($slug: String!) {
+    site {
+      siteMetadata {
+        title
+        author
+      }
+    }
+    mdx(fields: { slug: { eq: $slug } }) {
+      id
+      excerpt(pruneLength: 144)
+      body
+      mdxAST
+      fields {
+        slug
+        tagSlugs
+      }
+      tableOfContents
+      frontmatter {
+        title
+        date(formatString: "MMMM DD, YYYY")
+        # modified(formatString: "MMMM DD, YYYY")
+        tags
+      }
     }
   }
-  markdownRemark(fields: { slug: { eq: $slug } }) {
-    id
-    excerpt(pruneLength: 144)
-    html
-    fields {
-      slug
-      tagSlugs
-    }
-    tableOfContents
-    frontmatter {
-      title
-      date(formatString: "MMMM DD, YYYY")
-      # modified(formatString: "MMMM DD, YYYY")
-      tags
-    }
-  }
-}
 `

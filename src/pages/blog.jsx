@@ -5,7 +5,6 @@ import { Link, graphql, useStaticQuery } from 'gatsby'
 import Layout from 'src/components/layout'
 import SEO from 'src/components/seo'
 
-
 const pageQuery = graphql`
   query {
     site {
@@ -14,7 +13,7 @@ const pageQuery = graphql`
         author
       }
     }
-    allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }) {
+    allMdx(sort: { fields: [frontmatter___date], order: DESC }) {
       edges {
         node {
           excerpt
@@ -34,25 +33,23 @@ const pageQuery = graphql`
 const BlogIndex = (props) => {
   const data = useStaticQuery(pageQuery)
   const { site: siteTitle, author } = data.site.siteMetadata
-  const posts = data.allMarkdownRemark.edges
+  const posts = data.allMdx.edges
   const { location } = props
 
   return (
     <Layout location={location} title={siteTitle}>
-      <SEO
-        title="All posts"
-        keywords={['blog', author]}
-      />
+      <SEO title="All posts" keywords={['blog', author]} />
       {posts.map(({ node }) => {
         const title = node.frontmatter.title || node.fields.slug
         return (
           <div key={node.fields.slug} sx={{ marginBottom: 4 }}>
-            <Styled.h3 sx={{
-              ':before': {
-                content: '# ',
-                color: 'secondary',
-              },
-            }}
+            <Styled.h3
+              sx={{
+                ':before': {
+                  content: '"# "',
+                  color: 'secondary',
+                },
+              }}
             >
               <Link
                 sx={{
@@ -70,9 +67,14 @@ const BlogIndex = (props) => {
                 {title}
               </Link>
             </Styled.h3>
-            {node.frontmatter.date !== null && <small>{node.frontmatter.date}</small>}
+            {node.frontmatter.date !== null && (
+              <small>{node.frontmatter.date}</small>
+            )}
             {/* eslint-disable-next-line react/no-danger */}
-            <p sx={{ marginY: 1 }} dangerouslySetInnerHTML={{ __html: node.excerpt }} />
+            <p
+              sx={{ marginY: 1 }}
+              dangerouslySetInnerHTML={{ __html: node.excerpt }}
+            />
           </div>
         )
       })}

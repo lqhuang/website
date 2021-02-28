@@ -49,16 +49,17 @@ const Layout = (props) => {
     <Fragment>
       <Normalize />
       {/* <Seo /> */}
-      <Container sx={{
-        paddingX: 4,
-        maxWidth: ['100%', '100%', '61.8%', '50%'],
-      }}
+      <Container
+        sx={{
+          paddingX: 4,
+          maxWidth: ['100%', '100%', '61.8%', '50%'],
+        }}
       >
         <Header sx={{ mb: [3, 4] }} />
         <main>{children}</main>
         {/* <hr /> */}
         {/* eslint-disable */}
-        <footer sx={{ mt: [3, 4] }}>
+        <footer sx={{ mt: [3, 4], mb: [2, 3] }}>
           Science {'\u00d7'} Tech {'\u00d7'} Design © {new Date().getFullYear()}
           , Built with <a href="https://www.gatsbyjs.org">Gatsby</a>
         </footer>

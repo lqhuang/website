@@ -1,12 +1,12 @@
 ---
-title: "Code and Syntax Highlighting with PrismJS"
-date: "2017-04-04"
+title: 'Code and Syntax Highlighting with PrismJS'
+date: '2017-04-04'
 draft: false
 example: false
 author: Daisy Buchanan
 tags:
   - remark
-  - Code Highlighting
+  - 'Code Highlighting'
 ---
 
 Code blocks are part of the Markdown spec, but syntax highlighting isn't.
@@ -47,7 +47,7 @@ names, see the [PrismJS homepage][3].
     ```
 
 ```javascript
-var s = "JavaScript syntax highlighting"
+var s = 'JavaScript syntax highlighting'
 alert(s)
 ```
 
@@ -63,9 +63,7 @@ But let's throw in a <b>tag</b>.
 
 ## Line highlighting & numbering
 
-[gatsby-remark-prismjs][1] has its own line highlighting & numbering implementation which
-differs a bit from PrismJS's own. You can find out everything about it in the
-[corresponding README][1].
+[gatsby-remark-prismjs][1] has its own line highlighting & numbering implementation which differs a bit from PrismJS's own. You can find out everything about it in the [corresponding README][1].
 
     ```javascript{1-2,22}{numberLines: true}
     // In your gatsby-config.js
@@ -98,7 +96,8 @@ differs a bit from PrismJS's own. You can find out everything about it in the
 
 ```javascript{1-2,22}{numberLines: true}
 // In your gatsby-config.js
-// Let's make this line very long so that our container has to scroll its overflow…
+// Let's make this line very long so that our container has to scroll its overflow...
+
 plugins: [
   {
     resolve: `gatsby-transformer-remark`,
@@ -143,51 +142,45 @@ Let's do something crazy and add a list with another code example:
 
 - **A list item**
 
-  …and a paragraph! In my younger and more vulnerable years my father gave me
-  some advice that I’ve been turning over in my mind ever since.
+...and a paragraph! In my younger and more vulnerable years my father gave me some advice that I’ve been turning over in my mind ever since.
 
-  1.  A nested numbered list
-  2.  “Whenever you feel like criticizing any one,” he told me, “just remember
-      that all the people in this world haven’t had the advantages that you’ve
-      had.”
+1. A nested numbered list
+2. “Whenever you feel like criticizing any one,” he told me, “just remember that all the people in this world haven’t had the advantages that you’ve had.”
 
 - Roger that, now back to topic: _Highlighted code blocks work here, too:_
 
-  ```css{10,13}
-  .clearfix:after {
-    visibility: hidden;
-    display: block;
-    font-size: 0;
-    content: " ";
-    clear: both;
-    height: 0;
-  }
-  .clearfix {
-    display: inline-table;
-  }
-  /* Hides from IE-mac \*/
-  * html .clearfix {
-    height: 1%;
-  }
-  .clearfix {
-    display: block;
-  }
-  /* End hide from IE-mac */
-  ```
+```css{10,13}
+.clearfix:after {
+  visibility: hidden;
+  display: block;
+  font-size: 0;
+  content: " ";
+  clear: both;
+  height: 0;
+}
+.clearfix {
+  display: inline-table;
+}
+/* Hides from IE-mac \*/
+* html .clearfix {
+  height: 1%;
+}
+.clearfix {
+  display: block;
+}
+/* End hide from IE-mac */
+```
 
-  Wow, "IE-mac"?
-  [Yeah, that was a thing](https://en.wikipedia.org/wiki/Internet_Explorer_for_Mac)
-  back in the day … a good one at the time, too:
+Wow, "IE-mac"? [Yeah, that was a thing](https://en.wikipedia.org/wiki/Internet_Explorer_for_Mac) back in the day … a good one at the time, too:
 
-  > Initial versions were developed from the same code base as Internet Explorer
-  > for Windows. Later versions diverged, particularly with the release of
-  > version 5 which included the cutting edge,
-  > [fault-tolerant](https://en.wikipedia.org/wiki/Fault-tolerant) and highly
-  > standards-compliant
-  > [Tasman](<https://en.wikipedia.org/wiki/Tasman_(layout_engine)>) >
-  > [layout engine](https://en.wikipedia.org/wiki/Layout_engine).
+> Initial versions were developed from the same code base as Internet Explorer
+> for Windows. Later versions diverged, particularly with the release of
+> version 5 which included the cutting edge,
+> [fault-tolerant](https://en.wikipedia.org/wiki/Fault-tolerant) and highly
+> standards-compliant
+> [Tasman](<https://en.wikipedia.org/wiki/Tasman_(layout_engine)>) > [layout engine](https://en.wikipedia.org/wiki/Layout_engine).
 
-  Source: https://en.wikipedia.org/wiki/Internet_Explorer_for_Mac
+Source: https://en.wikipedia.org/wiki/Internet_Explorer_for_Mac
 
 - **The last list item** –- no more list items after this one, pinky swear!
 

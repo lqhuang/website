@@ -4,9 +4,8 @@ import { Link, graphql } from 'gatsby'
 import kebabCase from 'lodash/kebabCase'
 import Layout from 'src/components/layout'
 
-
 function TagsPageRoute(props) {
-  const allTags = props.data.allMarkdownRemark.group
+  const allTags = props.data.allMdx.group
   const { location } = props
 
   return (
@@ -30,7 +29,6 @@ function TagsPageRoute(props) {
   )
 }
 
-
 export default TagsPageRoute
 
 export const pageQuery = graphql`
@@ -40,7 +38,7 @@ export const pageQuery = graphql`
         title
       }
     }
-    allMarkdownRemark(
+    allMdx(
       limit: 1000
       filter: { frontmatter: { draft: { ne: true }, example: { ne: true } } }
     ) {

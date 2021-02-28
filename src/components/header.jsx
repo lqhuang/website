@@ -1,14 +1,18 @@
 /** @jsx jsx */
 import { jsx, useColorMode, Styled, Link as A } from 'theme-ui'
 import { Link } from 'gatsby'
-import { Flex } from '@theme-ui/components'
 
 import { useSiteMetadata } from 'src/hooks/use-site-metadata'
 import ColormodeButton from './colormode-button'
 
-
 const Navigation = () => (
-  <nav sx={{ 'a:not(:last-of-type)': { mr: 3 }, fontSize: 2, '.active': { color: 'heading' } }}>
+  <nav
+    sx={{
+      'a:not(:last-of-type)': { mr: 3 },
+      fontSize: 2,
+      '.active': { color: 'heading' },
+    }}
+  >
     <A key="blog" as={Link} to="/blog" rel="blog posts">
       Blog
     </A>
@@ -24,7 +28,6 @@ const Navigation = () => (
   </nav>
 )
 
-
 function Header(props) {
   const { title: siteTitle } = useSiteMetadata()
   const [colorMode, setColorMode] = useColorMode()
@@ -39,16 +42,18 @@ function Header(props) {
   return (
     // eslint-disable-next-line react/jsx-props-no-spreading
     <header {...remainProps}>
-      <Flex sx={{ alignItems: 'center', justifyContent: 'space-between' }}>
+      <div sx={{ alignItems: 'center', justifyContent: 'space-between' }}>
         <Link
           to="/"
           aria-label={`${siteTitle} - Back to home`}
           sx={{ color: 'heading', textDecoration: 'none' }}
         >
-          <Styled.h1 sx={{ my: 2, fontWeight: 'medium' }}>{siteTitle}</Styled.h1>
+          <Styled.h1 sx={{ my: 2, fontWeight: 'medium' }}>
+            {siteTitle}
+          </Styled.h1>
         </Link>
-      </Flex>
-      <Flex
+      </div>
+      <div
         sx={{
           variant: 'dividers.bottom',
           alignItems: 'center',
@@ -63,10 +68,9 @@ function Header(props) {
       >
         <Navigation />
         <ColormodeButton isDark={isDark} toggle={toggleColorMode} />
-      </Flex>
+      </div>
     </header>
   )
 }
-
 
 export default Header

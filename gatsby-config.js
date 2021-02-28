@@ -1,5 +1,3 @@
-const remarkSlug = require('remark-slug')
-
 module.exports = {
   siteMetadata: {
     title: 'lqhuang.io',
@@ -38,15 +36,11 @@ module.exports = {
     },
     {
       // markdown rendering
-      resolve: 'gatsby-transformer-remark',
+      resolve: 'gatsby-plugin-mdx',
       options: {
-        plugins: [
-          {
-            resolve: 'gatsby-remark-images',
-            options: {
-              maxWidth: '100%',
-            },
-          },
+        extensions: [`.mdx`, `.md`],
+        gatsbyRemarkPlugins: [
+          'gatsby-remark-images',
           {
             resolve: 'gatsby-remark-katex',
             options: {
@@ -69,14 +63,7 @@ module.exports = {
       },
     },
     'gatsby-plugin-theme-ui',
-    {
-      resolve: 'gatsby-plugin-mdx',
-      options: {
-        remarkPlugins: [remarkSlug],
-      },
-    },
     'gatsby-theme-style-guide',
-    'gatsby-plugin-feed',
     {
       resolve: 'gatsby-plugin-manifest',
       options: {

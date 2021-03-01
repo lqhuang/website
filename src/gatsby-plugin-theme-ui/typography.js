@@ -53,10 +53,10 @@ const commonHeading = {
   color: 'heading',
   mt: [3, 4],
   mb: 3,
-  ':before': {
-    content: '# ',
-    color: 'secondary',
-  },
+  // ':before': {
+  //   content: '"# "',
+  //   color: 'secondary',
+  // },
 }
 
 const headingStyles = {

@@ -1,8 +1,7 @@
 /* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable react/destructuring-assignment */
 /** @jsx jsx */
-import { jsx, Styled } from 'theme-ui'
-
+import { jsx } from 'theme-ui'
 import Prism from '@theme-ui/prism'
 
 const heading = (Tag) => (props) => {
@@ -11,19 +10,19 @@ const heading = (Tag) => (props) => {
   }
   return (
     <Tag {...props}>
-      Still Not work???
-      <Styled.a href={`#${props.id}`}>#{props.children}</Styled.a>
+      <a href={`#${props.id}`}>#</a>
+      {props.children}
     </Tag>
   )
 }
 
 const components = {
-  h1: heading('h1'),
-  h2: heading('h2'),
-  h3: heading('h3'),
-  h4: heading('h4'),
-  a: (props) => <a>not work either?{props.children}</a>,
-  code: Prism,
+  // h1: heading('h1'),
+  // h2: heading('h2'),
+  // h3: heading('h3'),
+  // h4: heading('h4'),
+  // a: (props) => <a>{props.children}</a>,
+  // code: Prism,
 }
 
 export default components

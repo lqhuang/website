@@ -1,2 +1,3 @@
 # lqhuang-blog
-A website powered by Flask
+
+A blog website for lqhuang :)

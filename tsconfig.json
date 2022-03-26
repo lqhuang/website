@@ -1,28 +1,14 @@
 {
   "compilerOptions": {
-    "target": "esnext",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
-    "allowJs": true,
-    "skipLibCheck": true,
-    "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true,
-    "strict": true,
-    "declaration": true,
-    "forceConsistentCasingInFileNames": true,
-    "module": "esnext",
-    "moduleResolution": "node",
-    "resolveJsonModule": true,
-    "isolatedModules": true,
-    "sourceMap": true,
-    "noEmit": true,
+    // Type Checking
     "noFallthroughCasesInSwitch": true,
     "noImplicitAny": true,
     "noImplicitReturns": true,
-    "jsx": "preserve",
+    "strict": true,
+    // Modules
+    "module": "esnext",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
     "baseUrl": "./",
     "paths": {
       "*": [
@@ -32,11 +18,34 @@
       "src/*": [
         "src/*"
       ]
-    }
+    },
+    // Emit
+    "declaration": true,
+    "noEmit": true,
+    "sourceMap": true,
+    // JavaScript Support
+    "allowJs": true,
+    "checkJs": true,
+    // Interop Constraints
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "isolatedModules": true,
+    // Language and Environment
+    "jsx": "preserve",
+    "target": "esnext",
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
+    // Completeness
+    "skipLibCheck": true,
+    "incremental": true
   },
   "include": [
     "src",
-    "src/types",
+    "src/types"
   ],
   "exclude": [
     "node_modules"

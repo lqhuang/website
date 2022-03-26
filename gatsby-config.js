@@ -15,9 +15,9 @@ module.exports = {
     {
       resolve: `gatsby-plugin-typescript`,
       options: {
-        // isTSX: true, // defaults to false
+        isTSX: true, // defaults to false
         // jsxPragma: `jsx`, // defaults to "React"
-        // allExtensions: true, // defaults to false
+        allExtensions: true, // defaults to false
       },
     },
     {
@@ -45,15 +45,15 @@ module.exports = {
           'gatsby-remark-copy-linked-files',
           // 'gatsby-remark-smartypants',
         ],
-        remarkPlugins: [require('remark-math')],
+        remarkPlugins: [import('remark-math')],
         rehypePlugins: [
-          require('rehype-slug'),
+          import('rehype-slug'),
           [
-            require('rehype-autolink-headings'),
+            import('rehype-autolink-headings'),
             { behavior: 'prepend', content: { type: 'text', value: '#' } },
           ],
           [
-            require('rehype-katex'),
+            import('rehype-katex'),
             // Add any KaTeX options from https://github.com/KaTeX/KaTeX/blob/master/docs/options.md here
             { strict: 'ignore' },
           ],
@@ -62,12 +62,12 @@ module.exports = {
     },
     'gatsby-transformer-sharp',
     'gatsby-plugin-sharp',
-    {
-      resolve: 'gatsby-plugin-google-analytics',
-      options: {
-        // trackingId: `ADD YOUR TRACKING ID HERE`,
-      },
-    },
+    // {
+    //   resolve: 'gatsby-plugin-google-analytics',
+    //   options: {
+    //     // trackingId: `ADD YOUR TRACKING ID HERE`,
+    //   },
+    // },
     'gatsby-plugin-theme-ui',
     'gatsby-theme-style-guide',
     {

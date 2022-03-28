@@ -1,13 +1,11 @@
 /** @jsxImportSource theme-ui */
 import { Fragment, FC } from 'react'
-import { PageProps } from 'gatsby'
 import { Container } from 'theme-ui'
 
 import Header from 'src/components/header'
 
-const Layout: FC<PageProps & { title: string }> = (props) => {
-  const { title, children } = props
-  // const rootPath = `${__PATH_PREFIX__}/`
+const Layout: FC = (props) => {
+  const { children } = props
 
   return (
     <Fragment>

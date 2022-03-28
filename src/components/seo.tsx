@@ -17,6 +17,15 @@ type DataProps = {
   }
 }
 
+interface SEOProps {
+  title: string
+  author?: string
+  description?: string
+  lang?: string
+  keywords?: string[]
+  meta?: MetaProps[]
+}
+
 const detailsQuery = graphql`
   query DefaultSEOQuery {
     site {
@@ -39,14 +48,7 @@ function SEO({
   lang = 'zh-cn',
   keywords = [],
   meta = [],
-}: {
-  title: string
-  author?: string
-  description?: string
-  lang: string
-  keywords: string[]
-  meta: MetaProps[]
-}) {
+}: SEOProps) {
   const data = useStaticQuery<DataProps>(detailsQuery)
   const {
     title: siteTitle,

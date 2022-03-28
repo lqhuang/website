@@ -1,12 +1,18 @@
-const _ = require('lodash')
-const path = require('path')
-const { createFilePath } = require('gatsby-source-filesystem')
+import _ from 'lodash'
+import path from 'path'
+
+import type { GatsbyNode } from 'gatsby'
+import { createFilePath } from 'gatsby-source-filesystem'
 
 // https://www.gatsbyjs.org/docs/creating-and-modifying-pages/#removing-trailing-slashes
-const replacePath = (pagePath) =>
+const replacePath = (pagePath: string) =>
   pagePath === '/' ? pagePath : pagePath.replace(/\/$/, '')
 
-exports.createPages = async ({ graphql, actions, reporter }) => {
+const createPages: GatsbyNode['createPages'] = async ({
+  graphql,
+  actions,
+  reporter,
+}) => {
   const { createPage } = actions
 
   const blogPost = path.resolve('src/templates/blog-post.jsx')
@@ -88,7 +94,11 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
  * https://www.gatsbyjs.org/docs/creating-slugs-for-pages/#create-slugs-in-gatsby-nodejs
  * https://www.gatsbyjs.org/docs/mdx/programmatically-creating-pages/#generate-slugs
  */
-exports.onCreateNode = ({ node, actions, getNode }) => {
+const onCreateNode: GatsbyNode['onCreateNode'] = ({
+  node,
+  actions,
+  getNode,
+}) => {
   const { createNodeField } = actions
 
   if (node.internal.type === 'Mdx') {
@@ -109,7 +119,9 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
 }
 
 // https://dev.to/mmz001/migrating-gatsby-remark-blog-to-mdx-59oc
-exports.createSchemaCustomization = ({ actions }) => {
+const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] = ({
+  actions,
+}) => {
   const { createTypes } = actions
 
   // Explicitly define the siteMetadata {} object
@@ -149,7 +161,10 @@ exports.createSchemaCustomization = ({ actions }) => {
   `)
 }
 
-exports.onCreateWebpackConfig = ({ actions, getConfig }) => {
+const onCreateWebpackConfig: GatsbyNode['onCreateWebpackConfig'] = ({
+  actions,
+  getConfig,
+}) => {
   const config = getConfig()
   const contextSrc = path.join(config.context, 'src')
   // https://webpack.js.org/configuration/resolve/#resolvealias
@@ -160,4 +175,11 @@ exports.onCreateWebpackConfig = ({ actions, getConfig }) => {
       // modules: [path.resolve(__dirname), "node_modules"],
     },
   })
+}
+
+export {
+  createPages,
+  onCreateNode,
+  createSchemaCustomization,
+  onCreateWebpackConfig,
 }

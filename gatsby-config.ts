@@ -1,9 +1,11 @@
+import path from 'path'
 import type { GatsbyConfig } from 'gatsby'
 
 const config: GatsbyConfig = {
   siteMetadata: {
     title: 'lqhuang.io',
     author: 'Lanqing Huang',
+    email: 'lqhuang@outlook.com',
     description: 'A blog to record life',
     siteUrl: 'https://lqhuang.github.io/',
     social: {
@@ -25,14 +27,14 @@ const config: GatsbyConfig = {
     {
       resolve: 'gatsby-source-filesystem',
       options: {
-        path: `${__dirname}/contents/blog`,
+        path: path.resolve('contents/blog'),
         name: 'blog',
       },
     },
     {
       resolve: 'gatsby-source-filesystem',
       options: {
-        path: `${__dirname}/contents/assets`,
+        path: path.resolve('contents/assets'),
         name: 'assets',
       },
     },

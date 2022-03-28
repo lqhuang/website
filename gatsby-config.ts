@@ -1,4 +1,6 @@
-module.exports = {
+import type { GatsbyConfig } from 'gatsby'
+
+const config: GatsbyConfig = {
   siteMetadata: {
     title: 'lqhuang.io',
     author: 'Lanqing Huang',
@@ -86,3 +88,5 @@ module.exports = {
     'gatsby-plugin-react-helmet',
   ],
 }
+
+export default config

@@ -1,5 +1,6 @@
-/** @jsx jsx */
-import { jsx, useColorMode, Styled, Link as A } from 'theme-ui'
+/** @jsxImportSource theme-ui */
+import { MouseEvent, ComponentPropsWithRef } from 'react'
+import { useColorMode, Themed, Link as A } from 'theme-ui'
 import { Link } from 'gatsby'
 
 import { useSiteMetadata } from 'src/hooks/use-site-metadata'
@@ -13,28 +14,28 @@ const Navigation = () => (
       '.active': { color: 'heading' },
     }}
   >
-    <A key="blog" as={Link} to="/blog" rel="blog posts">
+    <A key="blog" as={Link} href="/blog" rel="blog posts">
       Blog
     </A>
-    <A key="reading notes" as={Link} to="/notes" rel="notes posts">
+    <A key="reading notes" as={Link} href="/notes" rel="notes posts">
       Digest
     </A>
     {/* <A key="photograph" as={Link} to="/photograph" rel="photos">
       Photograph
     </A> */}
-    <A key="about" as={Link} to="/about" rel="about">
+    <A key="about" as={Link} href="/about" rel="about">
       About
     </A>
   </nav>
 )
 
-function Header(props) {
+function Header(props: ComponentPropsWithRef<'header'>) {
   const { title: siteTitle } = useSiteMetadata()
   const [colorMode, setColorMode] = useColorMode()
   const isDark = colorMode === 'dark'
   const { children, ...remainProps } = props
 
-  const toggleColorMode = (event) => {
+  const toggleColorMode = (event: MouseEvent) => {
     event.preventDefault()
     setColorMode(isDark ? 'light' : 'dark')
   }
@@ -48,9 +49,9 @@ function Header(props) {
           aria-label={`${siteTitle} - Back to home`}
           sx={{ color: 'heading', textDecoration: 'none' }}
         >
-          <Styled.h1 sx={{ my: 2, fontWeight: 'medium' }}>
+          <Themed.h1 sx={{ my: 2, fontWeight: 'medium' }}>
             {siteTitle}
-          </Styled.h1>
+          </Themed.h1>
         </Link>
       </div>
       <div

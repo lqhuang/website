@@ -2,6 +2,7 @@ import path from 'path'
 import type { GatsbyConfig } from 'gatsby'
 
 const config: GatsbyConfig = {
+  trailingSlash: 'ignore',
   siteMetadata: {
     title: 'lqhuang.io',
     author: 'Lanqing Huang',
@@ -45,22 +46,12 @@ const config: GatsbyConfig = {
         extensions: [`.mdx`, `.md`],
         gatsbyRemarkPlugins: [
           'gatsby-remark-images',
-          'gatsby-remark-prismjs',
-          'gatsby-remark-copy-linked-files',
-          // 'gatsby-remark-smartypants',
+          // 'gatsby-remark-copy-linked-files',
+          // 'gatsby-remark-katex',
         ],
-        remarkPlugins: [import('remark-math')],
+        remarkPlugins: [],
         rehypePlugins: [
-          import('rehype-slug'),
-          [
-            import('rehype-autolink-headings'),
-            { behavior: 'prepend', content: { type: 'text', value: '#' } },
-          ],
-          [
-            import('rehype-katex'),
-            // Add any KaTeX options from https://github.com/KaTeX/KaTeX/blob/master/docs/options.md here
-            { strict: 'ignore' },
-          ],
+          // import('rehype-slug'),
         ],
       },
     },
@@ -86,7 +77,7 @@ const config: GatsbyConfig = {
         icon: 'contents/assets/gatsby-icon.svg',
       },
     },
-    'gatsby-plugin-offline',
+    'gatsby-plugin-offline', // If you’re using this plugin with gatsby-plugin-manifest (recommended) this plugin should be listed after that plugin so the manifest file can be included in the service worker.
     'gatsby-plugin-react-helmet',
   ],
 }

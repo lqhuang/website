@@ -15,8 +15,8 @@ const createPages: GatsbyNode['createPages'] = async ({
 }) => {
   const { createPage } = actions
 
-  const blogPost = path.resolve('src/templates/blog-post.jsx')
-  const tagPage = path.resolve('src/templates/tag-page.jsx')
+  const blogPost = path.resolve('src/templates/blog-post.tsx')
+  const tagPage = path.resolve('src/templates/tag-page.tsx')
   const result = await graphql(
     `
       {

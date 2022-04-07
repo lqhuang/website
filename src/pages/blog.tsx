@@ -1,5 +1,5 @@
-/** @jsx jsx */
-import { jsx, Styled } from 'theme-ui'
+/** @jsxImportSource theme-ui */
+import { Themed } from 'theme-ui'
 import { Link, graphql, useStaticQuery } from 'gatsby'
 
 import Layout from 'src/components/layout'
@@ -43,7 +43,7 @@ const BlogIndex = (props) => {
         const title = node.frontmatter.title || node.fields.slug
         return (
           <div key={node.fields.slug} sx={{ marginBottom: 4 }}>
-            <Styled.h3
+            <Themed.h3
               sx={{
                 ':before': {
                   content: '"# "',
@@ -66,7 +66,7 @@ const BlogIndex = (props) => {
               >
                 {title}
               </Link>
-            </Styled.h3>
+            </Themed.h3>
             {node.frontmatter.date !== null && (
               <small>{node.frontmatter.date}</small>
             )}

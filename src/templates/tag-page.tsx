@@ -1,4 +1,4 @@
-/** @jsx jsx */
+/** @jsxImportSource theme-ui */
 import { jsx, Styled } from 'theme-ui'
 import { Link, graphql } from 'gatsby'
 

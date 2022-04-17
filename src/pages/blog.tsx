@@ -1,6 +1,5 @@
 /** @jsxImportSource theme-ui */
-import { Themed } from 'theme-ui'
-import { Link, graphql, useStaticQuery } from 'gatsby'
+import { Link, graphql, PageProps } from 'gatsby'
 
 import Layout from 'src/components/layout'
 import SEO from 'src/components/seo'
@@ -30,20 +29,41 @@ const pageQuery = graphql`
   }
 `
 
-const BlogIndex = (props) => {
-  const data = useStaticQuery(pageQuery)
-  const { site: siteTitle, author } = data.site.siteMetadata
+interface PageData {
+  site: {
+    siteMetadata: {
+      title: string
+      author: string
+    }
+  }
+  allMdx: {
+    edges: {
+      node: {
+        excerpt: string
+        fields: {
+          slug: string
+        }
+        frontmatter: {
+          title: string
+          created: string
+        }
+      }
+    }[]
+  }
+}
+
+const BlogIndex = ({ data }: PageProps<PageData>) => {
+  const { author } = data.site.siteMetadata
   const posts = data.allMdx.edges
-  const { location } = props
 
   return (
-    <Layout location={location} title={siteTitle}>
+    <Layout>
       <SEO title="All posts" keywords={['blog', author]} />
       {posts.map(({ node }) => {
         const title = node.frontmatter.title || node.fields.slug
         return (
           <div key={node.fields.slug} sx={{ marginBottom: 4 }}>
-            <Themed.h3
+            <h3
               sx={{
                 ':before': {
                   content: '"# "',
@@ -66,9 +86,9 @@ const BlogIndex = (props) => {
               >
                 {title}
               </Link>
-            </Themed.h3>
-            {node.frontmatter.date !== null && (
-              <small>{node.frontmatter.date}</small>
+            </h3>
+            {node.frontmatter.created !== null && (
+              <small>{node.frontmatter.created}</small>
             )}
             {/* eslint-disable-next-line react/no-danger */}
             <p
@@ -82,4 +102,5 @@ const BlogIndex = (props) => {
   )
 }
 
+export { pageQuery }
 export default BlogIndex

@@ -1,6 +1,6 @@
 import { graphql, useStaticQuery } from 'gatsby'
 
-interface SiteDataProps {
+interface SiteProps {
   site: { siteMetadata: SiteMetadataProps }
 }
 
@@ -9,7 +9,7 @@ interface SiteMetadataProps {
   author: string
   description: string
   email: string
-  siteUrl: string
+  url: string
   social: {
     twitter?: string
     github?: string
@@ -19,7 +19,7 @@ interface SiteMetadataProps {
 }
 
 const useSiteMetadata = (): SiteMetadataProps => {
-  const data = useStaticQuery<SiteDataProps>(graphql`
+  const data = useStaticQuery<SiteProps>(graphql`
     query {
       site {
         siteMetadata {
@@ -27,7 +27,7 @@ const useSiteMetadata = (): SiteMetadataProps => {
           author
           description
           email
-          siteUrl
+          url
           social {
             twitter
             github

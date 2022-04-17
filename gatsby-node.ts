@@ -94,7 +94,7 @@ const createPages: GatsbyNode['createPages'] = async ({
  * https://www.gatsbyjs.org/docs/creating-slugs-for-pages/#create-slugs-in-gatsby-nodejs
  * https://www.gatsbyjs.org/docs/mdx/programmatically-creating-pages/#generate-slugs
  */
-const onCreateNode: GatsbyNode['onCreateNode'] = ({
+const onCreateNode: GatsbyNode['onCreateNode'] = async ({
   node,
   actions,
   getNode,
@@ -134,7 +134,7 @@ const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] = ({
     type SiteSiteMetadata {
       title: String
       author: String # Author
-      siteUrl: String
+      url: String
       social: Social
     }
     # type Author {
@@ -153,7 +153,10 @@ const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] = ({
     type Frontmatter {
       title: String
       description: String
-      date: Date @dateformat
+      created: Date @dateformat
+      updated: Date @dateformat
+      tags: [String!]!
+      draft: Boolean
     }
     type Fields {
       slug: String

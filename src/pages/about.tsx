@@ -1,18 +1,14 @@
 /** @jsxImportSource theme-ui */
-import { PageProps } from 'gatsby'
-
 import Layout from 'src/components/layout'
 import SEO from 'src/components/seo'
 import { useSiteMetadata } from 'src/hooks/use-site-metadata'
 
-function About(props: PageProps) {
-  // const { location } = props
+function About() {
   const { author, social, email } = useSiteMetadata()
 
-  // location={location}
   return (
     <Layout>
-      <SEO title="About" />
+      <SEO title="About" keywords={[author, 'about']} />
       <h3>{author}</h3>
       <p>
         A simple and naïve guy. Follow him on{' '}

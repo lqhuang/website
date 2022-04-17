@@ -1,17 +1,12 @@
 /** @jsxImportSource theme-ui */
 import { Themed } from 'theme-ui'
-import { PageProps } from 'gatsby'
 
 import Layout from 'src/components/layout'
 import SEO from 'src/components/seo'
-import { useSiteMetadata } from 'src/hooks/use-site-metadata'
 
-const NotFoundPage = (props: PageProps) => {
-  const { location } = props
-  const { title: siteTitle } = useSiteMetadata()
-
+const NotFoundPage = () => {
   return (
-    <Layout location={location} title={siteTitle}>
+    <Layout>
       <SEO title="404: Not Found" />
       <Themed.h1>Not Found</Themed.h1>
       <Themed.p>

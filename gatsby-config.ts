@@ -8,7 +8,7 @@ const config: GatsbyConfig = {
     author: 'Lanqing Huang',
     email: 'lqhuang@outlook.com',
     description: 'A blog to record life',
-    siteUrl: 'https://lqhuang.github.io/',
+    url: 'https://lqhuang.github.io/',
     social: {
       twitter: '_lqhuang',
       github: 'lqhuang',

@@ -1,35 +1,13 @@
-import { graphql, useStaticQuery, PageProps } from 'gatsby'
-
 import Layout from 'src/components/layout'
 import SEO from 'src/components/seo'
+import { useSiteMetadata } from 'src/hooks/use-site-metadata'
 
-type DataProps = {
-  site: {
-    siteMetadata: {
-      title: string
-      author: string
-    }
-  }
-}
-
-const pageQuery = graphql`
-  {
-    site {
-      siteMetadata {
-        title
-        author
-      }
-    }
-  }
-`
-
-const Index = ({ location }: PageProps) => {
-  const data = useStaticQuery<DataProps>(pageQuery)
-  const { title, author } = data.site.siteMetadata
+const Index = () => {
+  const { author } = useSiteMetadata()
 
   return (
     <Layout>
-      <SEO title="Index" keywords={['blog', author]} />
+      <SEO title="Index" keywords={['index', 'blog', author]} />
     </Layout>
   )
 }

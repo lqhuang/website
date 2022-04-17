@@ -21,7 +21,7 @@ const createPages: GatsbyNode['createPages'] = async ({
     `
       {
         allMdx(
-          sort: { fields: [frontmatter___date], order: DESC }
+          sort: { fields: [frontmatter___created], order: DESC }
           filter: { frontmatter: { draft: { ne: true } } }
           limit: 1000
         ) {

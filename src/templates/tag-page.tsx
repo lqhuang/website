@@ -7,7 +7,7 @@ const pageQuery = graphql`
   query ($tag: String) {
     allMdx(
       limit: 1000
-      sort: { fields: [frontmatter___date], order: DESC }
+      sort: { fields: [frontmatter___created], order: DESC }
       filter: { frontmatter: { tags: { in: [$tag] }, draft: { ne: true } } }
     ) {
       totalCount

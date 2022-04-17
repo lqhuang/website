@@ -5,10 +5,7 @@ import Layout from 'src/components/layout'
 
 const pageQuery = graphql`
   query {
-    allMdx(
-      limit: 30
-      filter: { frontmatter: { draft: { ne: true }, example: { ne: true } } }
-    ) {
+    allMdx(filter: { frontmatter: { draft: { ne: true } } }) {
       group(field: frontmatter___tags) {
         fieldValue
         totalCount

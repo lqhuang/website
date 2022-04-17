@@ -1,6 +1,6 @@
 ---
 title: 'Code and Syntax Highlighting with PrismJS'
-date: '2017-04-04'
+created: '2017-04-04'
 draft: false
 example: false
 author: Daisy Buchanan

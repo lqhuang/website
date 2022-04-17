@@ -1,6 +1,6 @@
 ---
 title: "Hello World: The remark Kitchen Sink"
-date: "2016-04-15"
+created: "2016-04-15"
 draft: false
 example: false
 author: Jay Gatsby

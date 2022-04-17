@@ -6,13 +6,7 @@ import SEO from 'src/components/seo'
 
 const pageQuery = graphql`
   query {
-    site {
-      siteMetadata {
-        title
-        author
-      }
-    }
-    allMdx(sort: { fields: [frontmatter___date], order: DESC }) {
+    allMdx(sort: { fields: [frontmatter___created], order: DESC }) {
       edges {
         node {
           excerpt
@@ -21,7 +15,8 @@ const pageQuery = graphql`
           }
           frontmatter {
             title
-            date(formatString: "MMMM DD, YYYY")
+            author
+            created(formatString: "MMMM DD, YYYY")
           }
         }
       }
@@ -30,12 +25,6 @@ const pageQuery = graphql`
 `
 
 interface PageData {
-  site: {
-    siteMetadata: {
-      title: string
-      author: string
-    }
-  }
   allMdx: {
     edges: {
       node: {
@@ -53,12 +42,11 @@ interface PageData {
 }
 
 const BlogIndex = ({ data }: PageProps<PageData>) => {
-  const { author } = data.site.siteMetadata
   const posts = data.allMdx.edges
 
   return (
     <Layout>
-      <SEO title="All posts" keywords={['blog', author]} />
+      <SEO title="All posts" keywords={['blog']} />
       {posts.map(({ node }) => {
         const title = node.frontmatter.title || node.fields.slug
         return (

@@ -1,6 +1,6 @@
 ---
 title: "Rendering math equations with KaTeX"
-date: "2017-08-07"
+created: "2017-08-07"
 draft: false
 author: Daisy Buchanan
 tags:

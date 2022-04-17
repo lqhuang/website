@@ -79,7 +79,9 @@ const config: GatsbyConfig = {
     },
     'gatsby-plugin-offline', // If you’re using this plugin with gatsby-plugin-manifest (recommended) this plugin should be listed after that plugin so the manifest file can be included in the service worker.
     'gatsby-plugin-react-helmet',
+    'gatsby-plugin-pnpm',
   ],
+  jsxRuntime: 'automatic',
 }
 
 export default config

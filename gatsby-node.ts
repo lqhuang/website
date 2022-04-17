@@ -132,9 +132,9 @@ const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] = ({
   // blog posts are stored inside "content/blog" instead of returning an error
   createTypes(`
     type SiteSiteMetadata {
-      title: String
-      author: String # Author
-      url: String
+      title: String!
+      author: String! # Author
+      url: String!
       social: Social
     }
     # type Author {
@@ -145,21 +145,22 @@ const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] = ({
       twitter: String
       github: String
       linkedin: String
+      instagram: String
     }
     type Mdx implements Node {
       frontmatter: Frontmatter
       fields: Fields
     }
     type Frontmatter {
-      title: String
+      title: String!
       description: String
-      created: Date @dateformat
+      created: Date! @dateformat
       updated: Date @dateformat
       tags: [String!]!
       draft: Boolean
     }
     type Fields {
-      slug: String
+      slug: String!
     }
   `)
 }

@@ -1,7 +1,5 @@
 /* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable react/destructuring-assignment */
-/** @jsx jsx */
-import { jsx } from 'theme-ui'
 import Prism from '@theme-ui/prism'
 
 const heading = (Tag) => (props) => {
@@ -22,7 +20,7 @@ const components = {
   // h3: heading('h3'),
   // h4: heading('h4'),
   // a: (props) => <a>{props.children}</a>,
-  // code: Prism,
+  code: Prism,
 }
 
 export default components

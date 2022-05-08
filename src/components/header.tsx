@@ -1,6 +1,6 @@
 /** @jsxImportSource theme-ui */
 import { MouseEvent, ComponentPropsWithRef } from 'react'
-import { useColorMode, Themed, Link as A } from 'theme-ui'
+import { useColorMode, Themed } from 'theme-ui'
 import { Link } from 'gatsby'
 
 import { useSiteMetadata } from 'src/hooks/use-site-metadata'
@@ -14,18 +14,18 @@ const Navigation = () => (
       '.active': { color: 'heading' },
     }}
   >
-    <A key="blog" as={Link} href="/blog" rel="blog posts">
+    <Themed.a key="blog" as={Link} href="/blog" rel="blog posts">
       Blog
-    </A>
-    <A key="reading notes" as={Link} href="/notes" rel="notes posts">
+    </Themed.a>
+    <Themed.a key="digest" as={Link} href="/snapshots" rel="notes posts">
       Digest
-    </A>
+    </Themed.a>
     {/* <A key="photograph" as={Link} to="/photograph" rel="photos">
       Photograph
     </A> */}
-    <A key="about" as={Link} href="/about" rel="about">
+    <Themed.a key="about" as={Link} href="/about" rel="about">
       About
-    </A>
+    </Themed.a>
   </nav>
 )
 
@@ -56,15 +56,16 @@ function Header(props: ComponentPropsWithRef<'header'>) {
       </div>
       <div
         sx={{
+          display: 'flex',
           variant: 'dividers.bottom',
-          alignItems: 'center',
           justifyContent: 'space-between',
+          flexDirection: 'row',
           // mt: 0,
           // mb: 2,
-          paddingBottom: 2,
+          pt: 1,
+          pb: 2,
           color: 'toggleIcon',
           a: { color: 'toggleIcon', ':hover': { color: 'heading' } },
-          flexFlow: 'wrap',
         }}
       >
         <Navigation />

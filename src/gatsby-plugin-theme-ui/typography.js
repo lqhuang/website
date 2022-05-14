@@ -1,7 +1,9 @@
-
-const emojiFonts = '"Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"'
-const sansFallback = '-apple-system, "Helvetica Neue", "Noto Sans", "Segoe UI", Arial, sans-serif'
-const serifFallback = 'Georgia, Cambria, "Times New Roman", STSong, NSimSun, serif'
+const emojiFonts =
+  '"Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"'
+const sansFallback =
+  '-apple-system, "Helvetica Neue", "Noto Sans", "Segoe UI", Arial, sans-serif'
+const serifFallback =
+  'Georgia, Cambria, "Times New Roman", STSong, NSimSun, serif'
 const baseFonts = {
   sans: `"Noto Sans SC", ${sansFallback}, ${emojiFonts}`,
   serif: `"Zilla Slab", "Noto Serif SC", ${serifFallback}`,
@@ -20,7 +22,14 @@ const typoScale = {
   },
   fontSizes: [
     // 14, 16, 18, 20, 24, 32, 48, 64,
-    '0.886em', '1.000em', '1.127em', '1.272em', '1.434em', '1.618em', '1.824em', '2.058em',
+    '0.886em',
+    '1.000em',
+    '1.127em',
+    '1.272em',
+    '1.434em',
+    '1.618em',
+    '1.824em',
+    '2.058em',
   ],
   fontWeights: {
     hairline: 100,
@@ -133,6 +142,5 @@ const mdxStyles = {
     // marginBottom: 'calc(1em - 1px)',
   },
 }
-
 
 export { typoScale, mdxStyles }

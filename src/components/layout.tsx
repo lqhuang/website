@@ -2,7 +2,7 @@
 import { Fragment, FC } from 'react'
 import { Container, Themed } from 'theme-ui'
 
-import Header from 'src/components/header'
+import { Header } from 'src/components/header'
 
 const Layout: FC = (props) => {
   const { children } = props
@@ -36,4 +36,4 @@ const Layout: FC = (props) => {
   )
 }
 
-export default Layout
+export { Layout }

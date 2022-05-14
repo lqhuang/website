@@ -1,7 +1,7 @@
 /** @jsxImportSource theme-ui */
 import { Link, graphql, PageProps } from 'gatsby'
 
-import Layout from 'src/components/layout'
+import { Layout } from 'src/components/layout'
 
 const pageQuery = graphql`
   query ($tag: String) {

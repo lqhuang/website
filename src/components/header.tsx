@@ -4,7 +4,7 @@ import { useColorMode, Themed } from 'theme-ui'
 import { Link } from 'gatsby'
 
 import { useSiteMetadata } from 'src/hooks/use-site-metadata'
-import ColormodeButton from './colormode-button'
+import { ColormodeButton } from './colormode-button'
 
 const Navigation = () => (
   <nav
@@ -75,4 +75,4 @@ function Header(props: ComponentPropsWithRef<'header'>) {
   )
 }
 
-export default Header
+export { Header }

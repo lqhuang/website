@@ -24,7 +24,6 @@ export const appleLight = {
   heading: 'black',
 }
 
-
 export const appleDark = {
   text: '#f1f2f3',
   background: '#333333',

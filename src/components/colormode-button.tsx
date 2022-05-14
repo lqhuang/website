@@ -87,4 +87,4 @@ const ColormodeButton = ({
   </button>
 )
 
-export default ColormodeButton
+export { ColormodeButton }

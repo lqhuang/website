@@ -32,6 +32,9 @@
     "@emotion/core": "^11.0.0",
     "@emotion/react": "^11.8.2",
     "@emotion/styled": "^11.8.1",
+    "@fontsource/noto-sans-sc": "^4.5.9",
+    "@fontsource/noto-serif-sc": "^4.5.9",
+    "@fontsource/zilla-slab": "^4.5.8",
     "@mdx-js/mdx": "v1",
     "@mdx-js/react": "v1",
     "@theme-ui/prism": "^0.13.1",
@@ -59,10 +62,7 @@
     "react-dom": "^17.0.2",
     "react-helmet": "^6.1.0",
     "rehype-slug": "^5.0.1",
-    "theme-ui": "^0.13.1",
-    "typeface-noto-sans-sc": "^1.1.13",
-    "typeface-noto-serif-sc": "^1.1.13",
-    "typeface-zilla-slab": "^1.1.13"
+    "theme-ui": "^0.13.1"
   },
   "devDependencies": {
     "@types/node": "^17.0.23",

@@ -39,5 +39,4 @@ export const base = {
       pt: 3,
     },
   },
-
 }

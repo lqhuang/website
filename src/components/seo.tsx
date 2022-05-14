@@ -133,4 +133,4 @@ function SEO({
   )
 }
 
-export default SEO
+export { SEO }

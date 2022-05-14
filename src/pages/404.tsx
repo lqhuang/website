@@ -1,8 +1,8 @@
 /** @jsxImportSource theme-ui */
 import { Themed } from 'theme-ui'
 
-import Layout from 'src/components/layout'
-import SEO from 'src/components/seo'
+import { Layout } from 'src/components/layout'
+import { SEO } from 'src/components/seo'
 
 const NotFoundPage = () => {
   return (

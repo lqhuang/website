@@ -1,5 +1,5 @@
-import Layout from 'src/components/layout'
-import SEO from 'src/components/seo'
+import { Layout } from 'src/components/layout'
+import { SEO } from 'src/components/seo'
 import { useSiteMetadata } from 'src/hooks/use-site-metadata'
 
 const Index = () => {

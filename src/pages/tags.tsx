@@ -1,7 +1,7 @@
 import { Link, graphql, PageProps } from 'gatsby'
 import kebabCase from 'lodash/kebabCase'
 
-import Layout from 'src/components/layout'
+import { Layout } from 'src/components/layout'
 
 const pageQuery = graphql`
   query {

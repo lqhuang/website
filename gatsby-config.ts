@@ -1,13 +1,17 @@
 import path from 'path'
 import type { GatsbyConfig } from 'gatsby'
 
+const contentsDir = process.env.CONTENTS_DIR
+  ? process.env.CONTENTS_DIR
+  : 'examples'
+
 const config: GatsbyConfig = {
   trailingSlash: 'ignore',
   siteMetadata: {
     title: 'lqhuang.io',
     author: 'Lanqing Huang',
     email: 'lqhuang@outlook.com',
-    description: 'A blog to record life',
+    description: 'A blog to record coding life',
     url: 'https://lqhuang.github.io/',
     social: {
       twitter: '_lqhuang',
@@ -28,15 +32,22 @@ const config: GatsbyConfig = {
     {
       resolve: 'gatsby-source-filesystem',
       options: {
-        path: path.resolve('contents/blog'),
-        name: 'blog',
+        path: path.resolve(`${contentsDir}/assets`),
+        name: 'assets',
       },
     },
     {
       resolve: 'gatsby-source-filesystem',
       options: {
-        path: path.resolve('contents/assets'),
-        name: 'assets',
+        path: path.resolve(`${contentsDir}/articles`),
+        name: 'articles',
+      },
+    },
+    {
+      resolve: 'gatsby-source-filesystem',
+      options: {
+        path: path.resolve(`${contentsDir}/snapshots`),
+        name: 'snapshots',
       },
     },
     {
@@ -74,10 +85,16 @@ const config: GatsbyConfig = {
         background_color: '#ffffff',
         theme_color: '#663399',
         display: 'minimal-ui',
-        icon: 'contents/assets/gatsby-icon.svg',
+        icon: path.resolve('static/gatsby-icon.svg'),
       },
     },
-    'gatsby-plugin-offline', // If you’re using this plugin with gatsby-plugin-manifest (recommended) this plugin should be listed after that plugin so the manifest file can be included in the service worker.
+    /**
+     * For `gatsby-plugin-offline`:
+     * If you’re using this plugin with`gatsby-plugin-manifest`
+     * (recommended) this plugin should be listed after that plugin
+     * so the manifest file can be included in the service worker.
+     */
+    'gatsby-plugin-offline',
     'gatsby-plugin-react-helmet',
     'gatsby-plugin-pnpm',
   ],

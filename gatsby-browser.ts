@@ -1,8 +1,8 @@
 // custom typefaces
 // import 'typeface-inter'
-import 'typeface-zilla-slab'
-import 'typeface-noto-serif-sc'
-import 'typeface-noto-sans-sc'
+import '@fontsource/zilla-slab'
+// import '@fontsource/noto-serif-sc'
+// import '@fontsource/noto-sans-sc'
 
 // normalize CSS across browsers
 import "src/styles/normalize.css"

@@ -9,7 +9,7 @@ const TagSection = ({
   tagSlugs?: string[]
 }) => {
   if (tagSlugs === null || tagSlugs === undefined) {
-    return <></>
+    return
   }
 
   const tagsLink = tagSlugs

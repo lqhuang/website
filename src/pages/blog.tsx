@@ -1,22 +1,31 @@
 /** @jsxImportSource theme-ui */
-import { Link, graphql, PageProps } from 'gatsby'
+import { graphql, PageProps } from 'gatsby'
+import { Themed } from 'theme-ui'
 
-import Layout from 'src/components/layout'
-import SEO from 'src/components/seo'
+import { Layout } from 'src/components/layout'
+import { SEO } from 'src/components/seo'
+import { TagSection } from 'src/components/tags'
 
 const pageQuery = graphql`
   query {
-    allMdx(sort: { fields: [frontmatter___created], order: DESC }) {
+    allMdx(
+      filter: {
+        fields: { sourceInstanceName: { eq: "articles" } }
+        frontmatter: { draft: { ne: true } }
+      }
+      sort: { fields: [frontmatter___created], order: DESC }
+    ) {
       edges {
         node {
           excerpt
           fields {
             slug
+            tagSlugs
           }
           frontmatter {
             title
-            author
             created(formatString: "MMMM DD, YYYY")
+            tags
           }
         }
       }
@@ -31,10 +40,12 @@ interface PageData {
         excerpt: string
         fields: {
           slug: string
+          tagSlugs?: string[]
         }
         frontmatter: {
           title: string
           created: string
+          tags?: string[]
         }
       }
     }[]
@@ -49,18 +60,23 @@ const BlogIndex = ({ data }: PageProps<PageData>) => {
       <SEO title="All posts" keywords={['blog']} />
       {posts.map(({ node }) => {
         const title = node.frontmatter.title || node.fields.slug
+        const tags = node.frontmatter.tags
+        const tagSlugs = node.fields.tagSlugs
+
         return (
           <div key={node.fields.slug} sx={{ marginBottom: 4 }}>
-            <h3
+            <Themed.h1
               sx={{
                 ':before': {
                   content: '"# "',
                   color: 'secondary',
                 },
               }}
+              id={node.fields.slug}
             >
-              <Link
+              <Themed.a
                 sx={{
+                  color: 'black',
                   textDecoration: 'none',
                   ':hover': {
                     textDecoration: 'underline',
@@ -69,15 +85,17 @@ const BlogIndex = ({ data }: PageProps<PageData>) => {
                     textUnderlineOffset: '12%',
                   },
                 }}
-                style={{ boxShadow: 'none' }}
-                to={node.fields.slug}
+                href={node.fields.slug}
               >
                 {title}
-              </Link>
-            </h3>
-            {node.frontmatter.created !== null && (
-              <small>{node.frontmatter.created}</small>
-            )}
+              </Themed.a>
+            </Themed.h1>
+            <small>
+              {node.frontmatter.created &&
+                `Created: ${node.frontmatter.created}`}
+              {` · `}
+              {tags && <TagSection tags={tags} tagSlugs={tagSlugs} />}
+            </small>
             {/* eslint-disable-next-line react/no-danger */}
             <p
               sx={{ marginY: 1 }}

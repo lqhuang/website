@@ -1,28 +1,27 @@
-import { BaseStyles } from 'theme-ui'
+/** @jsxImportSource theme-ui */
 import { Link, graphql, PageProps } from 'gatsby'
+import { BaseStyles } from 'theme-ui'
 import { MDXRenderer } from 'gatsby-plugin-mdx'
 
-import Layout from 'src/components/layout'
-import SEO from 'src/components/seo'
+import { Layout } from 'src/components/layout'
+import { SEO } from 'src/components/seo'
+import { TagSection } from 'src/components/tags'
 
 import 'katex/dist/katex.min.css'
 
 const pageQuery = graphql`
   query BlogPostBySlug($slug: String!) {
     mdx(fields: { slug: { eq: $slug } }) {
-      id
-      excerpt(pruneLength: 144)
       body
-      mdxAST
+      excerpt(pruneLength: 144)
       fields {
         slug
         tagSlugs
       }
-      tableOfContents
       frontmatter {
         title
         created(formatString: "MMMM DD, YYYY")
-        # updated(formatString: "MMMM DD, YYYY")
+        updated(formatString: "MMMM DD, YYYY")
         tags
       }
     }
@@ -31,15 +30,12 @@ const pageQuery = graphql`
 
 interface PageData {
   mdx: {
-    id: number
-    excerpt: string
     body: string
-    mdxAST: unknown
+    excerpt: string
     fields: {
       slug: string
-      tagSlugs: string[]
+      tagSlugs?: string[]
     }
-    tableOfContents: unknown
     frontmatter: {
       title: string
       created: string
@@ -52,10 +48,12 @@ interface PageData {
 interface PaginationNode {
   fields: {
     slug: string
+    tagSlugs?: string[]
   }
   frontmatter: {
     title: string
-    tags: string[] | undefined
+    created: string
+    tags?: string[]
   }
 }
 
@@ -72,6 +70,7 @@ interface PageContext {
 
 function Pagination(props: PaginationProps) {
   const { previous, next } = props
+
   return (
     <ul
       style={{
@@ -107,34 +106,9 @@ function BlogPostTemplate({
   const post = data.mdx
   const { previous, next } = pageContext
 
-  const { excerpt, mdxAST, tableOfContents } = post
+  const { excerpt } = post
   const { title: postTitle, created, tags, updated } = post.frontmatter
-
-  const genTagSection = (tagsArray: string[]) => {
-    if (tagsArray === null || tagsArray === undefined) {
-      return null
-    }
-    const tagsLink = tagsArray
-      .map((tag, i) => (
-        <span key={tag}>
-          <Link to={tag}>{tag}</Link>
-        </span>
-      ))
-      .reduce((prev, curr) => [prev, ', ', curr])
-
-    return (
-      <span
-        css={{
-          fontStyle: 'normal',
-          textAlign: 'left',
-        }}
-      >
-        {' '}
-        &middot; tags: {tagsLink}
-      </span>
-    )
-  }
-  const tagSection = genTagSection(post.fields.tagSlugs)
+  const { tagSlugs } = post.fields
 
   return (
     <Layout>
@@ -150,9 +124,13 @@ function BlogPostTemplate({
             },
           }}
         >
-          {created !== null && created}
-          {/* {modified !== null && modified !== created && ` · ${modified}`} */}
-          {tagSection !== null && tagSection}
+          {created && `Created: ${created}`}
+          {updated && updated !== created && ` · Updated: ${updated}`}
+          {tags && tags.length > 0 && (
+            <>
+              · <TagSection tags={tags} tagSlugs={tagSlugs} />
+            </>
+          )}
         </p>
 
         <MDXRenderer>{post.body}</MDXRenderer>

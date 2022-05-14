@@ -15,15 +15,19 @@ const createPages: GatsbyNode['createPages'] = async ({
 }) => {
   const { createPage } = actions
 
-  const blogPost = path.resolve('src/templates/blog-post.tsx')
-  const tagPage = path.resolve('src/templates/tag-page.tsx')
-  const result = await graphql(
-    `
-      {
+  const postTemplate = path.resolve('src/templates/blog-post.tsx')
+  const snapshotsTemplate = path.resolve('src/templates/snapshots.tsx')
+  // const tagPage = path.resolve('src/templates/tag-page.tsx')
+  const [articlesQuery, snapshotsQuery] = await Promise.all([
+    // articles
+    graphql(`
+      query {
         allMdx(
+          filter: {
+            fields: { sourceInstanceName: { eq: "articles" } }
+            frontmatter: { draft: { ne: true } }
+          }
           sort: { fields: [frontmatter___created], order: DESC }
-          filter: { frontmatter: { draft: { ne: true } } }
-          limit: 1000
         ) {
           edges {
             node {
@@ -32,62 +36,110 @@ const createPages: GatsbyNode['createPages'] = async ({
               }
               frontmatter {
                 title
+                created
                 tags
               }
             }
           }
         }
       }
-    `,
-  )
+    `),
+    // snapshots
+    graphql(`
+      query {
+        allMdx(
+          filter: {
+            fields: { sourceInstanceName: { eq: "snapshots" } }
+            frontmatter: { draft: { ne: true } }
+          }
+        ) {
+          edges {
+            node {
+              id
+            }
+          }
+        }
+      }
+    `),
+  ])
 
-  if (result.errors) {
+  if (articlesQuery.errors || snapshotsQuery.errors) {
     reporter.panicOnBuild(
       `There was an error loading your blog posts`,
-      result.errors,
+      articlesQuery.errors + snapshotsQuery.errors,
     )
     return
   }
 
   // Create blog posts pages.
-  const posts = result.data.allMdx.edges
+  const articles = articlesQuery.data.allMdx.edges
+  articles.length > 0
+    ? articles.forEach((post, idx) => {
+        const previous =
+          idx === articles.length - 1 ? null : articles[idx + 1].node
+        const next = idx === 0 ? null : articles[idx - 1].node
 
-  posts.length > 0 &&
-    posts.forEach((post, index) => {
-      const previous = index === posts.length - 1 ? null : posts[index + 1].node
-      const next = index === 0 ? null : posts[index - 1].node
-
-      createPage({
-        path: replacePath(post.node.fields.slug),
-        component: blogPost,
-        context: {
-          slug: post.node.fields.slug,
-          previous,
-          next,
-        },
+        createPage({
+          path: replacePath(post.node.fields.slug),
+          component: postTemplate,
+          context: {
+            slug: post.node.fields.slug,
+            previous,
+            next,
+          },
+        })
       })
-    })
+    : console.error('No node found for articles!')
+
+  // Create paginated snapshot pages.
+  const itemsPerPage = 10
+  const digests = snapshotsQuery.data.allMdx.edges
+  const numPages = Math.ceil(digests.length / itemsPerPage)
+  digests.length > 0
+    ? (createPage({
+        path: '/snapshots',
+        component: snapshotsTemplate,
+        context: {
+          limit: itemsPerPage,
+          skip: 0,
+          numPages,
+          currentPage: 1,
+        },
+      }),
+      Array.from({ length: numPages }).forEach((_, i) => {
+        createPage({
+          path: `/snapshots/${i + 1}`,
+          component: snapshotsTemplate,
+          context: {
+            limit: itemsPerPage,
+            skip: i * itemsPerPage,
+            numPages,
+            currentPage: i + 1,
+          },
+        })
+      }))
+    : console.error('No node found for snapshots!')
 
   // Create tag pages.
-  if (posts.length > 0) {
-    let tags = []
-    posts.forEach((edge) => {
-      if (_.get(edge, 'node.frontmatter.tags')) {
-        tags = tags.concat(edge.node.frontmatter.tags)
-      }
-    })
-    tags = _.uniq(tags)
-    tags.forEach((tag) => {
-      const tagPath = `/tags/${_.kebabCase(tag)}/`
-      createPage({
-        path: tagPath,
-        component: tagPage,
-        context: {
-          tag,
-        },
-      })
-    })
-  }
+  // if (articles.length > 0 || digests.length > 0) {
+  //   let tags = []
+  //   articles.forEach((edge) => {
+  //     if (_.get(edge, 'node.frontmatter.tags')) {
+  //       tags = tags.concat(edge.node.frontmatter.tags)
+  //     }
+  //   })
+  //   tags = _.uniq(tags)
+  //   tags.forEach((tag) => {
+  //     const tagPath = `/tags/${_.kebabCase(tag)}/`
+  //     createPage({
+  //       path: tagPath,
+  //       component: tagPage,
+  //       context: {
+  //         tag,
+  //       },
+  //     })
+  //   })
+  // }
 }
 
 /**
@@ -96,17 +148,21 @@ const createPages: GatsbyNode['createPages'] = async ({
  */
 const onCreateNode: GatsbyNode['onCreateNode'] = async ({
   node,
-  actions,
   getNode,
+  actions,
 }) => {
   const { createNodeField } = actions
 
   if (node.internal.type === 'Mdx') {
-    const value = createFilePath({ node, getNode })
+    const slug = createFilePath({ node, getNode, trailingSlash: false })
+    createNodeField({ node, name: 'slug', value: slug })
+    // Inspired from <https://github.com/kbravh/gatsby-plugin-mdx-source-name/blob/master/gatsby-node.js>
+    // the source name will be on this parent node
+    const { sourceInstanceName } = getNode(node.parent)
     createNodeField({
-      name: 'slug',
       node,
-      value,
+      name: 'sourceInstanceName',
+      value: sourceInstanceName,
     })
 
     if (node.frontmatter.tags) {
@@ -129,7 +185,7 @@ const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] = ({
 
   // Also explicitly define the Markdown frontmatter
   // This way the "MarkdownRemark" queries will return `null` even when no
-  // blog posts are stored inside "content/blog" instead of returning an error
+  // blog posts are stored inside "content/articles" instead of returning an error
   createTypes(`
     type SiteSiteMetadata {
       title: String!
@@ -154,13 +210,16 @@ const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] = ({
     type Frontmatter {
       title: String!
       description: String
-      created: Date! @dateformat
+      date: Date @dateformat
+      created: Date @dateformat
       updated: Date @dateformat
-      tags: [String!]!
+      tags: [String]
       draft: Boolean
     }
     type Fields {
       slug: String!
+      sourceInstanceName: String!
+      tagSlugs: [String]
     }
   `)
 }
@@ -176,7 +235,6 @@ const onCreateWebpackConfig: GatsbyNode['onCreateWebpackConfig'] = ({
   actions.setWebpackConfig({
     resolve: {
       alias: { src: contextSrc },
-      // modules: [path.resolve(__dirname), "node_modules"],
     },
   })
 }

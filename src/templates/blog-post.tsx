@@ -1,6 +1,6 @@
 /** @jsxImportSource theme-ui */
-import { Link, graphql, PageProps } from 'gatsby'
-import { BaseStyles } from 'theme-ui'
+import { graphql, PageProps } from 'gatsby'
+import { Themed, Flex } from 'theme-ui'
 import { MDXRenderer } from 'gatsby-plugin-mdx'
 
 import { Layout } from 'src/components/layout'
@@ -48,12 +48,12 @@ interface PageData {
 interface PaginationNode {
   fields: {
     slug: string
-    tagSlugs?: string[]
+    // tagSlugs?: string[]
   }
   frontmatter: {
     title: string
-    created: string
-    tags?: string[]
+    // created: string
+    // tags?: string[]
   }
 }
 
@@ -72,30 +72,22 @@ function Pagination(props: PaginationProps) {
   const { previous, next } = props
 
   return (
-    <ul
-      style={{
-        display: 'flex',
-        flexWrap: 'wrap',
-        justifyContent: 'space-between',
-        listStyle: 'none',
-        padding: 0,
-      }}
-    >
-      <li>
-        {previous && (
-          <Link to={previous.fields.slug} rel="prev">
-            {`← ${previous.frontmatter.title}`}
-          </Link>
-        )}
-      </li>
-      <li>
-        {next && (
-          <Link to={next.fields.slug} rel="next">
-            {`${next.frontmatter.title} →`}
-          </Link>
-        )}
-      </li>
-    </ul>
+    <Flex style={{ flexDirection: 'column' }}>
+      {previous && (
+        <Themed.a href={'/post' + previous.fields.slug} rel="prev">
+          ← {previous.frontmatter.title}
+        </Themed.a>
+      )}
+      {next && (
+        <Themed.a
+          style={{ alignSelf: 'flex-end' }}
+          href={'/post' + next.fields.slug}
+          rel="next"
+        >
+          {next.frontmatter.title} →
+        </Themed.a>
+      )}
+    </Flex>
   )
 }
 
@@ -113,29 +105,30 @@ function BlogPostTemplate({
   return (
     <Layout>
       <SEO title={postTitle} description={excerpt} />
-      <BaseStyles>
-        <h1>{postTitle}</h1>
 
-        <p
-          sx={{
-            mb: 3,
-            a: {
-              textDecoration: 'underline 1px solid',
-            },
-          }}
-        >
-          {created && `Created: ${created}`}
-          {updated && updated !== created && ` · Updated: ${updated}`}
-          {tags && tags.length > 0 && (
-            <>
-              · <TagSection tags={tags} tagSlugs={tagSlugs} />
-            </>
-          )}
-        </p>
+      <Themed.h1>{postTitle}</Themed.h1>
 
-        <MDXRenderer>{post.body}</MDXRenderer>
-        <hr />
-      </BaseStyles>
+      <Themed.p
+        sx={{
+          fontSize: 'small',
+          mb: 3,
+          a: {
+            textDecoration: 'underline 1px solid',
+          },
+        }}
+      >
+        {created && `Created: ${created}`}
+        {updated && updated !== created && ` · Updated: ${updated}`}
+        {tags && tags.length > 0 && (
+          <>
+            · <TagSection tags={tags} tagSlugs={tagSlugs} />
+          </>
+        )}
+      </Themed.p>
+
+      <MDXRenderer>{post.body}</MDXRenderer>
+
+      <hr />
 
       <Pagination previous={previous} next={next} />
     </Layout>

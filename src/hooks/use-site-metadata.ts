@@ -7,10 +7,11 @@ interface SiteProps {
 interface SiteMetadataProps {
   title: string
   author: string
-  description: string
+  nickname?: string
+  description?: string
   email: string
   url: string
-  social: {
+  social?: {
     twitter?: string
     github?: string
     linkedin?: string
@@ -25,6 +26,7 @@ const useSiteMetadata = (): SiteMetadataProps => {
         siteMetadata {
           title
           author
+          nickname
           description
           email
           url

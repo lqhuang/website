@@ -15,18 +15,16 @@ const pageQuery = graphql`
       }
       sort: { fields: [frontmatter___created], order: DESC }
     ) {
-      edges {
-        node {
-          excerpt
-          fields {
-            slug
-            tagSlugs
-          }
-          frontmatter {
-            title
-            created(formatString: "MMMM DD, YYYY")
-            tags
-          }
+      nodes {
+        excerpt(pruneLength: 144)
+        fields {
+          slug
+          tagSlugs
+        }
+        frontmatter {
+          title
+          created(formatString: "MMMM DD, YYYY")
+          tags
         }
       }
     }
@@ -35,36 +33,34 @@ const pageQuery = graphql`
 
 interface PageData {
   allMdx: {
-    edges: {
-      node: {
-        excerpt: string
-        fields: {
-          slug: string
-          tagSlugs?: string[]
-        }
-        frontmatter: {
-          title: string
-          created: string
-          tags?: string[]
-        }
+    nodes: {
+      excerpt: string
+      fields: {
+        slug: string
+        tagSlugs?: string[]
+      }
+      frontmatter: {
+        title: string
+        created: string
+        tags?: string[]
       }
     }[]
   }
 }
 
 const BlogIndex = ({ data }: PageProps<PageData>) => {
-  const posts = data.allMdx.edges
+  const posts = data.allMdx.nodes
 
   return (
     <Layout>
       <SEO title="All posts" keywords={['blog']} />
-      {posts.map(({ node }) => {
+      {posts.map((node) => {
         const title = node.frontmatter.title || node.fields.slug
         const tags = node.frontmatter.tags
         const tagSlugs = node.fields.tagSlugs
 
         return (
-          <div key={node.fields.slug} sx={{ marginBottom: 4 }}>
+          <div key={node.fields.slug} sx={{ mb: 3 }}>
             <Themed.h1
               sx={{
                 ':before': {
@@ -75,29 +71,21 @@ const BlogIndex = ({ data }: PageProps<PageData>) => {
               id={node.fields.slug}
             >
               <Themed.a
-                sx={{
-                  color: 'black',
-                  textDecoration: 'none',
-                  ':hover': {
-                    textDecoration: 'underline',
-                    textDecorationSkip: 'ink',
-                    textDecorationSkipInk: 'all',
-                    textUnderlineOffset: '12%',
-                  },
-                }}
-                href={node.fields.slug}
+                sx={{ color: 'text', textDecoration: 'none' }}
+                href={'/post' + node.fields.slug}
+                rel={node.fields.slug}
               >
                 {title}
               </Themed.a>
             </Themed.h1>
-            <small>
+            <Themed.p sx={{ fontSize: 'small', mb: 2 }}>
               {node.frontmatter.created &&
                 `Created: ${node.frontmatter.created}`}
               {` · `}
               {tags && <TagSection tags={tags} tagSlugs={tagSlugs} />}
-            </small>
+            </Themed.p>
             {/* eslint-disable-next-line react/no-danger */}
-            <p
+            <Themed.p
               sx={{ marginY: 1 }}
               dangerouslySetInnerHTML={{ __html: node.excerpt }}
             />

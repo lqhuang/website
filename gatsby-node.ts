@@ -1,4 +1,4 @@
-import _ from 'lodash'
+import kebabCase from 'lodash/kebabCase'
 import path from 'path'
 
 import type { GatsbyNode } from 'gatsby'
@@ -40,6 +40,22 @@ const createPages: GatsbyNode['createPages'] = async ({
                 tags
               }
             }
+            previous {
+              fields {
+                slug
+              }
+              frontmatter {
+                title
+              }
+            }
+            next {
+              fields {
+                slug
+              }
+              frontmatter {
+                title
+              }
+            }
           }
         }
       }
@@ -53,10 +69,8 @@ const createPages: GatsbyNode['createPages'] = async ({
             frontmatter: { draft: { ne: true } }
           }
         ) {
-          edges {
-            node {
-              id
-            }
+          nodes {
+            id
           }
         }
       }
@@ -74,16 +88,12 @@ const createPages: GatsbyNode['createPages'] = async ({
   // Create blog posts pages.
   const articles = articlesQuery.data.allMdx.edges
   articles.length > 0
-    ? articles.forEach((post, idx) => {
-        const previous =
-          idx === articles.length - 1 ? null : articles[idx + 1].node
-        const next = idx === 0 ? null : articles[idx - 1].node
-
+    ? articles.forEach(({ previous, node, next }) => {
         createPage({
-          path: replacePath(post.node.fields.slug),
+          path: '/post' + node.fields.slug,
           component: postTemplate,
           context: {
-            slug: post.node.fields.slug,
+            slug: node.fields.slug,
             previous,
             next,
           },
@@ -93,11 +103,11 @@ const createPages: GatsbyNode['createPages'] = async ({
 
   // Create paginated snapshot pages.
   const itemsPerPage = 10
-  const digests = snapshotsQuery.data.allMdx.edges
+  const digests = snapshotsQuery.data.allMdx.nodes
   const numPages = Math.ceil(digests.length / itemsPerPage)
   digests.length > 0
     ? (createPage({
-        path: '/snapshots',
+        path: '/snapshots/',
         component: snapshotsTemplate,
         context: {
           limit: itemsPerPage,
@@ -166,9 +176,7 @@ const onCreateNode: GatsbyNode['onCreateNode'] = async ({
     })
 
     if (node.frontmatter.tags) {
-      const tagSlugs = node.frontmatter.tags.map(
-        (tag) => `/tags/${_.kebabCase(tag)}/`,
-      )
+      const tagSlugs = node.frontmatter.tags.map((tag) => '/' + kebabCase(tag))
       createNodeField({ node, name: 'tagSlugs', value: tagSlugs })
     }
   }
@@ -189,7 +197,9 @@ const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] = ({
   createTypes(`
     type SiteSiteMetadata {
       title: String!
-      author: String! # Author
+      author: String!
+      nickname: String
+      description: String
       url: String!
       social: Social
     }

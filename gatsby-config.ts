@@ -10,6 +10,7 @@ const config: GatsbyConfig = {
   siteMetadata: {
     title: 'lqhuang.io',
     author: 'Lanqing Huang',
+    nickname: 'lqhuang',
     email: 'lqhuang@outlook.com',
     description: 'A blog to record coding life',
     url: 'https://lqhuang.github.io/',

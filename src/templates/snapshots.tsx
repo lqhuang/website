@@ -1,35 +1,33 @@
 /** @jsxImportSource theme-ui */
-import { graphql, PageProps } from 'gatsby'
+import { graphql, PageProps, Link } from 'gatsby'
 import { MDXRenderer } from 'gatsby-plugin-mdx'
-import { Themed } from 'theme-ui'
+import { Themed, Flex } from 'theme-ui'
 
 import { Layout } from 'src/components/layout'
 import { SEO } from 'src/components/seo'
 import { TagSection } from 'src/components/tags'
 
 const pageQuery = graphql`
-  query perPageSnapshotsQuery($skip: Int!, $limit: Int!) {
+  query perPageSnapshotsQuery($limit: Int!, $skip: Int!) {
     allMdx(
       filter: {
         fields: { sourceInstanceName: { eq: "snapshots" } }
         frontmatter: { draft: { ne: true } }
       }
       sort: { fields: [frontmatter___date], order: DESC }
-      skip: $skip
       limit: $limit
+      skip: $skip
     ) {
-      edges {
-        node {
-          body
-          fields {
-            slug
-            tagSlugs
-          }
-          frontmatter {
-            title
-            date(formatString: "MMMM DD, YYYY")
-            tags
-          }
+      nodes {
+        body
+        fields {
+          slug
+          tagSlugs
+        }
+        frontmatter {
+          title
+          date(formatString: "MMMM DD, YYYY")
+          tags
         }
       }
     }
@@ -38,18 +36,16 @@ const pageQuery = graphql`
 
 interface PageData {
   allMdx: {
-    edges: {
-      node: {
-        body: string
-        fields: {
-          slug: string
-          tagSlugs: string[]
-        }
-        frontmatter: {
-          title: string
-          date: string
-          tags: string[]
-        }
+    nodes: {
+      body: string
+      fields: {
+        slug: string
+        tagSlugs: string[]
+      }
+      frontmatter: {
+        title: string
+        date: string
+        tags: string[]
       }
     }[]
   }
@@ -63,7 +59,7 @@ interface PageContext {
 }
 
 const BlogIndex = ({ data, pageContext }: PageProps<PageData, PageContext>) => {
-  const snapshots = data.allMdx.edges
+  const snapshots = data.allMdx.nodes
 
   const { currentPage, numPages } = pageContext
   const isFirst = currentPage === 1
@@ -72,7 +68,7 @@ const BlogIndex = ({ data, pageContext }: PageProps<PageData, PageContext>) => {
   return (
     <Layout>
       <SEO title="All snapshots" keywords={['digest', 'daily']} />
-      {snapshots.map(({ node }) => {
+      {snapshots.map((node) => {
         const title = node.frontmatter.title || node.fields.slug
         const tags = node.frontmatter.tags
         const tagSlugs = node.fields.tagSlugs
@@ -98,16 +94,23 @@ const BlogIndex = ({ data, pageContext }: PageProps<PageData, PageContext>) => {
         )
       })}
       <br />
-      {!isFirst && (
-        <Themed.a href={`/snapshots/${currentPage - 1}`} rel="prev">
-          ← Previous Page
-        </Themed.a>
-      )}
-      {!isLast && (
-        <Themed.a href={`/snapshots/${currentPage + 1}`} rel="next">
-          Next Page →
-        </Themed.a>
-      )}
+      <Flex style={{ flexDirection: 'column' }}>
+        {!isFirst && (
+          <Themed.a href={`/snapshots/${currentPage - 1}`} as={Link} rel="prev">
+            ← Previous Page
+          </Themed.a>
+        )}
+        {!isLast && (
+          <Themed.a
+            style={{ alignSelf: 'flex-end' }}
+            href={`/snapshots/${currentPage + 1}`}
+            as={Link}
+            rel="next"
+          >
+            Next Page →
+          </Themed.a>
+        )}
+      </Flex>
     </Layout>
   )
 }

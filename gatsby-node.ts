@@ -1,12 +1,10 @@
 import kebabCase from 'lodash/kebabCase'
 import path from 'path'
 
-import type { GatsbyNode } from 'gatsby'
+import type { GatsbyNode, CreateNodeArgs } from 'gatsby'
 import { createFilePath } from 'gatsby-source-filesystem'
 
-// https://www.gatsbyjs.org/docs/creating-and-modifying-pages/#removing-trailing-slashes
-const replacePath = (pagePath: string) =>
-  pagePath === '/' ? pagePath : pagePath.replace(/\/$/, '')
+import { Node as UserNode, PaginationNode } from './src/types'
 
 const createPages: GatsbyNode['createPages'] = async ({
   graphql,
@@ -20,7 +18,15 @@ const createPages: GatsbyNode['createPages'] = async ({
   // const tagPage = path.resolve('src/templates/tag-page.tsx')
   const [articlesQuery, snapshotsQuery] = await Promise.all([
     // articles
-    graphql(`
+    graphql<{
+      allMdx: {
+        edges: {
+          previous: PaginationNode
+          next: PaginationNode
+          node: UserNode
+        }[]
+      }
+    }>(`
       query {
         allMdx(
           filter: {
@@ -61,7 +67,7 @@ const createPages: GatsbyNode['createPages'] = async ({
       }
     `),
     // snapshots
-    graphql(`
+    graphql<{ allMdx: { nodes: UserNode[] } }>(`
       query {
         allMdx(
           filter: {
@@ -160,7 +166,8 @@ const onCreateNode: GatsbyNode['onCreateNode'] = async ({
   node,
   getNode,
   actions,
-}) => {
+}: CreateNodeArgs<UserNode>) => {
+  // Actually, `UserNode` !== `Node` here, we just reuse some common fields
   const { createNodeField } = actions
 
   if (node.internal.type === 'Mdx') {
@@ -223,13 +230,13 @@ const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] = ({
       date: Date @dateformat
       created: Date @dateformat
       updated: Date @dateformat
-      tags: [String]
+      tags: [String!]
       draft: Boolean
     }
     type Fields {
       slug: String!
       sourceInstanceName: String!
-      tagSlugs: [String]
+      tagSlugs: [String!]
     }
   `)
 }

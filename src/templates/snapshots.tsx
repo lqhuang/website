@@ -5,7 +5,8 @@ import { Themed, Flex } from 'theme-ui'
 
 import { Layout } from 'src/components/layout'
 import { SEO } from 'src/components/seo'
-import { TagSection } from 'src/components/tags'
+import { PostBlock } from 'src/components/block'
+import { Node } from 'src/types'
 
 const pageQuery = graphql`
   query perPageSnapshotsQuery($limit: Int!, $skip: Int!) {
@@ -36,18 +37,7 @@ const pageQuery = graphql`
 
 interface PageData {
   allMdx: {
-    nodes: {
-      body: string
-      fields: {
-        slug: string
-        tagSlugs: string[]
-      }
-      frontmatter: {
-        title: string
-        date: string
-        tags: string[]
-      }
-    }[]
+    nodes: Node[]
   }
 }
 
@@ -68,43 +58,36 @@ const BlogIndex = ({ data, pageContext }: PageProps<PageData, PageContext>) => {
   return (
     <Layout>
       <SEO title="All snapshots" keywords={['digest', 'daily']} />
-      {snapshots.map((node) => {
-        const title = node.frontmatter.title || node.fields.slug
-        const tags = node.frontmatter.tags
-        const tagSlugs = node.fields.tagSlugs
 
-        return (
-          <div key={node.fields.slug} sx={{ mb: 4 }}>
-            <Themed.h1
-              sx={{
-                ':before': {
-                  content: '"> "',
-                  color: 'secondary',
-                },
-              }}
-            >
-              {title}
-            </Themed.h1>
-            <small>
-              {node.frontmatter.date && `Date: ${node.frontmatter.date}`}{' '}
-              &middot; {tags && <TagSection tags={tags} tagSlugs={tagSlugs} />}
-            </small>
-            <MDXRenderer>{node.body}</MDXRenderer>
-          </div>
-        )
-      })}
+      {snapshots.map((node) => (
+        <PostBlock
+          node={node}
+          beforeMarker={'>'}
+          title={node.frontmatter.title || node.fields.slug}
+        >
+          <MDXRenderer>{node.body}</MDXRenderer>
+        </PostBlock>
+      ))}
+
       <br />
+
       <Flex style={{ flexDirection: 'column' }}>
         {!isFirst && (
-          <Themed.a href={`/snapshots/${currentPage - 1}`} as={Link} rel="prev">
+          <Themed.a
+            as={Link}
+            href={`/snapshots/${currentPage - 1}`}
+            to={`/snapshots/${currentPage - 1}`}
+            rel="prev"
+          >
             ← Previous Page
           </Themed.a>
         )}
         {!isLast && (
           <Themed.a
             style={{ alignSelf: 'flex-end' }}
-            href={`/snapshots/${currentPage + 1}`}
             as={Link}
+            href={`/snapshots/${currentPage + 1}`}
+            to={`/snapshots/${currentPage + 1}`}
             rel="next"
           >
             Next Page →

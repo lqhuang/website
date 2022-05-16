@@ -60,7 +60,7 @@ const commonHeading = {
   lineHeight: 'heading',
   fontWeight: 'heading',
   color: 'heading',
-  mt: [3, 4],
+  mt: [2, 3],
   mb: 3,
   // ':before': {
   //   content: '"# "',

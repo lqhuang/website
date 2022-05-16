@@ -5,7 +5,8 @@ import { MDXRenderer } from 'gatsby-plugin-mdx'
 
 import { Layout } from 'src/components/layout'
 import { SEO } from 'src/components/seo'
-import { TagSection } from 'src/components/tags'
+import { PostBlock } from 'src/components/block'
+import { Node, PaginationNode } from 'src/types'
 
 import 'katex/dist/katex.min.css'
 
@@ -28,47 +29,13 @@ const pageQuery = graphql`
   }
 `
 
-interface PageData {
-  mdx: {
-    body: string
-    excerpt: string
-    fields: {
-      slug: string
-      tagSlugs?: string[]
-    }
-    frontmatter: {
-      title: string
-      created: string
-      updated?: string
-      tags?: string[]
-    }
-  }
-}
-
-interface PaginationNode {
-  fields: {
-    slug: string
-    // tagSlugs?: string[]
-  }
-  frontmatter: {
-    title: string
-    // created: string
-    // tags?: string[]
-  }
-}
-
-interface PaginationProps {
-  previous: PaginationNode
-  next: PaginationNode
-}
-
 interface PageContext {
   slug: string
   previous: PaginationNode
   next: PaginationNode
 }
 
-function Pagination(props: PaginationProps) {
+function Pagination(props: { previous: PaginationNode; next: PaginationNode }) {
   const { previous, next } = props
 
   return (
@@ -94,41 +61,26 @@ function Pagination(props: PaginationProps) {
 function BlogPostTemplate({
   data,
   pageContext,
-}: PageProps<PageData, PageContext>) {
+}: PageProps<{ mdx: Node }, PageContext>) {
   const post = data.mdx
-  const { previous, next } = pageContext
-
   const { excerpt } = post
-  const { title: postTitle, created, tags, updated } = post.frontmatter
-  const { tagSlugs } = post.fields
+  const { title: postTitle } = post.frontmatter
+  const { previous, next } = pageContext
 
   return (
     <Layout>
       <SEO title={postTitle} description={excerpt} />
 
-      <Themed.h1>{postTitle}</Themed.h1>
+      <PostBlock node={post}>
+        <MDXRenderer>{post.body}</MDXRenderer>
+      </PostBlock>
 
-      <Themed.p
+      <hr
         sx={{
-          fontSize: 'small',
-          mb: 3,
-          a: {
-            textDecoration: 'underline 1px solid',
-          },
+          color: 'divider',
+          height: '1px',
         }}
-      >
-        {created && `Created: ${created}`}
-        {updated && updated !== created && ` · Updated: ${updated}`}
-        {tags && tags.length > 0 && (
-          <>
-            · <TagSection tags={tags} tagSlugs={tagSlugs} />
-          </>
-        )}
-      </Themed.p>
-
-      <MDXRenderer>{post.body}</MDXRenderer>
-
-      <hr />
+      />
 
       <Pagination previous={previous} next={next} />
     </Layout>

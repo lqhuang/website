@@ -4,7 +4,8 @@ import { Themed } from 'theme-ui'
 
 import { Layout } from 'src/components/layout'
 import { SEO } from 'src/components/seo'
-import { TagSection } from 'src/components/tags'
+import { PostBlock } from 'src/components/block'
+import { Node } from 'src/types'
 
 const pageQuery = graphql`
   query {
@@ -31,24 +32,7 @@ const pageQuery = graphql`
   }
 `
 
-interface PageData {
-  allMdx: {
-    nodes: {
-      excerpt: string
-      fields: {
-        slug: string
-        tagSlugs?: string[]
-      }
-      frontmatter: {
-        title: string
-        created: string
-        tags?: string[]
-      }
-    }[]
-  }
-}
-
-const BlogIndex = ({ data }: PageProps<PageData>) => {
+const BlogIndex = ({ data }: PageProps<{ allMdx: { nodes: Node[] } }>) => {
   const posts = data.allMdx.nodes
 
   return (
@@ -56,20 +40,12 @@ const BlogIndex = ({ data }: PageProps<PageData>) => {
       <SEO title="All posts" keywords={['blog']} />
       {posts.map((node) => {
         const title = node.frontmatter.title || node.fields.slug
-        const tags = node.frontmatter.tags
-        const tagSlugs = node.fields.tagSlugs
 
         return (
-          <div key={node.fields.slug} sx={{ mb: 3 }}>
-            <Themed.h1
-              sx={{
-                ':before': {
-                  content: '"# "',
-                  color: 'secondary',
-                },
-              }}
-              id={node.fields.slug}
-            >
+          <PostBlock
+            node={node}
+            beforeMarker="#"
+            title={
               <Themed.a
                 sx={{ color: 'text', textDecoration: 'none' }}
                 href={'/post' + node.fields.slug}
@@ -77,19 +53,11 @@ const BlogIndex = ({ data }: PageProps<PageData>) => {
               >
                 {title}
               </Themed.a>
-            </Themed.h1>
-            <Themed.p sx={{ fontSize: 'small', mb: 2 }}>
-              {node.frontmatter.created &&
-                `Created: ${node.frontmatter.created}`}
-              {` · `}
-              {tags && <TagSection tags={tags} tagSlugs={tagSlugs} />}
-            </Themed.p>
+            }
+          >
             {/* eslint-disable-next-line react/no-danger */}
-            <Themed.p
-              sx={{ marginY: 1 }}
-              dangerouslySetInnerHTML={{ __html: node.excerpt }}
-            />
-          </div>
+            <Themed.p dangerouslySetInnerHTML={{ __html: node.excerpt }} />
+          </PostBlock>
         )
       })}
     </Layout>

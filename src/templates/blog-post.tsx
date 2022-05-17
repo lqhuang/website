@@ -6,7 +6,7 @@ import { MDXRenderer } from 'gatsby-plugin-mdx'
 import { Layout } from 'src/components/layout'
 import { SEO } from 'src/components/seo'
 import { PostBlock } from 'src/components/block'
-import { Node, PaginationNode } from 'src/types'
+import type { Node, PaginationNode } from 'src/types'
 
 import 'katex/dist/katex.min.css'
 

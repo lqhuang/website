@@ -4,7 +4,7 @@ import path from 'path'
 import type { GatsbyNode, CreateNodeArgs } from 'gatsby'
 import { createFilePath } from 'gatsby-source-filesystem'
 
-import { Node as UserNode, PaginationNode } from './src/types'
+import type { Node as UserNode, PaginationNode } from './src/types'
 
 const createPages: GatsbyNode['createPages'] = async ({
   graphql,

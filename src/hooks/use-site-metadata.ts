@@ -1,26 +1,11 @@
 import { graphql, useStaticQuery } from 'gatsby'
 
-interface SiteProps {
-  site: { siteMetadata: SiteMetadataProps }
-}
+import type { SiteMetadata } from 'src/types'
 
-interface SiteMetadataProps {
-  title: string
-  author: string
-  nickname?: string
-  description?: string
-  email: string
-  url: string
-  social?: {
-    twitter?: string
-    github?: string
-    linkedin?: string
-    instagram?: string
-  }
-}
-
-const useSiteMetadata = (): SiteMetadataProps => {
-  const data = useStaticQuery<SiteProps>(graphql`
+const useSiteMetadata = (): SiteMetadata => {
+  const data = useStaticQuery<{
+    site: { siteMetadata: SiteMetadata }
+  }>(graphql`
     query {
       site {
         siteMetadata {

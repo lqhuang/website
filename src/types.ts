@@ -28,4 +28,20 @@ interface PaginationNode {
     // tags?: string[]
   }
 }
-export type { Node, PaginationNode }
+
+interface SiteMetadata {
+  title: string
+  author: string
+  nickname?: string
+  description?: string
+  email?: string
+  url?: string
+  social?: {
+    twitter?: string
+    github?: string
+    linkedin?: string
+    instgram?: string
+  }
+}
+
+export type { Node, PaginationNode, SiteMetadata }

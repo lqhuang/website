@@ -1,21 +1,9 @@
 import { MetaHTMLAttributes } from 'react'
 import { Helmet } from 'react-helmet'
-import { useStaticQuery, graphql } from 'gatsby'
+
+import { useSiteMetadata } from 'src/hooks/use-site-metadata'
 
 type MetaProps = MetaHTMLAttributes<HTMLMetaElement>
-
-type DataProps = {
-  site: {
-    siteMetadata: {
-      title: string
-      description: string
-      author: string
-      social: {
-        twitter: string
-      }
-    }
-  }
-}
 
 interface SEOProps {
   title: string
@@ -26,21 +14,6 @@ interface SEOProps {
   meta?: MetaProps[]
 }
 
-const detailsQuery = graphql`
-  query DefaultSEOQuery {
-    site {
-      siteMetadata {
-        title
-        description
-        author
-        social {
-          twitter
-        }
-      }
-    }
-  }
-`
-
 function SEO({
   title,
   author,
@@ -49,13 +22,13 @@ function SEO({
   keywords = [],
   meta = [],
 }: SEOProps) {
-  const data = useStaticQuery<DataProps>(detailsQuery)
+  const siteMetadata = useSiteMetadata()
   const {
     title: siteTitle,
     author: siteAuthor,
     description: siteDescription,
     social,
-  } = data.site.siteMetadata
+  } = siteMetadata
 
   const metaDescription = description || siteDescription
   const metaAuthor = author || siteAuthor

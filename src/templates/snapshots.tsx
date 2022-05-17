@@ -6,7 +6,7 @@ import { Themed, Flex } from 'theme-ui'
 import { Layout } from 'src/components/layout'
 import { SEO } from 'src/components/seo'
 import { PostBlock } from 'src/components/block'
-import { Node } from 'src/types'
+import type { Node } from 'src/types'
 
 const pageQuery = graphql`
   query perPageSnapshotsQuery($limit: Int!, $skip: Int!) {

@@ -3,7 +3,7 @@ import { FC, ReactElement, ComponentType } from 'react'
 import { Themed } from 'theme-ui'
 
 import { TagSection } from 'src/components/tags'
-import { Node } from 'src/types'
+import type { Node } from 'src/types'
 
 interface Props {
   node: Node

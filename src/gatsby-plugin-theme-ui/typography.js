@@ -104,7 +104,7 @@ const mdxStyles = {
     fontWeight: 'body',
   },
   a: {
-    color: 'secondary',
+    color: 'primary',
     textDecoration: 'none',
     ':hover': {
       textDecoration: 'underline',

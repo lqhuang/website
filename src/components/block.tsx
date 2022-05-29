@@ -28,7 +28,7 @@ const PostBlock: FC<Props> = (props) => {
           ':before': beforeMarker
             ? {
                 content: `"${beforeMarker} "`,
-                color: 'secondary',
+                color: 'primary',
               }
             : undefined,
         }}

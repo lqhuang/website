@@ -13,7 +13,8 @@
 export const appleLight = {
   text: '#0b1016',
   background: '#ffffff',
-  primary: '#663399',
+  // French Violet
+  primary: '#6600CC', // Rebecca Purple: '#663399'
   secondary: '#FF5A5F', // '#F37022',
   accent: '#ba0d37',
   highlight: '#666666',
@@ -27,8 +28,8 @@ export const appleLight = {
 export const appleDark = {
   text: '#f1f2f3',
   background: '#333333',
-  primary: '#663399',
-  secondary: '#FF5A5F', // '#F37022',
+  primary: '#6600CC', // not looks good in dark mode
+  secondary: '#FF5A5F',
   accent: '#333333',
   highlight: '#666666',
   muted: '#f6f6f6',

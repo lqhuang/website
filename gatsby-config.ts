@@ -1,4 +1,5 @@
-import path from 'path'
+import * as fs from 'fs'
+import * as path from 'path'
 import type { GatsbyConfig } from 'gatsby'
 
 import { appleLight } from './src/gatsby-plugin-theme-ui/colors'
@@ -7,13 +8,21 @@ const contentsDir = process.env.CONTENTS_DIR
   ? process.env.CONTENTS_DIR
   : 'examples'
 
+const pluginsFromFileSources = fs.readdirSync(contentsDir).map((name) => ({
+  resolve: 'gatsby-source-filesystem',
+  options: {
+    path: path.resolve(`${contentsDir}/${name}`),
+    name,
+  },
+}))
+
 const siteMetadata = {
   title: 'lqhuang.io',
   author: 'Lanqing Huang',
   nickname: 'lqhuang',
   email: 'lqhuang@outlook.com',
   description: 'A blog to record coding life',
-  url: 'https://lqhuang.github.io/',
+  url: 'https://lqhuang.io/',
   social: {
     twitter: '_lqhuang',
     github: 'lqhuang',
@@ -26,33 +35,13 @@ const config: GatsbyConfig = {
   trailingSlash: 'ignore',
   siteMetadata,
   plugins: [
+    ...pluginsFromFileSources,
     {
       resolve: 'gatsby-plugin-typescript',
       options: {
         isTSX: true, // defaults to false
         // jsxPragma: 'jsx', // defaults to "React"
         allExtensions: true, // defaults to false
-      },
-    },
-    {
-      resolve: 'gatsby-source-filesystem',
-      options: {
-        path: path.resolve(`${contentsDir}/assets`),
-        name: 'assets',
-      },
-    },
-    {
-      resolve: 'gatsby-source-filesystem',
-      options: {
-        path: path.resolve(`${contentsDir}/articles`),
-        name: 'articles',
-      },
-    },
-    {
-      resolve: 'gatsby-source-filesystem',
-      options: {
-        path: path.resolve(`${contentsDir}/snapshots`),
-        name: 'snapshots',
       },
     },
     {

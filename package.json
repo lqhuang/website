@@ -18,7 +18,7 @@
     "url": "git+https://github.com/lqhuang/lqhuang-blog.git"
   },
   "scripts": {
-    "build": "gatsby build",
+    "build": "CONTENTS_DIR=./blog gatsby build",
     "dev": "gatsby develop --host 0.0.0.0 --port 8000",
     "start": "npm run dev",
     "serve": "gatsby serve",
@@ -65,6 +65,7 @@
     "theme-ui": "^0.13.1"
   },
   "devDependencies": {
+    "@types/lodash": "^4.14.185",
     "@types/node": "^17.0.23",
     "@types/react": "^17.0.43",
     "@types/react-dom": "^17.0.14",

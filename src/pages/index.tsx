@@ -3,6 +3,10 @@ import { graphql, PageProps } from 'gatsby'
 import { MDXRenderer } from 'gatsby-plugin-mdx'
 import { Themed } from 'theme-ui'
 
+import groupBy from 'lodash/groupBy'
+import mapValues from 'lodash/mapValues'
+import concat from 'lodash/concat'
+
 import { Layout } from 'src/components/layout'
 import { SEO } from 'src/components/seo'
 import { PostBlock } from 'src/components/block'
@@ -12,7 +16,7 @@ import type { Node } from 'src/types'
 const pageQuery = graphql`
   query {
     allMdx(
-      filter: { frontmatter: { draft: { ne: true } } }
+      filter: { frontmatter: { draft: { ne: true }, title: { ne: "" } } }
       sort: {
         fields: [frontmatter___created, frontmatter___date]
         order: [DESC, DESC]
@@ -52,11 +56,25 @@ const Index = ({ data }: PageProps<PageData>) => {
   const { author } = useSiteMetadata()
 
   const { group } = data.allMdx
-  const dict = {} as { [key: string]: Node[] }
-  for (const each of group) {
-    dict[each.fieldValue] = each.nodes
-  }
-  const { articles, snapshots } = dict
+  const validPostDirs = ['articles', 'writings', 'translations']
+  const groupedMdx = mapValues(
+    groupBy(group, 'fieldValue'),
+    (arr) => arr[0].nodes,
+  )
+  let snapshots: Node[] = groupedMdx['snapshots']
+  let allPosts: Node[] = concat(
+    ...validPostDirs.map((x) => (groupedMdx[x] ? groupedMdx[x] : [])),
+  )
+  const posts = allPosts
+    .sort((a, b) => {
+      const { created: aCreated, date: aDate } = a.frontmatter
+      const { created: bCreated, date: bDate } = b.frontmatter
+      const x = aCreated || aDate
+      const y = bCreated || bDate
+      // make newer date in the prior order
+      return Date.parse(y as string) - Date.parse(x as string)
+    })
+    .slice(0, 3)
 
   return (
     <Layout>
@@ -64,7 +82,7 @@ const Index = ({ data }: PageProps<PageData>) => {
 
       <div>
         <Themed.h2>Posts:</Themed.h2>
-        {articles.map((node) => {
+        {posts.map((node) => {
           const title = node.frontmatter.title || node.fields.slug
 
           return (

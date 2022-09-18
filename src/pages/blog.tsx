@@ -11,8 +11,10 @@ const pageQuery = graphql`
   query {
     allMdx(
       filter: {
-        fields: { sourceInstanceName: { eq: "articles" } }
-        frontmatter: { draft: { ne: true } }
+        fields: {
+          sourceInstanceName: { in: ["articles", "writings", "translations"] }
+        }
+        frontmatter: { draft: { ne: true }, title: { ne: "" } }
       }
       sort: { fields: [frontmatter___created], order: DESC }
     ) {

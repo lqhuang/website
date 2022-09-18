@@ -1,13 +1,14 @@
 const emojiFonts =
   '"Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"'
 const sansFallback =
-  '-apple-system, "Helvetica Neue", "Noto Sans", "Segoe UI", Arial, sans-serif'
+  '-apple-system, BlinkMacSystemFont, Helvetica, "Noto Sans", Roboto, "Segoe UI", Arial, sans-serif'
 const serifFallback =
-  'Georgia, Cambria, "Times New Roman", STSong, NSimSun, serif'
+  '"Apple Garamond", "Noto Serif", "Roboto Serif", Georgia, Cambria, "Times New Roman", STSong, NSimSun, serif'
 const baseFonts = {
   sans: `"Noto Sans SC", ${sansFallback}, ${emojiFonts}`,
-  serif: `"Zilla Slab", "Noto Serif SC", ${serifFallback}`,
-  mono: 'Menlo, Monaco, Consolas, "Courier New", monospace',
+  serif: `"Zilla Slab", "Noto Serif SC", ${serifFallback}, ${emojiFonts}`,
+  mono: '"Fira Code", Menlo, Monaco, Consolas, "Courier New", monospace',
+  heading: `"Zilla Slab", "Noto Sans SC", ${sansFallback}`,
 }
 
 // .mac { --monaco-monospace-font: "SF Mono", Monaco, Menlo, Courier, monospace; }
@@ -17,7 +18,7 @@ const baseFonts = {
 const typoScale = {
   fonts: {
     body: baseFonts.sans,
-    heading: baseFonts.serif,
+    heading: baseFonts.heading,
     monospace: baseFonts.mono,
   },
   fontSizes: [

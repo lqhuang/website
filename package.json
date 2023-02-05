@@ -1,0 +1,42 @@
+{
+  "name": "lqhuang-blog",
+  "version": "0.2.0",
+  "description": "lqhuang's blog",
+  "repository": "https://github.com/lqhuang/website",
+  "author": "Lanqing Huang <lqhuang@outlook.com>",
+  "homepage": "https://lqhuang.io",
+  "license": "MIT",
+  "keywords": [
+    "blog"
+  ],
+  "bugs": {
+    "url": "https://github.com/lqhuang/website/issues"
+  },
+  "dependencies": {
+    "@fontsource/noto-sans-sc": "^4.5.12",
+    "@fontsource/noto-serif-sc": "^4.5.11",
+    "@fontsource/zilla-slab": "^4.5.9",
+    "next": "^13.1.6",
+    "nextra": "^2.2.14",
+    "nextra-theme-blog": "^2.2.14",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@types/lodash": "^4.14.191",
+    "@types/node": "^18.11.19",
+    "@types/react": "^18.0.27",
+    "@types/react-dom": "^18.0.10",
+    "@types/react-helmet": "^6.1.6",
+    "@typescript-eslint/eslint-plugin": "^5.50.0",
+    "@typescript-eslint/parser": "^5.50.0",
+    "eslint": "^8.33.0",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-import-resolver-node": "^0.3.7",
+    "eslint-plugin-import": "^2.27.5",
+    "eslint-plugin-jsx-a11y": "^6.7.1",
+    "eslint-plugin-react": "^7.32.2",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "typescript": "^4.9.5"
+  }
+}

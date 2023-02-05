@@ -1,0 +1,39 @@
+{
+  "compilerOptions": {
+    // Type Checking
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitAny": true,
+    "noImplicitReturns": true,
+    "strict": true,
+    // Modules
+    "module": "esnext",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "baseUrl": "./",
+    "paths": {
+      "*": ["*", "src/*"],
+      "src/*": ["src/*"]
+    },
+    // Emit
+    "declaration": true,
+    "noEmit": true,
+    "sourceMap": true,
+    // JavaScript Support
+    "allowJs": true,
+    "checkJs": true,
+    // Interop Constraints
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "isolatedModules": true,
+    // Language and Environment
+    "jsx": "preserve",
+    "target": "esnext",
+    "lib": ["dom", "esnext"],
+    // Completeness
+    "skipLibCheck": true,
+    "incremental": true
+  },
+  "include": ["src"],
+  "exclude": ["node_modules"]
+}

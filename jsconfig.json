@@ -1,0 +1,14 @@
+// https://github.com/Microsoft/TypeScript-Handbook/blob/master/pages/Module%20Resolution.md#path-mapping
+// https://code.visualstudio.com/docs/languages/jsconfig
+{
+  "compilerOptions": {
+    // This must be specified if "paths" is set
+    "baseUrl": "./",
+    // Relative to "baseUrl"
+    "paths": {
+      "src/*": [
+        "./src/*"
+      ]
+    }
+  }
+}

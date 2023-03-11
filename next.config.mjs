@@ -7,11 +7,9 @@ import withNextra from 'nextra'
 const nextConfig = {
   trailingSlash: true,
   reactStrictMode: true,
-  legacyBrowsers: false,
   poweredByHeader: false,
-
   experimental: {
-    // legacyBrowsers: false,
+    legacyBrowsers: false,
     // browsersListForSwc: true,
   },
 }
@@ -20,8 +18,8 @@ const nextConfig = {
  * @type {import('nextra').NextraConfig}
  */
 const nextraConfig = {
-  theme: 'nextra-theme-blog',
-  themeConfig: './theme.config.tsx',
+  theme: 'src/theme/index.tsx',
+  themeConfig: 'theme.config.tsx',
 }
 
 export default withNextra(nextraConfig)(nextConfig)

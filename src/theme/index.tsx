@@ -30,11 +30,17 @@ const BlogLayout = ({
       `nextra-theme-blog does not support the layout type "${type}" It only supports "post", "page", "posts" and "tag"`,
     )
   }
+  const { footer, navs, site } = config
+
   return (
     <BlogProvider opts={opts} config={config}>
-      <main>
-        <DelegateLayout>{children}</DelegateLayout>
-      </main>
+      <div className="flex-col mx-auto prose">
+        <Header site={site} navs={navs} />
+        <main>
+          <DelegateLayout>{children}</DelegateLayout>
+        </main>
+        {footer}
+      </div>
     </BlogProvider>
   )
 }
@@ -50,17 +56,12 @@ const Layout = ({
     ...DEFAULT_THEME,
     ...themeConfig,
   }
-  const { footer, navs, site } = extendedConfig
 
   return (
     <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-      <div className="container flex-col mx-auto">
-        <Header site={site} navs={navs} />
-        <BlogLayout config={extendedConfig} opts={pageOpts}>
-          {children}
-        </BlogLayout>
-        {footer}
-      </div>
+      <BlogLayout config={extendedConfig} opts={pageOpts}>
+        {children}
+      </BlogLayout>
     </ThemeProvider>
   )
 }

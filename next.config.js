@@ -18,8 +18,8 @@ const nextConfig = {
  * @type {import('nextra').NextraConfig}
  */
 const nextraConfig = {
-  theme: 'src/theme/index.tsx',
-  themeConfig: 'theme.config.tsx',
+  theme: './src/theme/index.tsx',
+  themeConfig: './theme.config.tsx',
 }
 
 export default withNextra(nextraConfig)(nextConfig)

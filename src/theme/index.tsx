@@ -1,30 +1,73 @@
 import type { NextraThemeLayoutProps } from 'nextra'
+import type { ReactElement, ReactNode } from 'react'
+import type { LayoutProps, NextraThemeConfig } from './types'
 
-import { MDXProvider } from 'nextra/mdx'
+import { ThemeProvider } from 'next-themes'
 
-// import { Header } from 'src/components/header'
+import { Header } from './header'
+import { IndexLayout } from './index-layout'
+import { ArticleLayout } from './post-layout'
+import { BlogProvider } from './blog-context'
+import { DEFAULT_THEME } from './constants'
 
-const Layout = ({ children, pageOpts }: NextraThemeLayoutProps) => {
-  const { title, frontMatter, headings } = pageOpts
+const layoutMap = {
+  index: IndexLayout,
+  post: ArticleLayout,
+  // page: PageLayout,
+  // posts: PostsLayout,
+  // tag: PostsLayout,
+}
+
+const BlogLayout = ({
+  config,
+  children,
+  opts,
+}: LayoutProps & { children: ReactNode }): ReactElement => {
+  const type = opts.frontMatter.type || 'index'
+  const DelegateLayout = layoutMap['index']
+  if (!DelegateLayout) {
+    throw new Error(
+      `nextra-theme-blog does not support the layout type "${type}" It only supports "post", "page", "posts" and "tag"`,
+    )
+  }
+  return (
+    <BlogProvider opts={opts} config={config}>
+      <main>
+        <DelegateLayout>{children}</DelegateLayout>
+      </main>
+    </BlogProvider>
+  )
+}
+
+const Layout = ({
+  children,
+  pageOpts,
+  themeConfig,
+}: NextraThemeLayoutProps) => {
+  // const { title, frontMatter, headings } = pageOpts
+
+  const extendedConfig: NextraThemeConfig = {
+    ...DEFAULT_THEME,
+    ...themeConfig,
+  }
+  const { footer, navs, site } = extendedConfig
 
   return (
-    <div>
-      <div>
-        {/* <Header /> */}
-
-        {/*
-         * It accepts a `children` prop, which is the MDX content of the current page, and wraps some other elements around the content.
-         */}
-        <main>{children}</main>
-
-        <footer>
-          Science {'\u00d7'} Tech {'\u00d7'} Design © {new Date().getFullYear()}
-          , Built with Nextra
-        </footer>
-        {/* eslint-enable */}
+    <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+      <div className="container flex-col mx-auto">
+        <Header site={site} navs={navs} />
+        <BlogLayout config={extendedConfig} opts={pageOpts}>
+          {children}
+        </BlogLayout>
+        {footer}
       </div>
-    </div>
+    </ThemeProvider>
   )
 }
 
 export default Layout
+
+export { useTheme } from 'next-themes'
+export { useBlogContext } from './blog-context'
+// export { getStaticTags } from './utils/get-tags'
+export * from './types'

@@ -12,6 +12,10 @@
   "bugs": {
     "url": "https://github.com/lqhuang/website/issues"
   },
+  "type": "module",
+  "scripts": {
+    "dev": "next dev -H 0.0.0.0"
+  },
   "dependencies": {
     "@fontsource/noto-sans-sc": "^4.5.12",
     "@fontsource/noto-serif-sc": "^4.5.11",

@@ -3,12 +3,13 @@ import type { ReactElement, ReactNode } from 'react'
 import type { LayoutProps, NextraThemeConfig } from './types'
 
 import { ThemeProvider } from 'next-themes'
+import Head from 'next/head'
 
+import { BlogProvider } from './blog-context'
+import { DEFAULT_THEME } from './constants'
 import { Header } from './header'
 import { IndexLayout } from './index-layout'
 import { ArticleLayout } from './post-layout'
-import { BlogProvider } from './blog-context'
-import { DEFAULT_THEME } from './constants'
 
 const layoutMap = {
   index: IndexLayout,
@@ -30,12 +31,17 @@ const BlogLayout = ({
       `nextra-theme-blog does not support the layout type "${type}" It only supports "post", "page", "posts" and "tag"`,
     )
   }
-  const { footer, navs, site } = config
+  const { footer, navs, site, logo } = config
 
   return (
     <BlogProvider opts={opts} config={config}>
+      <Head>
+        <link rel="icon" href="/favicon.svg" />
+        {/* <title>{title}</title> */}
+        {/* {config.head?.({ title, meta: opts.frontMatter })} */}
+      </Head>
       <div className="flex-col mx-auto prose">
-        <Header site={site} navs={navs} />
+        <Header logo={logo} site={site} navs={navs} />
         <main>
           <DelegateLayout>{children}</DelegateLayout>
         </main>
@@ -50,13 +56,10 @@ const Layout = ({
   pageOpts,
   themeConfig,
 }: NextraThemeLayoutProps) => {
-  // const { title, frontMatter, headings } = pageOpts
-
   const extendedConfig: NextraThemeConfig = {
     ...DEFAULT_THEME,
     ...themeConfig,
   }
-
   return (
     <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
       <BlogLayout config={extendedConfig} opts={pageOpts}>

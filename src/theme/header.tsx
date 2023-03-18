@@ -8,7 +8,6 @@ import { useBlogContext } from './blog-context'
 
 export const Navigation = ({ navs }: { navs: NextraThemeConfig['navs'] }) => {
   const { opts, config } = useBlogContext()
-
   return (
     <nav className="flex flex-grow space-x-4">
       {navs?.map(({ name, url }) => {
@@ -38,9 +37,11 @@ export const Navigation = ({ navs }: { navs: NextraThemeConfig['navs'] }) => {
 
 export const Header = ({
   site,
+  logo,
   navs,
 }: {
   site: NextraThemeConfig['site']
+  logo: NextraThemeConfig['logo']
   navs: NextraThemeConfig['navs']
 }) => {
   const title = site?.title ?? 'Unknow'
@@ -48,6 +49,7 @@ export const Header = ({
     <>
       <header className="bottom-3">
         <div className="my-3 not-prose">
+          {logo ? logo : <></>}
           <Link href="/" aria-label={`${title} - Back to home`}>
             <span className="text-5xl font-logo">{title}</span>
           </Link>
@@ -57,7 +59,7 @@ export const Header = ({
           <ThemeMode />
         </div>
       </header>
-      <hr className="my-3" />
+      <hr className="my-2" />
     </>
   )
 }

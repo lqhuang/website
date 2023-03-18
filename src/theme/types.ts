@@ -19,13 +19,6 @@ export interface siteInfo {
 
 export interface NextraThemeConfig {
   logo?: ReactNode
-  comments?: ReactNode
-  components?: Components
-  cusdis?: {
-    appId: string
-    host?: string
-    lang: string
-  }
   darkMode?: boolean
   footer?: ReactNode
   head?: ({
@@ -39,6 +32,13 @@ export interface NextraThemeConfig {
     name: string
     url: string
   }[]
+  components?: Components
+  comments?: ReactNode
+  cusdis?: {
+    appId: string
+    host?: string
+    lang: string
+  }
   postFooter?: string
   readMore?: string
   titleSuffix?: string
@@ -55,6 +55,52 @@ export type BlogFrontMatter = {
   tag?: string | string[]
   title?: string
   type?: 'post' | 'page' | 'posts' | 'tag'
+}
+
+export interface Node {
+  id: string
+  excerpt: string
+  body: string
+  fields: {
+    sourceInstanceName: string
+    slug: string
+    tagSlugs?: string[]
+  }
+  frontmatter: {
+    title: string
+    created?: string
+    updated?: string
+    date?: string
+    tags?: string[]
+  }
+  [key: string]: unknown
+}
+
+export interface PaginationNode {
+  fields: {
+    slug: string
+    // tagSlugs?: string[]
+  }
+  frontmatter: {
+    title: string
+    // created: string
+    // tags?: string[]
+  }
+}
+
+export interface SiteMetadata {
+  title: string
+  author: string
+  nickname?: string
+  description?: string
+  email?: string
+  url?: string
+  social?: {
+    twitter?: string
+    github?: string
+    linkedin?: string
+    instgram?: string
+  }
 }
 
 export interface LayoutProps {

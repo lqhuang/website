@@ -5,16 +5,15 @@ import type { LayoutProps, NextraThemeConfig } from './types'
 import { ThemeProvider } from 'next-themes'
 import Head from 'next/head'
 
-import { BlogProvider } from './blog-context'
+import { ContextProvider } from './blog-context'
 import { DEFAULT_THEME } from './constants'
 import { Header } from './header'
 import { IndexLayout } from './index-layout'
-import { ArticleLayout } from './post-layout'
+import { PostLayout } from './post-layout'
 
-const layoutMap = {
+const layoutMap: Record<string, (_: { children: ReactNode }) => JSX.Element> = {
   index: IndexLayout,
-  post: ArticleLayout,
-  // page: PageLayout,
+  post: PostLayout,
   // posts: PostsLayout,
   // tag: PostsLayout,
 }
@@ -24,36 +23,41 @@ const BlogLayout = ({
   children,
   opts,
 }: LayoutProps & { children: ReactNode }): ReactElement => {
-  const type = opts.frontMatter.type || 'index'
-  const DelegateLayout = layoutMap['index']
-  if (!DelegateLayout) {
-    throw new Error(
-      `nextra-theme-blog does not support the layout type "${type}" It only supports "post", "page", "posts" and "tag"`,
-    )
+  let type: string
+  if (opts.frontMatter.type) {
+    type = opts.frontMatter.type
+  } else {
+    // Or we could get the type from the `_meta.json`, but it's stored in `PageMap`.
+    const startWithSlash = opts.route.startsWith('/')
+    const routeArr = opts.route.split('/')
+    type = startWithSlash ? routeArr[1] : routeArr[0]
   }
-  const { footer, navs, site, logo } = config
+  const ConcreteLayout =
+    layoutMap['type'] ?? (({ children }) => <div>{children}</div>)
 
+  const { footer, navs, site, logo } = config
   return (
-    <BlogProvider opts={opts} config={config}>
+    <ContextProvider opts={opts} config={config}>
       <Head>
         <link rel="icon" href="/favicon.svg" />
         {/* <title>{title}</title> */}
         {/* {config.head?.({ title, meta: opts.frontMatter })} */}
       </Head>
-      <div className="flex-col mx-auto prose">
+      <div className="flex flex-col mx-auto prose">
         <Header logo={logo} site={site} navs={navs} />
         <main>
-          <DelegateLayout>{children}</DelegateLayout>
+          <ConcreteLayout>{children}</ConcreteLayout>
         </main>
         {footer}
       </div>
-    </BlogProvider>
+    </ContextProvider>
   )
 }
 
 const Layout = ({
   children,
   pageOpts,
+  // pageProps,
   themeConfig,
 }: NextraThemeLayoutProps) => {
   const extendedConfig: NextraThemeConfig = {

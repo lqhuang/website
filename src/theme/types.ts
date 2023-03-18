@@ -9,12 +9,12 @@ export interface siteInfo {
   email?: string
   description?: string
   url?: string
-  // social: {
-  //   twitter: '_lqhuang'
-  //   github: 'lqhuang'
-  //   linkedin: 'lqhuang'
-  //   instgram: 'lanqing.huang'
-  // }
+  social?: {
+    twitter?: string
+    github?: string
+    linkedin?: string
+    instgram?: string
+  }
 }
 
 export interface NextraThemeConfig {
@@ -85,21 +85,6 @@ export interface PaginationNode {
     title: string
     // created: string
     // tags?: string[]
-  }
-}
-
-export interface SiteMetadata {
-  title: string
-  author: string
-  nickname?: string
-  description?: string
-  email?: string
-  url?: string
-  social?: {
-    twitter?: string
-    github?: string
-    linkedin?: string
-    instgram?: string
   }
 }
 

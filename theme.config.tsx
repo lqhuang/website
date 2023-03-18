@@ -1,21 +1,28 @@
 export default {
-  footer: <p>MIT 2023 © Nextra.</p>,
-  head: ({ title, meta }) => (
-    <>
-      {meta.description && (
-        <meta name="description" content={meta.description} />
-      )}
-      {meta.tag && <meta name="keywords" content={meta.tag} />}
-      {meta.author && <meta name="author" content={meta.author} />}
-    </>
+  footer: (
+    <footer className="mt-3 self-center">
+      Science {'\u00d7'} Tech {'\u00d7'} Design © Lanqing Huang{' '}
+      {new Date().getFullYear()}, Built with Nextra
+    </footer>
   ),
-  readMore: 'Read More →',
-  postFooter: null,
-  darkMode: false,
+  darkMode: true,
   navs: [
-    {
-      url: 'https://github.com/shuding/nextra',
-      name: 'Nextra',
-    },
+    { name: 'Blog', url: '/blog' },
+    { name: 'Digest', url: '/snapshots' },
+    { name: 'About', url: '/about' },
   ],
+  site: {
+    title: 'lqhuang.io',
+    author: 'Lanqing Huang',
+    nickname: 'lqhuang',
+    email: 'lqhuang@outlook.com',
+    description: 'A blog to record coding life',
+    url: 'https://lqhuang.io/',
+    social: {
+      twitter: '_lqhuang',
+      github: 'lqhuang',
+      linkedin: 'lqhuang',
+      instgram: 'lanqing.huang',
+    },
+  },
 }

@@ -5,7 +5,7 @@ import { createContext, useContext } from 'react'
 
 const BlogContext = createContext<LayoutProps | null>(null)
 
-export const BlogProvider = ({
+export const ContextProvider = ({
   config,
   children,
   opts,

@@ -1,4 +1,3 @@
-import type { PageMapItem, MdxFile } from 'nextra'
 import type { NextraThemeConfig } from './types'
 
 import Link from 'next/link'
@@ -7,7 +6,7 @@ import { ThemeMode } from './theme-mode'
 import { useBlogContext } from './blog-context'
 
 export const Navigation = ({ navs }: { navs: NextraThemeConfig['navs'] }) => {
-  const { opts, config } = useBlogContext()
+  const { opts } = useBlogContext()
   return (
     <nav className="flex flex-grow space-x-4">
       {navs?.map(({ name, url }) => {

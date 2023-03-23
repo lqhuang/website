@@ -49,12 +49,13 @@ export type BlogPageOpts = PageOpts<BlogFrontMatter>
 
 export type BlogFrontMatter = {
   author?: string
-  back?: string
   date?: string
+  created?: string
+  updated?: string
   description?: string
-  tag?: string | string[]
+  tags?: string[]
   title?: string
-  type?: 'post' | 'page' | 'posts' | 'tag'
+  type?: 'post' | 'page' | 'posts' | 'tags' | string
 }
 
 export interface Node {
@@ -81,7 +82,7 @@ export interface PaginationNode {
     slug: string
     // tagSlugs?: string[]
   }
-  frontmatter: {
+  frontMatter: {
     title: string
     // created: string
     // tags?: string[]

@@ -30,7 +30,7 @@ rules:
   no-unused-vars: 'warn'
   react/jsx-filename-extension: ['warn', { 'extensions': ['.tsx', '.jsx'] }]
   react/react-in-jsx-scope: 'off'
-  react/jsx-one-expression-per-line: ['warn', { 'allow': 'single-child' }]
+  react/jsx-one-expression-per-line: 'off'
   react-hooks/rules-of-hooks: 'error'
   react-hooks/exhaustive-deps: 'warn'
   object-curly-newline: 'off'

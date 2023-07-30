@@ -7,7 +7,7 @@ export default {
   ),
   darkMode: true,
   navs: [
-    { name: 'Blog', url: '/blog' },
+    { name: 'Blog', url: '/posts' },
     { name: 'Digest', url: '/snapshots' },
     { name: 'About', url: '/about' },
   ],

@@ -2,7 +2,7 @@ import type { PageOpts } from 'nextra'
 import type { ReactNode } from 'react'
 import type { Components } from 'nextra/mdx'
 
-export interface siteInfo {
+export interface Persona {
   title?: string
   author?: string
   nickname?: string
@@ -42,7 +42,7 @@ export interface NextraThemeConfig {
   postFooter?: string
   readMore?: string
   titleSuffix?: string
-  site?: siteInfo
+  site?: Persona
 }
 
 export type BlogPageOpts = PageOpts<BlogFrontMatter>

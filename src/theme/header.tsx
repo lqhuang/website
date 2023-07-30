@@ -43,7 +43,7 @@ export const Header = ({
   logo: NextraThemeConfig['logo']
   navs: NextraThemeConfig['navs']
 }) => {
-  const title = site?.title ?? 'Unknow'
+  const title = site?.title ?? 'Unknown'
   return (
     <>
       <header className="bottom-3">

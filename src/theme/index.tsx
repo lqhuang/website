@@ -4,17 +4,23 @@ import type { LayoutProps, NextraThemeConfig } from './types'
 
 import { ThemeProvider } from 'next-themes'
 import Head from 'next/head'
+import { useRouter } from 'next/router'
 
 import { ContextProvider } from './blog-context'
 import { DEFAULT_THEME } from './constants'
 import { Header } from './header'
 import { IndexLayout } from './index-layout'
 import { PostLayout } from './post-layout'
+import { MDXTheme } from './mdx-theme'
+import { ListLayout } from './list-layout'
 
+// eslint-disable-next-line no-unused-vars
 const layoutMap: Record<string, (_: { children: ReactNode }) => JSX.Element> = {
   index: IndexLayout,
   post: PostLayout,
-  // posts: PostsLayout,
+  posts: ListLayout,
+  digest: PostLayout,
+  digests: ListLayout,
   // tag: PostsLayout,
 }
 
@@ -23,17 +29,25 @@ const BlogLayout = ({
   children,
   opts,
 }: LayoutProps & { children: ReactNode }): ReactElement => {
+  const router = useRouter()
   let type: string
   if (opts.frontMatter.type) {
     type = opts.frontMatter.type
   } else {
+    const route = router.route
     // Or we could get the type from the `_meta.json`, but it's stored in `PageMap`.
-    const startWithSlash = opts.route.startsWith('/')
-    const routeArr = opts.route.split('/')
+    const startWithSlash = route.startsWith('/')
+    const routeArr = route.split('/')
     type = startWithSlash ? routeArr[1] : routeArr[0]
+    // console.log(router.route, opts.route, routeArr, type)
   }
   const ConcreteLayout =
-    layoutMap['type'] ?? (({ children }) => <div>{children}</div>)
+    layoutMap[type] ??
+    (({ children }) => (
+      <div className="prose-sm">
+        <MDXTheme>{children}</MDXTheme>
+      </div>
+    ))
 
   const { footer, navs, site, logo } = config
   return (

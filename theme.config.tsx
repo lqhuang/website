@@ -1,9 +1,12 @@
 export default {
   footer: (
-    <footer className="mt-3 self-center">
-      Science {'\u00d7'} Tech {'\u00d7'} Design © Lanqing Huang{' '}
-      {new Date().getFullYear()}, Built with Nextra
-    </footer>
+    <>
+      <hr className="my-2" />
+      <footer className="self-center">
+        Science {'\u00d7'} Tech {'\u00d7'} Design © Lanqing Huang{' '}
+        {new Date().getFullYear()}, Built with Nextra
+      </footer>
+    </>
   ),
   darkMode: true,
   navs: [

@@ -5,6 +5,7 @@
     "noImplicitAny": true,
     "noImplicitReturns": true,
     "strict": true,
+    "types": ["vitest/importMeta"],
     // Modules
     "module": "ESNext",
     "moduleResolution": "Node",

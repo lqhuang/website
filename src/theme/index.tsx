@@ -57,7 +57,7 @@ const BlogLayout = ({
         {/* <title>{title}</title> */}
         {/* {config.head?.({ title, meta: opts.frontMatter })} */}
       </Head>
-      <div className="flex flex-col mx-auto prose">
+      <div className="prose mx-auto flex flex-col">
         <Header logo={logo} site={site} navs={navs} />
         <main>
           <ConcreteLayout>{children}</ConcreteLayout>

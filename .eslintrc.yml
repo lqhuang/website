@@ -1,41 +1,36 @@
-parser: '@typescript-eslint/parser'
+root: true
+# Indicate this file is the root-level one used by the project and
+# ESLint should not search beyond this directory for config files.
 
+parser: '@typescript-eslint/parser'
 parserOptions:
-  ecmaVersion: 2022
-  sourceType: module
+  ecmaVersion: 'latest'
   ecmaFeatures:
     jsx: true
 
-env:
-  browser: true
-  node: true
-  es2020: true
-
-globals:
-  graphql: true
-  __PATH_PREFIX__: true
-
+# `extends` tells ESLint that your config extends the given configurations.
 extends:
   - eslint:recommended
   - plugin:@typescript-eslint/eslint-recommended
-  - plugin:mdx/recommended
+  - plugin:@eslint-react/recommended
+  - plugin:react-hooks/recommended
   - plugin:prettier/recommended
+  - plugin:mdx/recommended
 
+# `plugins` tells ESLint to load these packages as a plugin.
 plugins:
-  - react
   - react-hooks
   - '@typescript-eslint'
+  - '@stylistic'
 
 rules:
   no-unused-vars: 'warn'
-  react/jsx-filename-extension: ['warn', { 'extensions': ['.tsx', '.jsx'] }]
-  react/react-in-jsx-scope: 'off'
-  react/jsx-one-expression-per-line: 'off'
-  react-hooks/rules-of-hooks: 'error'
-  react-hooks/exhaustive-deps: 'warn'
+  '@eslint-react/jsx-filename-extension':
+    - 'warn'
+    - { 'extensions': ['.tsx', '.jsx'] }
+  '@eslint-react/react-in-jsx-scope': 'off'
+  '@eslint-react/jsx-one-expression-per-line': 'off'
   object-curly-newline: 'off'
-  # import/prefer-default-export: 'off'
-  # import/extensions: 'ignorePackages'
 
 settings:
   extensions: ['.js', '.jsx', '.ts', '.tsx', '.mdx']

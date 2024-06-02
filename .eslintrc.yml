@@ -21,16 +21,14 @@ extends:
 plugins:
   - react-hooks
   - '@typescript-eslint'
-  - '@stylistic'
 
 rules:
   no-unused-vars: 'warn'
-  '@eslint-react/jsx-filename-extension':
-    - 'warn'
-    - { 'extensions': ['.tsx', '.jsx'] }
-  '@eslint-react/react-in-jsx-scope': 'off'
-  '@eslint-react/jsx-one-expression-per-line': 'off'
   object-curly-newline: 'off'
+  '@eslint-react/naming-convention/filename':
+    ['error', { 'rule': 'kebab-case' }]
+  '@eslint-react/naming-convention/filename-extension': 'as-needed'
+  '@typescript-eslint/consistent-type-imports': 'error'
 
 settings:
   extensions: ['.js', '.jsx', '.ts', '.tsx', '.mdx']

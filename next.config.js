@@ -1,28 +1,18 @@
 // @ts-check
-import withNextra from 'nextra'
 
 /**
  * @type {import('next').NextConfig}
  */
 const nextConfig = {
-  trailingSlash: false,
   reactStrictMode: true,
+  trailingSlash: false,
   poweredByHeader: false,
+  images: {
+    domains: ['avatars.githubusercontent.com'],
+  },
   experimental: {
-    legacyBrowsers: false,
     // browsersListForSwc: true,
   },
 }
 
-/**
- * @type {import('nextra').NextraConfig}
- */
-const nextraConfig = {
-  theme: './src/theme/index.tsx',
-  themeConfig: './theme.config.tsx',
-  // defaultShowCopyCode: true,
-  // staticImage: true,
-  // codeHighlight: true,
-}
-
-export default withNextra(nextraConfig)(nextConfig)
+export default nextConfig

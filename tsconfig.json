@@ -31,7 +31,8 @@
     "jsx": "preserve",
     // Completeness
     "skipLibCheck": true,
-    "incremental": true
+    "incremental": true,
+    "plugins": [{ "name": "next" }]
   },
   "exclude": ["node_modules"],
   "include": [
@@ -40,6 +41,7 @@
     "**/*.tsx",
     "**/*.js",
     "**/*.mjs",
-    "**/*.cjs"
+    "**/*.cjs",
+    ".next/types/**/*.ts"
   ]
 }

@@ -1,3 +1,5 @@
+'use client'
+
 import { useTheme } from 'next-themes'
 import { useMounted } from 'nextra/hooks'
 import { MoonIcon, SunIcon } from 'nextra/icons'
@@ -15,9 +17,9 @@ export const ThemeMode = () => {
     <span
       role="button"
       aria-label="Toggle Dark Mode"
-      className="p-2 text-current cursor-pointer"
+      className="cursor-pointer p-2 text-current"
       onClick={toggleTheme}
-      onKeyDown={(e) => {
+      onKeyDown={e => {
         if (e.key === 'Enter') toggleTheme()
       }}
     >

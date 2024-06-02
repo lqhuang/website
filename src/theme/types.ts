@@ -17,7 +17,7 @@ export interface Persona {
   }
 }
 
-export interface NextraThemeConfig {
+export interface ThemeConfig {
   logo?: ReactNode
   darkMode?: boolean
   footer?: ReactNode
@@ -90,6 +90,6 @@ export interface PaginationNode {
 }
 
 export interface LayoutProps {
-  config: NextraThemeConfig
+  config: ThemeConfig
   opts: BlogPageOpts
 }

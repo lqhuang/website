@@ -21,7 +21,9 @@ export const themeConfig: ThemeConfig = {
       <hr className="my-2" />
       <footer className="self-center">
         Science {'\u00d7'} Tech {'\u00d7'} Design © Lanqing Huang{' '}
-        {new Date().getFullYear()}, Built with Nextra
+        {
+          new Date().getFullYear() //, Built with ❤️
+        }
       </footer>
     </>
   ),

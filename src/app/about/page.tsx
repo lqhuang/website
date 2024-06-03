@@ -11,7 +11,7 @@ export default function AboutMe() {
     <>
       <p>
         Who am I: {author} {nickname && <code>(@{nickname})</code>}, a simple
-        and naïve guy, graduated from Physics.{' '}
+        and naïve guy, graduated from Physics.
       </p>
       <p>
         Coding in Python, Scala, Rust, sometimes Haskell. Learning on ML System,
@@ -24,7 +24,7 @@ export default function AboutMe() {
           <a href={`https://twitter.com/${social.twitter}`}>Twitter (X)</a>.
         </p>
       )}
-      <p>Say hi to </p>
+      <p>Say hi to me@lqhuang.io </p>
     </>
   )
 }

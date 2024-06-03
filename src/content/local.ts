@@ -3,48 +3,67 @@ import type { PathLike } from 'node:fs'
 import * as path from 'node:path'
 import * as fs from 'node:fs/promises'
 
-import grayMatter from 'gray-matter'
+import matter from 'gray-matter'
+import { parse as parseYaml } from 'yaml'
 
 import { MARKDOWN_EXTENSION_REGEX, VALID_INDEX_REGEX } from 'src/constants'
 
 import { splitDateAndTitle } from 'src/utils/naming'
 
-interface Metadata {
+export interface Metadata {
   fullPath: string
   single: boolean
   slug: string
   date: Date | null
 }
 
-interface SourceConent extends Metadata {
+export interface Source extends Metadata {
   frontmatter: Record<string, string>
   content: string
 }
 
-export const buildLocalSource = async (dir: PathLike) => {
+export type Dirname = string
+export type Slug = string
+export type Content = Map<Slug, Source>
+const globalSource = new Map<Dirname, Content>()
+
+export const buildLocalSource = async (
+  dir: PathLike,
+): Promise<Map<Slug, Source>> => {
   const isDir = (await fs.stat(dir)).isDirectory()
 
   if (!isDir) {
     throw new Error(`Invalid input: ${dir}, must be a directory`)
   }
 
-  const files = await collectMdxFiles(dir.toString())
-  const pairs: [string, SourceConent][] = await Promise.all(
-    files
-      .map(fullPath => genMetadata(fullPath))
-      .map(async metadata => {
-        const source = await readContentAndFrontmatter(metadata)
-        return [metadata.slug, source]
-      }),
-  )
+  const db = globalSource.get(dir.toString()) ?? new Map()
 
-  const db = new Map<string, SourceConent>(pairs)
+  const files = await collectFiles(dir.toString())
+  // const pairs: [string, Source][] = await Promise.all(
+  //   files
+  //     .map(fullPath => genMetadata(fullPath))
+  //     .map(async metadata => {
+  //       const source = await readContentAndFrontmatter(metadata)
+  //       return [metadata.slug, source]
+  //     }),
+  // )
+
+  for (const fullPath of files) {
+    const metadata = genMetadata(fullPath)
+    if (process.env.NODE_ENV === 'development' || !db.has(metadata.slug)) {
+      const source = await readContentAndFrontmatter(metadata)
+      db.set(metadata.slug, source)
+    }
+  }
+
+  if (!globalSource.has(dir.toString())) {
+    globalSource.set(dir.toString(), db)
+  }
   return db
 }
 
 const genMetadata = (fullPath: string): Metadata => {
   const fname = path.basename(fullPath, path.extname(fullPath))
-  console.error(fname)
 
   let slug = ''
   let single = false
@@ -82,9 +101,14 @@ const genMetadata = (fullPath: string): Metadata => {
 
 export const readContentAndFrontmatter = async (
   metadata: Metadata,
-): Promise<SourceConent> => {
-  const s = await fs.readFile(metadata.fullPath)
-  const { data: frontmatter, content } = grayMatter(s)
+): Promise<Source> => {
+  const raw = await fs.readFile(metadata.fullPath)
+  const { data: frontmatter, content } = matter(raw, {
+    engines: {
+      // Provide custom YAML engine to avoid parsing of date values https://github.com/jonschlinkert/gray-matter/issues/62)
+      yaml: str => parseYaml(str),
+    },
+  })
 
   return {
     ...metadata,
@@ -93,14 +117,17 @@ export const readContentAndFrontmatter = async (
   }
 }
 
-const collectMdxFiles = async (dir: string): Promise<string[]> => {
+const collectFiles = async (
+  dir: string,
+  regex_pattern: RegExp = MARKDOWN_EXTENSION_REGEX,
+): Promise<string[]> => {
   const validFiles = (
     await fs.readdir(dir, {
       recursive: true,
     })
   )
     .filter(fname => {
-      const isMdxFile = MARKDOWN_EXTENSION_REGEX.test(fname.toString())
+      const isMdxFile = regex_pattern.test(fname.toString())
       return isMdxFile
     })
     .map(fname => path.join(dir, fname.toString()))

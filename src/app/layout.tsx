@@ -25,6 +25,10 @@ export const viewport: Viewport = {
   ],
 }
 
+export function generateViewport() {
+  return viewport
+}
+
 export const metadata: Metadata = {
   title: {
     default: siteConfig.name,

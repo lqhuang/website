@@ -1,9 +1,9 @@
 import type { PathLike } from 'node:fs'
 
-import path from 'node:path'
-import fs from 'node:fs'
+import * as path from 'node:path'
+import * as fs from 'node:fs'
 
-const regexEndswithMDX = /\.mdx?$/i
+import { MARKDOWN_EXTENSION_REGEX, INDEX_FNAME_REGEX } from './constants'
 
 function separateDateAndTitle(str: string): { date: string; title: string } {
   const date = str.split('-', 3).join('-')
@@ -27,8 +27,8 @@ const findSubMdxFile = (dir: string): string => {
   const validFiles = fs.readdirSync(dir).filter((fname: string) => {
     const fullPath = path.join(dir, fname)
     const isDirectory = fs.statSync(fullPath).isDirectory()
-    const isMdxFile = regexEndswithMDX.test(fname)
-    const isIndexFile = /(index|readme)/i.test(fname)
+    const isMdxFile = MARKDOWN_EXTENSION_REGEX.test(fname)
+    const isIndexFile = INDEX_FNAME_REGEX.test(fname)
     return !isDirectory && isMdxFile && isIndexFile
   })
 
@@ -44,7 +44,7 @@ const findSubMdxFile = (dir: string): string => {
 
 export const readMdxContent = (fullPath: string): string => {
   console.log(fullPath)
-  const isMdxFile = regexEndswithMDX.test(fullPath)
+  const isMdxFile = MARKDOWN_EXTENSION_REGEX.test(fullPath)
   const isDirectory = fs.statSync(fullPath).isDirectory()
   const realFilePath =
     !isDirectory && isMdxFile
@@ -72,14 +72,5 @@ if (import.meta.vitest) {
       date: '2017-08-07',
       title: 'katex',
     })
-  })
-
-  it('test `regexEndswithMDX`', () => {
-    expect(regexEndswithMDX.test('2016-04-15-markdown-example')).toBe(false)
-    expect(regexEndswithMDX.test('2016-04-15-markdown-example.md')).toBe(true)
-    expect(regexEndswithMDX.test('2016-04-15-markdown-example.mdx')).toBe(true)
-    expect(regexEndswithMDX.test('2016-04-15-markdown-example.json')).toBe(
-      false,
-    )
   })
 }

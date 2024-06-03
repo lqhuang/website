@@ -27,7 +27,7 @@ const PrevNextNav = ({ prev, next }: PrevNext) => {
     <div className="btn-group flex flex-col">
       <Link className="self-start no-underline" href={prev ? prev.href : '#'}>
         <div className="flex flex-row">
-          <div className="flex items-center mr-3">{'<-'}</div>
+          <div className="mr-3 flex items-center">{'<-'}</div>
           <div className="flex flex-col">
             <div>Prev</div>
             <div>{placeholder}</div>
@@ -40,7 +40,7 @@ const PrevNextNav = ({ prev, next }: PrevNext) => {
             <div className="self-end">Next</div>
             <div>{placeholder}</div>
           </div>
-          <div className="flex items-center ml-3">{'>'}</div>
+          <div className="ml-3 flex items-center">{'>'}</div>
         </div>
       </Link>
     </div>

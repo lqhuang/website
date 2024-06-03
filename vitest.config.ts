@@ -1,3 +1,5 @@
+import { resolve } from 'node:path'
+
 import { defineConfig } from 'vitest/config'
 import react from '@vitejs/plugin-react'
 
@@ -7,5 +9,10 @@ export default defineConfig({
   test: {
     environment: 'jsdom',
     includeSource: ['src/**/*.{js,ts}'],
+  },
+  resolve: {
+    alias: {
+      src: resolve(import.meta.dirname, 'src'),
+    },
   },
 })

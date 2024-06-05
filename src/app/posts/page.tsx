@@ -1,26 +1,34 @@
-import { allPosts } from 'content-collections'
 import Link from 'next/link'
+
+import { Tags } from 'src/components/meta'
+import { sortDateDesc } from 'src/utils'
+
+import { allPosts } from 'content-collections'
 
 export default async function Page() {
   return (
-    <>
-      <h1 className="my-3">Posts</h1>
+    <article className="prose">
+      <h2 className="my-4">Posts</h2>
       {allPosts
-        .sort(p => new Date(p.created).getTime())
-        .reverse()
+        .filter(p => p.draft === undefined || !p.draft)
+        .sort((a, b) => sortDateDesc(a.created, b.created))
         .map(post => {
           return (
-            <p className="my-2" key={post.metadata.slug}>
+            <p className="my-5" key={post.metadata.slug}>
               <Link
                 className="no-underline hover:underline"
                 href={`/post/${post.metadata.slug}`}
               >
                 <h3 className="my-1">{post.title}</h3>
               </Link>
-              <span>{post.created}</span>
+              <span>
+                {post.created}
+                {', '}
+                <Tags tags={post.tags}></Tags>
+              </span>
             </p>
           )
         })}
-    </>
+    </article>
   )
 }

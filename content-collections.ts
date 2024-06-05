@@ -3,6 +3,7 @@ import { join, resolve } from 'node:path'
 import { defineCollection, defineConfig } from '@content-collections/core'
 
 import { readContentAndFrontmatter } from 'src/content/local'
+import { contentDir } from 'src/config'
 
 /**
  * The following `Meta` type is defined by 'content-collections'
@@ -16,11 +17,11 @@ import { readContentAndFrontmatter } from 'src/content/local'
  * }
  */
 
+const postsDir = join(contentDir, 'writings')
 const posts = defineCollection({
   name: 'posts',
-  directory: 'examples/articles', // join(contentDir, 'articles'),
+  directory: postsDir,
   include: '**/*.md',
-  //   yaml: true,
   schema: z => ({
     title: z.string(),
     created: z.string(),
@@ -29,12 +30,13 @@ const posts = defineCollection({
     draft: z.boolean().optional(),
   }),
   transform: async (doc, context) => {
-    const fullPath = resolve(join('examples/articles', doc._meta.filePath))
+    const fullPath = resolve(join(postsDir, doc._meta.filePath))
     const { metadata, frontmatter, content } =
       await readContentAndFrontmatter(fullPath)
     return {
       ...doc,
       // add metadata
+      collection: 'posts',
       frontmatter,
       content,
       metadata: {
@@ -45,24 +47,26 @@ const posts = defineCollection({
   },
 })
 
-const DIGESTS_DIR = 'blog/snapshots'
-const digests = defineCollection({
-  name: 'snapshots',
-  directory: DIGESTS_DIR, // join(contentDir, 'snapshots'),
+const snippetsDIR = join(contentDir, 'snippets')
+const snippets = defineCollection({
+  name: 'snippets',
+  directory: snippetsDIR, // join(contentDir, 'snapshots'),
   include: '**/*.md',
   //   yaml: true,
   schema: z => ({
     title: z.string(),
     date: z.string(),
     tags: z.array(z.string()),
+    draft: z.boolean().optional(),
   }),
   transform: async (doc, context) => {
-    const fullPath = resolve(join(DIGESTS_DIR, doc._meta.filePath))
+    const fullPath = resolve(join(snippetsDIR, doc._meta.filePath))
     const { metadata, frontmatter, content } =
       await readContentAndFrontmatter(fullPath)
     return {
       ...doc,
       // add metadata
+      collection: 'snippets',
       frontmatter,
       content,
       metadata: {
@@ -74,5 +78,5 @@ const digests = defineCollection({
 })
 
 export default defineConfig({
-  collections: [posts, digests],
+  collections: [posts, snippets],
 })

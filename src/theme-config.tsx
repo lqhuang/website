@@ -18,19 +18,21 @@ export const themeConfig: ThemeConfig = {
   },
   footer: (
     <>
-      <hr className="my-2" />
-      <footer className="self-center">
-        Science {'\u00d7'} Tech {'\u00d7'} Design © Lanqing Huang{' '}
-        {
-          new Date().getFullYear() //, Built with ❤️
-        }
+      <footer className="flex flex-col">
+        <hr className="my-2" />
+        <div className="self-center">
+          Science {'\u00d7'} Tech {'\u00d7'} Design © Lanqing Huang{' '}
+          {
+            new Date().getFullYear() //, Built with ❤️
+          }
+        </div>
       </footer>
     </>
   ),
   navs: [
     { name: 'Home', url: '/' },
-    { name: 'Posts', url: '/posts' },
-    { name: 'Digests', url: '/digests' },
+    { name: 'Blog', url: '/posts' },
+    { name: 'Snippets', url: '/snippets' },
     { name: 'About', url: '/about' },
   ],
   head: ({ title, meta }) => (

@@ -16,14 +16,20 @@ const join2 = (a: ReactNode, b: ReactNode, sep: string = ',') => (
   </>
 )
 
-export const Tags = ({ tags }: { tags: string[] }) => {
+export const Tags = ({
+  tags,
+  className,
+}: {
+  tags: string[]
+  className?: string
+}) => {
   const tagsLink = (
     <>
       {tags
         .sort()
         .map(tag => (
           <Link
-            className="no-underline"
+            className={`no-underline ${className ?? ''}`}
             key={tag}
             href={`/tags/${tag.toLowerCase()}`}
           >

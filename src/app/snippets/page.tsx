@@ -1,5 +1,5 @@
 import { redirect } from 'next/navigation'
 
 export default function Page() {
-  redirect('/digests/1')
+  redirect('/snippets/1')
 }

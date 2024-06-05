@@ -10,7 +10,7 @@ export const Navigation = ({ navs }: { navs: ThemeConfig['navs'] }) => {
       {navs?.map(({ name, url }) => {
         return (
           <Link
-            className="text-gray-500 hover:text-black"
+            className="text-gray-500 no-underline hover:text-black"
             key={name}
             href={url}
           >
@@ -35,18 +35,22 @@ export const Header = ({
   return (
     <>
       <header className="bottom-3">
-        <div className="not-prose my-3">
+        <div className="my-3">
           {logo ? logo : <></>}
-          <Link href="/" aria-label={`${title} - Back to home`}>
-            <span className="font-logo text-5xl">{title}</span>
+          <Link
+            className="no-underline"
+            href="/"
+            aria-label={`${title} - Back to home`}
+          >
+            <span className="font-logo text-5xl text-black">{title}</span>
           </Link>
         </div>
         <div className="flex flex-row items-center justify-between">
           <Navigation navs={navs} />
           <ThemeMode />
         </div>
+        <hr className="my-2" />
       </header>
-      <hr className="my-2" />
     </>
   )
 }

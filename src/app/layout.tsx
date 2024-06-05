@@ -1,7 +1,6 @@
 import type { ReactNode } from 'react'
 import type { Metadata, Viewport } from 'next'
 
-import Head from 'next/head'
 import { Inter } from 'next/font/google'
 import { ThemeProvider } from 'next-themes'
 
@@ -18,16 +17,16 @@ const fontSans = Inter({
   variable: '--font-sans',
 })
 
-export const viewport: Viewport = {
-  themeColor: [
-    { media: '(prefers-color-scheme: light)', color: 'white' },
-    { media: '(prefers-color-scheme: dark)', color: 'black' },
-  ],
-}
+// export const viewport: Viewport = {
+//   themeColor: [
+//     { media: '(prefers-color-scheme: light)', color: 'white' },
+//     { media: '(prefers-color-scheme: dark)', color: 'black' },
+//   ],
+// }
 
-export function generateViewport() {
-  return viewport
-}
+// export function generateViewport() {
+//   return viewport
+// }
 
 export const metadata: Metadata = {
   title: {
@@ -63,12 +62,6 @@ export default function RootLayout({ children }: { children: ReactNode }) {
 
   return (
     <html lang="en" suppressHydrationWarning>
-      {/*
-      <head />
-      <Head>
-        <link rel="icon" href="/favicon.svg" />
-      </Head>
-      */}
       <body className={fontSans.className}>
         <ThemeProvider>
           <div className="dark:prose-dark prose mx-auto flex flex-col">

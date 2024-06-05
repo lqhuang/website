@@ -17,7 +17,8 @@ export interface Metadata {
   date: Date | null
 }
 
-export interface Source extends Metadata {
+export interface Source {
+  metadata: Metadata
   frontmatter: Record<string, string>
   content: string
 }
@@ -51,7 +52,7 @@ export const buildLocalSource = async (
   for (const fullPath of files) {
     const metadata = genMetadata(fullPath)
     if (process.env.NODE_ENV === 'development' || !db.has(metadata.slug)) {
-      const source = await readContentAndFrontmatter(metadata)
+      const source = await readContentAndFrontmatter(fullPath, metadata)
       db.set(metadata.slug, source)
     }
   }
@@ -62,7 +63,7 @@ export const buildLocalSource = async (
   return db
 }
 
-const genMetadata = (fullPath: string): Metadata => {
+export const genMetadata = (fullPath: string): Metadata => {
   const fname = path.basename(fullPath, path.extname(fullPath))
 
   let slug = ''
@@ -100,9 +101,11 @@ const genMetadata = (fullPath: string): Metadata => {
 }
 
 export const readContentAndFrontmatter = async (
-  metadata: Metadata,
+  fullPath: string,
+  metadata: Metadata | undefined = undefined,
 ): Promise<Source> => {
-  const raw = await fs.readFile(metadata.fullPath)
+  const _metadata = metadata || genMetadata(fullPath)
+  const raw = await fs.readFile(fullPath)
   const { data: frontmatter, content } = matter(raw, {
     engines: {
       // Provide custom YAML engine to avoid parsing of date values https://github.com/jonschlinkert/gray-matter/issues/62)
@@ -111,7 +114,7 @@ export const readContentAndFrontmatter = async (
   })
 
   return {
-    ...metadata,
+    metadata: _metadata,
     frontmatter,
     content,
   }

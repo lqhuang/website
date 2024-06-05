@@ -16,6 +16,7 @@ MDX is great, but I just want to use markdown files for now.
   - [datopian/markdowndb](https://github.com/datopian/markdowndb): JS library to turn markdown files into structured, queryable data. Build markdown-powered docs, blogs, sites and more quickly and reliably. <https://markdowndb.com>
   - [zce/velite](https://github.com/zce/velite): Turns Markdown / MDX, YAML, JSON, or others into app's data layer with Zod schema. <http://velite.js.org>
   - [souporserious/mdxts](https://github.com/souporserious/mdxts): The Content and Documentation SDK for React <https://mdxts.dev>
+    - [mdxts/loader](https://www.mdxts.dev/packages/loader)
   - [sdorra/content-collections](https://github.com/sdorra/content-collections): Transform your content into type-safe data collections <https://content-collections.dev>
   - [hashicorp/next-mdx-remote](https://github.com/hashicorp/next-mdx-remote): Load MDX content from anywhere
 
@@ -24,11 +25,15 @@ MDX is great, but I just want to use markdown files for now.
 - [cloudflare/next-on-pages](https://github.com/cloudflare/next-on-pages): CLI to build and develop Next.js apps for Cloudflare Pages <https://www.npmjs.com/package/@cloudflare/next-on-pages>
   - [Next-on-pages Next-Dev](https://github.com/cloudflare/next-on-pages/tree/main/internal-packages/next-dev)
 
+## Other solutions
+
+- [11ty/eleventy](https://github.com/11ty/eleventy): A simpler site generator. Transforms a directory of templates (of varying types) into HTML. <https://www.11ty.dev/>
+- [Astro Docs: Content Collections](https://docs.astro.build/en/guides/content-collections/)
+  - https://github.com/withastro/astro/tree/main/packages/astro/src/content
+
 ## Inspirations
 
 - [shuding/nextra](https://github.com/shuding/nextra): Simple, powerful and flexible site generation framework with everything you love from Next.js. <https://nextra.site>
 - [Note: A nice way to render Markdown in React apps](https://jordaneldredge.com/notes/208ba2e8-436d-438e-a3c9-1380e7d7df75/)
   - https://github.com/captbaritone/jordaneldredge.com/blob/master/lib/components/Markdown.js
 - [franky47/francoisbest.com](https://github.com/franky47/francoisbest.com): Homepage & blog <https://francoisbest.com>
-- [Astro Docs: Content Collections](https://docs.astro.build/en/guides/content-collections/)
-  - https://github.com/withastro/astro/tree/main/packages/astro/src/content

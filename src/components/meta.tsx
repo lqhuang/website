@@ -1,3 +1,4 @@
+import type { ReactNode } from 'react'
 import Link from 'next/link'
 
 interface MetaProps {
@@ -7,30 +8,33 @@ interface MetaProps {
   tags?: string[]
 }
 
-const Tags = ({ tags }: { tags?: string[] }) => {
+const join2 = (a: ReactNode, b: ReactNode, sep: string = ',') => (
+  <>
+    {a}
+    {`${sep} `}
+    {b}
+  </>
+)
+
+export const Tags = ({ tags }: { tags: string[] }) => {
   const tagsLink = (
     <>
       {tags
-        ?.sort()
+        .sort()
         .map(tag => (
-          <Link key={tag} href={`/tags/${tag}`}>
+          <Link
+            className="no-underline"
+            key={tag}
+            href={`/tags/${tag.toLowerCase()}`}
+          >
             {tag}
           </Link>
         ))
-        .reduce((prev, curr) => [prev, <>{', '}</>, curr])}
+        .reduce((prev, curr) => join2(prev, curr))}
     </>
   )
 
-  return (
-    <span
-      style={{
-        fontStyle: 'normal',
-        textAlign: 'left',
-      }}
-    >
-      Tags: {tagsLink}
-    </span>
-  )
+  return <span>tags: {tagsLink}</span>
 }
 
 export const Meta = ({ date, created, updated, tags }: MetaProps) => {

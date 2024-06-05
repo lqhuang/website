@@ -1,4 +1,5 @@
 // @ts-check
+import { createContentCollectionPlugin } from '@content-collections/next'
 
 /**
  * @type {import('next').NextConfig}
@@ -15,4 +16,8 @@ const nextConfig = {
   },
 }
 
-export default nextConfig
+const withContentCollections = createContentCollectionPlugin({
+  configPath: './content-collections.ts',
+})
+
+export default withContentCollections(nextConfig)

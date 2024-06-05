@@ -15,12 +15,7 @@ export default function AritcleLayout({
   const { slug } = params
   return (
     <>
-      <article
-        className="dark:prose-dark container prose-sm md:prose"
-        dir="ltr"
-      >
-        {children}
-      </article>
+      <article>{children}</article>
       <PrevNextNav />
       {themeConfig.postFooter}
       {themeConfig.comments}

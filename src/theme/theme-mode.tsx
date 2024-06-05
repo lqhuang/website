@@ -1,29 +1,25 @@
 'use client'
 
 import { useTheme } from 'next-themes'
-import { useMounted } from 'nextra/hooks'
+import { useMounted } from 'src/hooks/use-mounted'
 import { MoonIcon, SunIcon } from 'nextra/icons'
 
 export const ThemeMode = () => {
-  const { setTheme, resolvedTheme } = useTheme()
   const mounted = useMounted()
+  const { setTheme, resolvedTheme } = useTheme()
   const isDark = resolvedTheme === 'dark'
 
-  const toggleTheme = () => {
-    setTheme(isDark ? 'light' : 'dark')
+  if (!mounted) {
+    return null
   }
 
   return (
-    <span
-      role="button"
+    <button
+      className="h-full cursor-pointer"
       aria-label="Toggle Dark Mode"
-      className="cursor-pointer p-2 text-current"
-      onClick={toggleTheme}
-      onKeyDown={e => {
-        if (e.key === 'Enter') toggleTheme()
-      }}
+      onClick={() => setTheme(isDark ? 'light' : 'dark')}
     >
-      {mounted && isDark ? <MoonIcon /> : <SunIcon />}
-    </span>
+      {isDark ? <MoonIcon /> : <SunIcon />}
+    </button>
   )
 }

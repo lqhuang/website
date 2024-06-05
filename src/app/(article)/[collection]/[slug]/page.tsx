@@ -53,7 +53,7 @@ export default async function Page({
   const updated = isSnippet(doc) ? undefined : doc.updated
   return (
     <>
-      <h1> {title} </h1>
+      <h1 className="mt-3">{title}</h1>
       <Meta date={date} created={created} updated={updated} tags={tags} />
       <Markdown content={doc.content} />
     </>

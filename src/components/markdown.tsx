@@ -53,24 +53,24 @@ const A = ({ children, ...props }: ComponentProps<'a'>) => {
 
 const useComponents = (): Components => {
   return {
-    h1: props => <HeadingLink tag="h1" {...props} />,
-    h2: props => <HeadingLink tag="h2" {...props} />,
-    h3: props => <HeadingLink tag="h3" {...props} />,
-    h4: props => <HeadingLink tag="h4" {...props} />,
-    h5: props => <HeadingLink tag="h5" {...props} />,
-    h6: props => <HeadingLink tag="h6" {...props} />,
-    a: A,
-    pre: ({ children, ...props }) => (
-      <div className="not-prose">
-        <Pre {...props}>{children}</Pre>
-      </div>
-    ),
-    tr: Tr,
-    th: Th,
-    td: Td,
-    table: props => <Table className="not-prose" {...props} />,
-    code: Code,
-    button: Button,
+    // h1: props => <HeadingLink tag="h1" {...props} />,
+    // h2: props => <HeadingLink tag="h2" {...props} />,
+    // h3: props => <HeadingLink tag="h3" {...props} />,
+    // h4: props => <HeadingLink tag="h4" {...props} />,
+    // h5: props => <HeadingLink tag="h5" {...props} />,
+    // h6: props => <HeadingLink tag="h6" {...props} />,
+    // a: A,
+    // pre: ({ children, ...props }) => (
+    //   <div className="not-prose">
+    //     <Pre {...props}>{children}</Pre>
+    //   </div>
+    // ),
+    // tr: Tr,
+    // th: Th,
+    // td: Td,
+    // table: props => <Table className="not-prose" {...props} />,
+    // code: Code,
+    // button: Button,
   }
 }
 

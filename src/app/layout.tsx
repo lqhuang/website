@@ -12,9 +12,9 @@ import { themeConfig } from 'src/theme-config'
 import 'src/styles/normalize.css'
 import 'src/styles/globals.css'
 
-const fontSans = Inter({
+const fontInter = Inter({
   subsets: ['latin'],
-  variable: '--font-sans',
+  variable: '--font-inter',
 })
 
 // export const viewport: Viewport = {
@@ -24,9 +24,12 @@ const fontSans = Inter({
 //   ],
 // }
 
-// export function generateViewport() {
-//   return viewport
-// }
+export const generateViewport = (): Viewport => {
+  return {
+    width: 'device-width',
+    initialScale: 1.0,
+  }
+}
 
 export const metadata: Metadata = {
   title: {
@@ -62,11 +65,17 @@ export default function RootLayout({ children }: { children: ReactNode }) {
 
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={fontSans.className}>
-        <ThemeProvider>
-          <div className="dark:prose-dark prose mx-auto flex flex-col">
+      <body>
+        <ThemeProvider attribute="class">
+          {/*
+           ** `65ch` comes from tailwindcss-typography
+           ** ref: https://github.com/tailwindlabs/tailwindcss-typography/blob/master/src/styles.js
+           */}
+          <div className="container mx-auto flex max-w-[65ch] flex-col">
             <Header logo={logo} navs={navs} site={site} />
-            {children}
+            <main className="prose prose-neutral dark:prose-invert">
+              {children}
+            </main>
             {footer}
           </div>
         </ThemeProvider>

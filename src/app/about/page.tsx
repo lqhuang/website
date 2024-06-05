@@ -8,7 +8,7 @@ export default function AboutMe() {
   const { author, nickname, email, social } = site
 
   return (
-    <>
+    <article>
       <p className="my-1">
         Who am I: {author} {nickname && <code>(@{nickname})</code>}, a simple
         and naïve guy, graduated from Physics.
@@ -25,6 +25,6 @@ export default function AboutMe() {
         </p>
       )}
       {/* <p>Say hi to me@lqhuang.io </p> */}
-    </>
+    </article>
   )
 }

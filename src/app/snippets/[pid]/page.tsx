@@ -25,12 +25,12 @@ export default async function Page({ params }: { params: { pid: number } }) {
     <>
       {currPages.map(post => {
         return (
-          <article key={post.metadata.slug}>
+          <div key={post.metadata.slug}>
             <Link
               className="no-underline hover:underline"
-              href={`${post.metadata.slug}`}
+              href={`/snippet/${post.metadata.slug}`}
             >
-              <h3 className="my-1">{post.title}</h3>
+              <h3 className="my-1 pt-5">{post.title}</h3>
             </Link>
             <span>
               <span>date: {post.date}</span>
@@ -41,7 +41,7 @@ export default async function Page({ params }: { params: { pid: number } }) {
               )}
             </span>
             <Markdown content={post.content} />
-          </article>
+          </div>
         )
       })}
     </>

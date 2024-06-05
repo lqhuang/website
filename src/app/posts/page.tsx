@@ -7,7 +7,7 @@ import { allPosts } from 'content-collections'
 
 export default async function Page() {
   return (
-    <article className="prose">
+    <article>
       <h2 className="my-4">Posts</h2>
       {allPosts
         .filter(p => p.draft === undefined || !p.draft)

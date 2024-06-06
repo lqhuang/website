@@ -1,3 +1,6 @@
+// Only for fix typing check issue with `zod` and `content-collections`
+import type { ZodString } from 'zod' // eslint-disable-line no-unused-vars
+
 import { join, resolve } from 'node:path'
 
 import { defineCollection, defineConfig } from '@content-collections/core'

@@ -38,11 +38,15 @@
   "exclude": ["node_modules"],
   "include": [
     "next-env.d.ts",
-    "**/*.ts",
-    "**/*.tsx",
-    "**/*.js",
-    "**/*.mjs",
-    "**/*.cjs",
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    "src/**/*.js",
+    "src/**/*.mjs",
+    "src/**/*.cjs",
+    "./*.ts",
+    "./*.js",
+    "./*.mjs",
+    "./*.cjs",
     ".next/types/**/*.ts"
   ]
 }

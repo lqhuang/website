@@ -1,4 +1,4 @@
-export { product } from './itertools'
+// export { product } from './itertools'
 
 export const sortDateAsc = (a: string | Date, b: string | Date) => {
   return new Date(a).getTime() - new Date(b).getTime()

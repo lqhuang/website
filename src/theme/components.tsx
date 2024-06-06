@@ -50,16 +50,5 @@ const useComponents: UseMdxComponents = () => {
     h5: props => <HeadingLink tag="h5" {...props} />,
     h6: props => <HeadingLink tag="h6" {...props} />,
     a: A,
-    pre: ({ children, ...props }) => (
-      <div className="not-prose">
-        <Pre {...props}>{children}</Pre>
-      </div>
-    ),
-    tr: Tr,
-    th: Th,
-    td: Td,
-    table: props => <Table className="not-prose" {...props} />,
-    code: Code,
-    button: Button,
   }
 }

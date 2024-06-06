@@ -57,6 +57,7 @@ MDX is great, but I just want to use markdown files for now.
 - [Note: A nice way to render Markdown in React apps](https://jordaneldredge.com/notes/208ba2e8-436d-438e-a3c9-1380e7d7df75/)
   - https://github.com/captbaritone/jordaneldredge.com/blob/master/lib/components/Markdown.js
 - [franky47/francoisbest.com](https://github.com/franky47/francoisbest.com): Homepage & blog <https://francoisbest.com>
+- [Innei/Shiro](https://github.com/Innei/Shiro): 📜 A minimalist personal website embodying the purity of paper and freshness of snow. <https://innei.in>
 - rsc
   - [Syntax Highlighting with Shiki, React Server Components, and Next.js](https://www.luckymedia.dev/blog/syntax-highlighting-with-shiki-react-server-components-and-next-js)
   - [为什么是 RSC (一）](https://innei.in/posts/tech/why-react-server-component-1)

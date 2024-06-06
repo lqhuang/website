@@ -1,15 +1,15 @@
 import Link from 'next/link'
 
-const Pagination = ({ page, totalPages, navigate }) => {
-  return (
-    <div className="btn btn-group">
-      <button className="btn">1</button>
-      <button className="btn btn-active">2</button>
-      <button className="btn">3</button>
-      <button className="btn">4</button>
-    </div>
-  )
-}
+// const Pagination = ({ page, totalPages, navigate }) => {
+//   return (
+//     <div className="btn btn-group">
+//       <button className="btn">1</button>
+//       <button className="btn btn-active">2</button>
+//       <button className="btn">3</button>
+//       <button className="btn">4</button>
+//     </div>
+//   )
+// }
 
 interface PostLinkProps {
   title: string
@@ -21,7 +21,7 @@ interface PrevNext {
   next?: PostLinkProps
 }
 
-const PrevNextNav = ({ prev, next }: PrevNext) => {
+export const PrevNextNav = ({ prev, next }: PrevNext) => {
   const placeholder = 'Some articles'
   return (
     <div className="btn-group flex flex-col">
@@ -46,5 +46,3 @@ const PrevNextNav = ({ prev, next }: PrevNext) => {
     </div>
   )
 }
-
-export { Pagination, PrevNextNav }

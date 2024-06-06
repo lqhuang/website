@@ -3,7 +3,7 @@ import type { BlogPageOpts } from 'src/theme/types'
 
 import { themeConfig } from 'src/theme-config'
 
-import { PrevNextNav } from 'src/theme/components/pagination'
+import { PrevNextNav } from 'src/components/pagination'
 
 export default function AritcleLayout({
   children,

@@ -18,6 +18,11 @@ MDX is great, but I just want to use markdown files for now.
   - [sdorra/content-collections](https://github.com/sdorra/content-collections): Transform your content into type-safe data collections <https://content-collections.dev>
   - [hashicorp/next-mdx-remote](https://github.com/hashicorp/next-mdx-remote): Load MDX content from anywhere
 
+## Frontmatter
+
+- gray-matter
+- [vfile/vfile-matter](https://github.com/vfile/vfile-matter): utility to parse the YAML front matter in a vfile <https://unifiedjs.com>
+
 ## Plugins
 
 - [remcohaszing/remark-mermaidjs](https://github.com/remcohaszing/remark-mermaidjs): A remark plugin to render mermaid diagrams using playwright
@@ -36,6 +41,9 @@ MDX is great, but I just want to use markdown files for now.
 - [code-hike/bright](https://github.com/code-hike/bright): React Server Component for syntax highlighting <https://bright.codehike.org>
 - [facebook/docusaurus - Support React Server Components #9089](https://github.com/facebook/docusaurus/issues/9089)
 - looks like only MDX has support for RSC for now (2024-06-06 😭)
+  - [hashicorp/next-mdx-remote](https://github.com/hashicorp/next-mdx-remote): Load MDX content from anywhere
+  - [ipikuka/next-mdx-remote-client](https://github.com/ipikuka/next-mdx-remote-client): A wrapper of the `@mdx-js/mdx` for the `nextjs` applications in order to load MDX content. It is a fork of `next-mdx-remote`. <https://demo-next-mdx-remote-client.vercel.app/>
+  - [MDX - Components](https://mdxjs.com/table-of-components/)
 
 ## Other solutions
 

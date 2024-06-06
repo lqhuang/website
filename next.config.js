@@ -14,6 +14,7 @@ const nextConfig = {
   experimental: {
     // browsersListForSwc: true,
   },
+  transpilePackages: ['next-mdx-remote'],
 }
 
 const withContentCollections = createContentCollectionPlugin({

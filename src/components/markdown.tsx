@@ -1,102 +1,38 @@
-'use client'
+'use server'
 
-import type { Components } from 'react-markdown'
-import type { ComponentProps, ReactElement } from 'react'
-
-import Link from 'next/link'
-
-import ReactMarkdown from 'react-markdown'
+import type { MDXRemoteProps } from 'next-mdx-remote/rsc'
+import { MDXRemote } from 'next-mdx-remote/rsc'
 
 import remarkGfm from 'remark-gfm'
-import remarkMath from 'remark-math'
-
 import rehypeSlug from 'rehype-slug'
+
+import remarkMath from 'remark-math'
 import rehypeKatex from 'rehype-katex'
-// import rehypeShiki from '@shikijs/rehype'
 
-function HeadingLink({
-  tag: Tag,
-  children,
-  id,
-  ...props
-}: ComponentProps<'h2'> & { tag: `h${1 | 2 | 3 | 4 | 5 | 6}` }): ReactElement {
-  return (
-    <Tag className={`subheading-${Tag}`} {...props}>
-      {children}
-      <span className="absolute -mt-7" id={id} />
-      <a
-        href={id && `#${id}`}
-        className="subheading-anchor"
-        aria-label="Permalink for this section"
-      />
-    </Tag>
-  )
-}
+import rehypeShiki from '@shikijs/rehype'
+import { shikiDarkTheme, shikiLightTheme } from 'src/lib/shiki'
 
-const A = ({ children, ...props }: ComponentProps<'a'>) => {
-  const isExternal =
-    props.href?.startsWith('https://') || props.href?.startsWith('http://')
-  if (isExternal) {
-    return (
-      <a target="_blank" rel="noreferrer" {...props}>
-        {children}
-        <span className="sr-only"> (opens in a new tab)</span>
-        {/* nx-sr-only */}
-      </a>
-    )
-  }
-  return props.href ? (
-    <Link href={props.href} passHref legacyBehavior>
-      <a {...props}>{children}</a>
-    </Link>
-  ) : null
-}
-
-const useComponents = (): Components => {
-  return {
-    // h1: props => <HeadingLink tag="h1" {...props} />,
-    // h2: props => <HeadingLink tag="h2" {...props} />,
-    // h3: props => <HeadingLink tag="h3" {...props} />,
-    // h4: props => <HeadingLink tag="h4" {...props} />,
-    // h5: props => <HeadingLink tag="h5" {...props} />,
-    // h6: props => <HeadingLink tag="h6" {...props} />,
-    // a: A,
-    // pre: ({ children, ...props }) => (
-    //   <div className="not-prose">
-    //     <Pre {...props}>{children}</Pre>
-    //   </div>
-    // ),
-    // tr: Tr,
-    // th: Th,
-    // td: Td,
-    // table: props => <Table className="not-prose" {...props} />,
-    // code: Code,
-    // button: Button,
-  }
+const serializeOptions: MDXRemoteProps['options'] = {
+  mdxOptions: {
+    remarkPlugins: [remarkGfm, remarkMath],
+    rehypePlugins: [
+      rehypeSlug,
+      rehypeKatex,
+      [
+        rehypeShiki,
+        {
+          themes: {
+            light: shikiLightTheme,
+            dark: shikiDarkTheme,
+          },
+        },
+      ],
+    ],
+    format: 'md',
+  },
+  parseFrontmatter: false,
 }
 
 export const Markdown = ({ content }: { content: string }) => {
-  return (
-    <ReactMarkdown
-      remarkPlugins={[remarkGfm, remarkMath]}
-      rehypePlugins={[
-        rehypeSlug,
-        rehypeKatex,
-        // rehypeShiki,
-        // [
-        //   rehypeShikiFromHighlighter,
-        //   highlighter,
-        //   {
-        //     themes: {
-        //       light: shikiLightTheme,
-        //       dark: shikiDarkTheme,
-        //     },
-        //   },
-        // ],
-      ]}
-      components={useComponents()}
-    >
-      {content}
-    </ReactMarkdown>
-  )
+  return <MDXRemote options={serializeOptions} source={content} />
 }

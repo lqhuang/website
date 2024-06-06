@@ -24,6 +24,7 @@
     "@fontsource/noto-sans-sc": "^5.0.19",
     "@fontsource/noto-serif-sc": "^5.0.13",
     "@fontsource/zilla-slab": "^5.0.13",
+    "@mdx-js/mdx": "^3.0.1",
     "@shikijs/rehype": "^1.6.2",
     "gray-matter": "^4.0.3",
     "lodash": "^4.17.21",

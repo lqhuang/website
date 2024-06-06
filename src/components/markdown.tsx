@@ -1,17 +1,18 @@
 'use client'
 
 import type { Components } from 'react-markdown'
-import type { ComponentProps, ReactElement, ReactNode } from 'react'
+import type { ComponentProps, ReactElement } from 'react'
 
 import Link from 'next/link'
-import { Code, Pre, Table, Td, Th, Tr, Button } from 'nextra/components'
 
 import ReactMarkdown from 'react-markdown'
 
 import remarkGfm from 'remark-gfm'
-import remarkFrontmatter from 'remark-frontmatter'
+import remarkMath from 'remark-math'
 
 import rehypeSlug from 'rehype-slug'
+import rehypeKatex from 'rehype-katex'
+// import rehypeShiki from '@shikijs/rehype'
 
 function HeadingLink({
   tag: Tag,
@@ -77,8 +78,22 @@ const useComponents = (): Components => {
 export const Markdown = ({ content }: { content: string }) => {
   return (
     <ReactMarkdown
-      remarkPlugins={[remarkFrontmatter, remarkGfm]}
-      rehypePlugins={[rehypeSlug]}
+      remarkPlugins={[remarkGfm, remarkMath]}
+      rehypePlugins={[
+        rehypeSlug,
+        rehypeKatex,
+        // rehypeShiki,
+        // [
+        //   rehypeShikiFromHighlighter,
+        //   highlighter,
+        //   {
+        //     themes: {
+        //       light: shikiLightTheme,
+        //       dark: shikiDarkTheme,
+        //     },
+        //   },
+        // ],
+      ]}
       components={useComponents()}
     >
       {content}

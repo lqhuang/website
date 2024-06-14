@@ -31,10 +31,16 @@ MDX is great, but I just want to use markdown files for now.
 - [rehypejs/rehype-slug](https://github.com/rehypejs/rehype-slug): plugin to add `id` attributes to headings <https://unifiedjs.com>
 - [rehypejs/rehype-autolink-headings](https://github.com/rehypejs/rehype-autolink-headings): plugin to add links to headings in HTML <https://unifiedjs.com>
 
+- [goblindegook/littlefoot](https://github.com/goblindegook/littlefoot): Footnotes without the footprint. <https://littlefoot.js.org>
+
 ## NextJS for Cloudflare pages
 
 - [cloudflare/next-on-pages](https://github.com/cloudflare/next-on-pages): CLI to build and develop Next.js apps for Cloudflare Pages <https://www.npmjs.com/package/@cloudflare/next-on-pages>
   - [Next-on-pages Next-Dev](https://github.com/cloudflare/next-on-pages/tree/main/internal-packages/next-dev)
+
+## Image serving
+
+- [The modern way of serving images](https://kurtextrem.de/posts/modern-way-of-img)
 
 ## RSC markdown
 
@@ -44,6 +50,7 @@ MDX is great, but I just want to use markdown files for now.
   - [hashicorp/next-mdx-remote](https://github.com/hashicorp/next-mdx-remote): Load MDX content from anywhere
   - [ipikuka/next-mdx-remote-client](https://github.com/ipikuka/next-mdx-remote-client): A wrapper of the `@mdx-js/mdx` for the `nextjs` applications in order to load MDX content. It is a fork of `next-mdx-remote`. <https://demo-next-mdx-remote-client.vercel.app/>
   - [MDX - Components](https://mdxjs.com/table-of-components/)
+- [Portfolio Blog Starter](https://github.com/vercel/examples/tree/main/solutions/blog)
 
 ## Other solutions
 
@@ -64,3 +71,4 @@ MDX is great, but I just want to use markdown files for now.
   - [Building a blog with Next.js 14 and React Server Components](https://maxleiter.com/blog/build-a-blog-with-nextjs-13)
     - [MaxLeiter/maxleiter.com](https://github.com/MaxLeiter/maxleiter.com): My personal site and playground, built with next.js <https://maxleiter.com>
     - Generating an RSS Feed
+- [ChangoMan/nextjs-mdx-blog](https://github.com/ChangoMan/nextjs-mdx-blog): UPDATED to Next.js App Router! Starter template built with Contentlayer, MDX, shadcn-ui, and Tailwind CSS. <https://nextjs-typescript-mdx-blog.vercel.app>

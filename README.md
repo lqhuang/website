@@ -1,8 +1,8 @@
 # lqhuang blog
 
-* "What are you doing?"
-* "Nothing."
-* "Nothing is good."
+- "What are you doing?"
+- "Nothing."
+- "Nothing is good."
 
 ## TBD
 

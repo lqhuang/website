@@ -3,13 +3,13 @@ import { notFound } from 'next/navigation'
 import { Meta } from 'src/components/meta'
 import { Markdown } from 'src/components/markdown'
 
-import type { Post, Snippet } from 'content-collections'
-import { allPosts, allSnippets } from 'content-collections'
+import type { Post, Note } from 'content-collections'
+import { allPosts, allNotes } from 'content-collections'
 
 // Let dynamic segments not included in `generateStaticParams` will return a 404.
 export const dynamicParams = false
 
-const allContents = [...allPosts, ...allSnippets].filter(doc =>
+const allContents = [...allPosts, ...allNotes].filter(doc =>
   doc.draft === undefined ? true : !doc.draft,
 )
 
@@ -26,7 +26,7 @@ export async function generateStaticParams() {
 }
 
 const isPost = (doc: any): doc is Post => doc.collection === 'posts'
-const isSnippet = (doc: any): doc is Snippet => doc.collection === 'snippets'
+const isNote = (doc: any): doc is Note => doc.collection === 'notes'
 
 export default async function Page({
   params,
@@ -44,13 +44,13 @@ export default async function Page({
     return notFound()
   }
 
-  if (!(isPost(doc) || isSnippet(doc)))
-    throw new Error('doc is not a post or a snippet')
+  if (!(isPost(doc) || isNote(doc)))
+    throw new Error('doc is not a post or a note')
 
   const { title, tags } = doc
   const date = isPost(doc) ? undefined : doc.date
-  const created = isSnippet(doc) ? undefined : doc.created
-  const updated = isSnippet(doc) ? undefined : doc.updated
+  const created = isNote(doc) ? undefined : doc.created
+  const updated = isNote(doc) ? undefined : doc.updated
   return (
     <>
       <h1 className="mt-3">{title}</h1>

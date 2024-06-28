@@ -32,7 +32,7 @@ export const themeConfig: ThemeConfig = {
   navs: [
     { name: 'Home', url: '/' },
     { name: 'Blog', url: '/posts' },
-    { name: 'Snippets', url: '/snippets' },
+    { name: 'Notes', url: '/notes' },
     { name: 'About', url: '/about' },
   ],
   head: ({ title, meta }) => (

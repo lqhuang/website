@@ -5,7 +5,7 @@ export const dynamicParams = false
 export const generateStaticParams = async () => {
   return [
     { params: { collection: 'post' } },
-    { params: { collection: 'snippet' } },
+    { params: { collection: 'note' } },
   ]
 }
 

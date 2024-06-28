@@ -22,6 +22,7 @@
     "clean": "rm -rf .next"
   },
   "dependencies": {
+    "@fontsource/ia-writer-mono": "^5.0.11",
     "@fontsource/zilla-slab": "^5.0.13",
     "@mdx-js/mdx": "^3.0.1",
     "@shikijs/rehype": "^1.6.2",

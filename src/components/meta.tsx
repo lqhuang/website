@@ -24,12 +24,11 @@ export const Tags = ({
   className?: string
 }) => {
   const tagsLink = (
-    <>
+    <span className="ml-1">
       {tags
-        .sort()
         .map(tag => (
           <Link
-            className={`no-underline ${className ?? ''}`}
+            className={`no-underline hover:underline hover:decoration-current ${className ?? ''}`}
             key={tag}
             href={`/tags/${tag.toLowerCase()}`}
           >
@@ -37,10 +36,9 @@ export const Tags = ({
           </Link>
         ))
         .reduce((prev, curr) => join2(prev, curr))}
-    </>
+    </span>
   )
-
-  return <span>tags: {tagsLink}</span>
+  return <> · Tags: {tagsLink}</>
 }
 
 export const Meta = ({ date, created, updated, tags }: MetaProps) => {
@@ -54,16 +52,11 @@ export const Meta = ({ date, created, updated, tags }: MetaProps) => {
     (typeof updated === 'string' ? updated : updated.toLocaleDateString())
 
   return (
-    <div className="flex flex-row">
+    <span className="flex flex-row">
       {dateString && `Date: ${dateString}`}
       {createdString && `Created: ${createdString}`}
       {updatedString && updated !== created && ` · Updated: ${updatedString}`}
-      {tags && tags.length > 0 && (
-        <>
-          {' · '}
-          <Tags tags={tags} />
-        </>
-      )}
-    </div>
+      {tags && tags.length > 0 && <Tags tags={tags} />}
+    </span>
   )
 }

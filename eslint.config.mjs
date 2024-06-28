@@ -9,7 +9,7 @@ export default [
   react.configs.recommended,
   ...tseslint.configs.recommendedTypeChecked,
   ...tseslint.configs.stylisticTypeChecked,
-  //   nextLint.configs.recommended,
+  nextLint.configs['recommended'],
   eslintPluginPrettierRecommended,
   {
     languageOptions: {

@@ -1,7 +1,8 @@
 import type { ReactNode } from 'react'
 import type { Metadata, Viewport } from 'next'
 
-import { Inter } from 'next/font/google'
+import { Inter, Fira_Code } from 'next/font/google'
+
 import { ThemeProvider } from 'next-themes'
 
 import { Header } from 'src/theme/header'
@@ -12,10 +13,10 @@ import { themeConfig } from 'src/theme-config'
 import 'src/styles/normalize.css'
 import 'src/styles/globals.css'
 
-const fontInter = Inter({
-  subsets: ['latin'],
-  variable: '--font-inter',
-})
+// const fontInter = Inter({
+//   subsets: ['latin'],
+//   variable: '--font-inter',
+// })
 
 // export const viewport: Viewport = {
 //   themeColor: [

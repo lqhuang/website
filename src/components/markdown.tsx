@@ -3,6 +3,8 @@
 import type { MDXRemoteProps } from 'next-mdx-remote/rsc'
 import { MDXRemote } from 'next-mdx-remote/rsc'
 
+import { useComponents } from 'src/theme/components'
+
 import remarkGfm from 'remark-gfm'
 import rehypeSlug from 'rehype-slug'
 
@@ -34,5 +36,11 @@ const serializeOptions: MDXRemoteProps['options'] = {
 }
 
 export const Markdown = ({ content }: { content: string }) => {
-  return <MDXRemote options={serializeOptions} source={content} />
+  return (
+    <MDXRemote
+      options={serializeOptions}
+      components={useComponents()}
+      source={content}
+    />
+  )
 }

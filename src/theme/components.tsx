@@ -8,40 +8,44 @@ function HeadingLink({
   children,
   id,
   ...props
-}: ComponentProps<'h2'> & { tag: `h${1 | 2 | 3 | 4 | 5 | 6}` }): ReactElement {
+}: ComponentProps<'h3'> & { tag: `h${1 | 2 | 3 | 4 | 5 | 6}` }): ReactElement {
   return (
-    <Tag className={`subheading-${Tag}`} {...props}>
-      {children}
-      <span className="absolute -mt-7" id={id} />
-      <a
-        href={id && `#${id}`}
-        className="subheading-anchor"
-        aria-label="Permalink for this section"
-      />
-    </Tag>
+    <Link
+      className="no-underline hover:underline"
+      href={id ? `#${id}` : '#'}
+      aria-label={id}
+    >
+      <span className="absolute -mt-3" id={id} />
+      <Tag {...props}>{children}</Tag>
+    </Link>
   )
 }
 
 const A = ({ children, ...props }: ComponentProps<'a'>) => {
-  const isExternal =
-    props.href?.startsWith('https://') || props.href?.startsWith('http://')
-  if (isExternal) {
-    return (
-      <a target="_blank" rel="noreferrer" {...props}>
-        {children}
-        <span className="sr-only"> (opens in a new tab)</span>
-        {/* nx-sr-only */}
-      </a>
-    )
+  const { href, target, rel } = props
+  if (href === undefined || typeof children !== 'string') {
+    return null
   }
-  return props.href ? (
-    <Link href={props.href} passHref legacyBehavior>
-      <a {...props}>{children}</a>
+  const isExternal = href?.startsWith('https://') || href?.startsWith('http://')
+
+  const targetFallback = isExternal ? '_blank' : target
+  const relFallback = isExternal ? 'noreferrer' : rel
+
+  return (
+    <Link
+      href={href}
+      className="no-underline hover:underline"
+      passHref
+      target={targetFallback}
+      rel={relFallback}
+      {...props}
+    >
+      {children}
     </Link>
-  ) : null
+  )
 }
 
-const useComponents: UseMdxComponents = () => {
+export const useComponents: UseMdxComponents = () => {
   return {
     h1: props => <HeadingLink tag="h1" {...props} />,
     h2: props => <HeadingLink tag="h2" {...props} />,

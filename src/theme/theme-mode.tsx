@@ -2,7 +2,8 @@
 
 import { useTheme } from 'next-themes'
 import { useMounted } from 'src/hooks/use-mounted'
-import { MoonIcon, SunIcon } from 'nextra/icons'
+// import { MoonIcon, SunIcon } from 'nextra/icons'
+import { MoonIcon, SunIcon } from './icons'
 
 export const ThemeMode = () => {
   const mounted = useMounted()

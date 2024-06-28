@@ -50,10 +50,10 @@ const posts = defineCollection({
   },
 })
 
-const snippetsDIR = join(contentDir, 'snippets')
-const snippets = defineCollection({
-  name: 'snippets',
-  directory: snippetsDIR, // join(contentDir, 'snapshots'),
+const notesDIR = join(contentDir, 'notes')
+const notes = defineCollection({
+  name: 'notes',
+  directory: notesDIR, // join(contentDir, 'snapshots'),
   include: '**/*.md',
   //   yaml: true,
   schema: z => ({
@@ -63,13 +63,13 @@ const snippets = defineCollection({
     draft: z.boolean().optional(),
   }),
   transform: async (doc, context) => {
-    const fullPath = resolve(join(snippetsDIR, doc._meta.filePath))
+    const fullPath = resolve(join(notesDIR, doc._meta.filePath))
     const { metadata, frontmatter, content } =
       await readContentAndFrontmatter(fullPath)
     return {
       ...doc,
       // add metadata
-      collection: 'snippets',
+      collection: 'notes',
       frontmatter,
       content,
       metadata: {
@@ -81,5 +81,5 @@ const snippets = defineCollection({
 })
 
 export default defineConfig({
-  collections: [posts, snippets],
+  collections: [posts, notes],
 })

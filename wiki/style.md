@@ -8,6 +8,7 @@
 ## Icons
 
 - [feathericons/feather](https://github.com/feathericons/feather): Simply beautiful open-source icons <https://feathericons.com>
+- [Heroicons](https://heroicons.com/): Beautiful hand-crafted SVG icons, by the makers of Tailwind CSS.
 
 ## Fonts
 
@@ -15,6 +16,8 @@
 - [Monolisa](https://www.monolisa.dev/)
 - [Inter font download info & examples](https://onepagelove.com/typeface/inter)
 - [Fontimize: Subset Fonts to Exactly and Only Your Website's Used Characters](https://daveon.design/introducing-fontimize-subset-fonts-to-exactly-and-only-your-websites-used-characters.html)
+- [iaolo/iA-Fonts](https://github.com/iaolo/iA-Fonts): Free variable writing fonts from iA <https://ia.net>
+- [Font Source](https://fontsource.org/)
 
 ## Inspirations
 
@@ -22,3 +25,4 @@
 - [Paco Coursey](https://paco.me/)
 - [Austin Z. Henley](https://austinhenley.com/publications.html)
 - [Chris Nicholas](https://chrisnicholas.dev/)
+- [Notion Site | Ivan Zhao Photography](https://www.ivanzhaophotos.com)

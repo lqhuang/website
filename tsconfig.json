@@ -7,13 +7,15 @@
     "strict": true,
     "types": ["vitest/importMeta"],
     // Modules
-    "module": "ESNext",
-    "moduleResolution": "Node",
+    "module": "esnext",
+    "moduleResolution": "nodenext",
     "resolveJsonModule": true,
     "paths": {
       "src/*": ["./src/*"],
       "content-collections": ["./.content-collections/generated"]
     },
+    "moduleDetection": "force",
+    "verbatimModuleSyntax": true,
     // Emit
     "declaration": true,
     "noEmit": true,

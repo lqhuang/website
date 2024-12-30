@@ -20,14 +20,11 @@ export default [
   react.configs.recommended,
   ...tseslint.configs.recommendedTypeChecked,
   ...tseslint.configs.stylisticTypeChecked,
-
-  ...compat.plugins('next-on-pages'),
   ...compat.extends(
     'next/core-web-vitals',
     'next/typescript',
     'plugin:next-on-pages/recommended',
   ),
-
   {
     languageOptions: {
       parserOptions: {
@@ -40,7 +37,6 @@ export default [
       '@typescript-eslint/consistent-type-imports': 'error',
     },
   },
-
   eslintPluginPrettierRecommended,
   eslintConfigPrettier, // eslint-config-prettier last
 ]

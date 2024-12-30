@@ -13,7 +13,6 @@ import { Header } from 'src/theme/header'
 import { siteConfig } from 'src/site'
 import { themeConfig } from 'src/theme-config'
 
-import 'src/styles/normalize.css'
 import 'src/styles/globals.css'
 
 // const fontInter = Inter({

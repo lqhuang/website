@@ -1,18 +1,17 @@
-'use server'
-
+import type { FC } from 'react'
 import type { MDXRemoteProps } from 'next-mdx-remote/rsc'
+
 import { MDXRemote } from 'next-mdx-remote/rsc'
 
-import { useComponents } from 'src/theme/components'
-
 import remarkGfm from 'remark-gfm'
-import rehypeSlug from 'rehype-slug'
-
 import remarkMath from 'remark-math'
-import rehypeKatex from 'rehype-katex'
 
+import rehypeSlug from 'rehype-slug'
+import rehypeKatex from 'rehype-katex'
 import rehypeShiki from '@shikijs/rehype'
-import { shikiDarkTheme, shikiLightTheme } from 'src/lib/shiki'
+
+import { shikiDarkTheme, shikiLightTheme, configuredLangs } from 'src/lib/shiki'
+import { useComponents } from 'src/theme/components'
 
 const serializeOptions: MDXRemoteProps['options'] = {
   mdxOptions: {
@@ -23,6 +22,7 @@ const serializeOptions: MDXRemoteProps['options'] = {
       [
         rehypeShiki,
         {
+          langs: configuredLangs,
           themes: {
             light: shikiLightTheme,
             dark: shikiDarkTheme,
@@ -35,7 +35,7 @@ const serializeOptions: MDXRemoteProps['options'] = {
   parseFrontmatter: false,
 }
 
-export const Markdown = ({ content }: { content: string }) => {
+export const Markdown: FC<{ content: string }> = ({ content }) => {
   return (
     <MDXRemote
       options={serializeOptions}

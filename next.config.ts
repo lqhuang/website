@@ -1,7 +1,5 @@
 import type { NextConfig } from 'next'
 
-import { createContentCollectionPlugin } from '@content-collections/next'
-
 const nextConfig: NextConfig = {
   reactStrictMode: true,
   trailingSlash: false,
@@ -16,8 +14,4 @@ const nextConfig: NextConfig = {
   transpilePackages: ['next-mdx-remote'],
 }
 
-const withContentCollections = createContentCollectionPlugin({
-  configPath: './content-collections.ts',
-})
-
-export default withContentCollections(nextConfig)
+export default nextConfig

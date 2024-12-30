@@ -1,4 +1,4 @@
-import { join } from 'node:path'
+import { join } from 'path'
 
 export const MARKDOWN_EXTENSION_REGEX = /\.mdx?$/i
 export const MARKDOWN_URL_EXTENSION_REGEX = /\.mdx?(?:(?=[#?])|$)/

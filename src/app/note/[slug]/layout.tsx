@@ -1,5 +1,4 @@
 import type { ReactNode } from 'react'
-import type { BlogPageOpts } from 'src/theme/types'
 
 import { themeConfig } from 'src/theme-config'
 

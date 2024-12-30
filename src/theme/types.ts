@@ -44,19 +44,6 @@ export interface ThemeConfig {
   site?: Persona
 }
 
-export type BlogPageOpts = PageOpts<BlogFrontMatter>
-
-export type BlogFrontMatter = {
-  author?: string
-  date?: string
-  created?: string
-  updated?: string
-  description?: string
-  tags?: string[]
-  title?: string
-  type?: 'post' | 'page' | 'posts' | 'tags' | string
-}
-
 export interface Node {
   id: string
   excerpt: string
@@ -86,9 +73,4 @@ export interface PaginationNode {
     // created: string
     // tags?: string[]
   }
-}
-
-export interface LayoutProps {
-  config: ThemeConfig
-  opts: BlogPageOpts
 }

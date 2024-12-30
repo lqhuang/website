@@ -1,7 +1,8 @@
 import type { PathLike } from 'node:fs'
+import type { Dirname, Doc, Metadata, Content, Slug } from './schema'
 
-import * as path from 'node:path'
-import * as fs from 'node:fs/promises'
+import * as path from 'path'
+import * as fs from 'fs/promises'
 
 import matter from 'gray-matter'
 import { parse as parseYaml } from 'yaml'
@@ -10,56 +11,27 @@ import { MARKDOWN_EXTENSION_REGEX, VALID_INDEX_REGEX } from 'src/constants'
 
 import { splitDateAndTitle } from 'src/utils/naming'
 
-export interface Metadata {
-  fullPath: string
-  single: boolean
-  slug: string
-  date: Date | null
-}
-
-export interface Source {
-  metadata: Metadata
-  frontmatter: Record<string, string>
-  content: string
-}
-
-export type Dirname = string
-export type Slug = string
-export type Content = Map<Slug, Source>
-const globalSource = new Map<Dirname, Content>()
-
-export const buildLocalSource = async (
-  dir: PathLike,
-): Promise<Map<Slug, Source>> => {
+export const buildCollection = async <T>(dir: PathLike): Promise<Doc<T>[]> => {
   const isDir = (await fs.stat(dir)).isDirectory()
 
   if (!isDir) {
     throw new Error(`Invalid input: ${dir}, must be a directory`)
   }
 
-  const db = globalSource.get(dir.toString()) ?? new Map()
+  const dbSet = new Set<Slug>()
+  const db: Doc<T>[] = []
 
   const files = await collectFiles(dir.toString())
-  // const pairs: [string, Source][] = await Promise.all(
-  //   files
-  //     .map(fullPath => genMetadata(fullPath))
-  //     .map(async metadata => {
-  //       const source = await readContentAndFrontmatter(metadata)
-  //       return [metadata.slug, source]
-  //     }),
-  // )
 
   for (const fullPath of files) {
     const metadata = genMetadata(fullPath)
-    if (process.env.NODE_ENV === 'development' || !db.has(metadata.slug)) {
+    if (!dbSet.has(metadata.slug)) {
       const source = await readContentAndFrontmatter(fullPath, metadata)
-      db.set(metadata.slug, source)
+      db.push(source)
+      dbSet.add(metadata.slug)
     }
   }
 
-  if (!globalSource.has(dir.toString())) {
-    globalSource.set(dir.toString(), db)
-  }
   return db
 }
 
@@ -67,25 +39,25 @@ export const genMetadata = (fullPath: string): Metadata => {
   const fname = path.basename(fullPath, path.extname(fullPath))
 
   let slug = ''
-  let single = false
+  let isDir = false
   let date = null
   if (VALID_INDEX_REGEX.test(fname)) {
     /**
      * use the parent directory name as the slug and title
      */
-    single = false
+    isDir = true
     const parentDir = path.basename(path.dirname(fullPath))
     const { date: d, title } = splitDateAndTitle(parentDir)
-    date = d
     slug = title
+    date = d
   } else {
     /**
      * use the file name as the slug and title
      */
-    single = true
+    isDir = false
     const { date: d, title } = splitDateAndTitle(fname)
-    date = d
     slug = title
+    date = d
   }
 
   if (!slug) {
@@ -93,17 +65,18 @@ export const genMetadata = (fullPath: string): Metadata => {
   }
 
   return {
+    files: [fullPath], // incorrect now
     fullPath,
     slug,
+    isDir,
     date,
-    single,
   }
 }
 
 export const readContentAndFrontmatter = async (
   fullPath: string,
   metadata: Metadata | undefined = undefined,
-): Promise<Source> => {
+): Promise<Doc<any>> => {
   const _metadata = metadata || genMetadata(fullPath)
   const raw = await fs.readFile(fullPath)
   const { data: frontmatter, content } = matter(raw, {

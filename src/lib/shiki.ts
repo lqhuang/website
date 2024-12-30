@@ -1,4 +1,4 @@
-import { getHighlighter, bundledLanguages } from 'shiki/bundle/full'
+import { bundledLanguages, createHighlighter } from 'shiki/bundle/full'
 
 export const configuredLangs = [
   'asciidoc', // 'adoc',
@@ -43,7 +43,7 @@ export const configuredLangs = [
 export const shikiLightTheme = 'catppuccin-latte'
 export const shikiDarkTheme = 'tokyo-night'
 
-export const highlighter = await getHighlighter({
+export const highlighter = await createHighlighter({
   themes: [shikiLightTheme, shikiDarkTheme],
   langs: [...Object.keys(bundledLanguages)],
 })

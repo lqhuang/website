@@ -7,8 +7,8 @@ import react from '@vitejs/plugin-react'
 export default defineConfig({
   plugins: [react()],
   test: {
-    environment: 'jsdom',
-    includeSource: ['src/**/*.{js,ts}'],
+    // environment: 'jsdom',
+    includeSource: ['src/**/*.test.{js,ts}'],
   },
   resolve: {
     alias: {

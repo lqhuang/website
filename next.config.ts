@@ -1,10 +1,8 @@
-// @ts-check
+import type { NextConfig } from 'next'
+
 import { createContentCollectionPlugin } from '@content-collections/next'
 
-/**
- * @type {import('next').NextConfig}
- */
-const nextConfig = {
+const nextConfig: NextConfig = {
   reactStrictMode: true,
   trailingSlash: false,
   poweredByHeader: false,
@@ -12,7 +10,8 @@ const nextConfig = {
     domains: ['avatars.githubusercontent.com'],
   },
   experimental: {
-    // browsersListForSwc: true,
+    optimizePackageImports: ['es-toolkit'],
+    optimizeServerReact: true,
   },
   transpilePackages: ['next-mdx-remote'],
 }

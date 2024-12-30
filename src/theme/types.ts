@@ -1,6 +1,5 @@
-import type { PageOpts } from 'nextra'
 import type { ReactNode } from 'react'
-import type { Components } from 'nextra/mdx'
+import type { UseMdxComponents } from '@mdx-js/mdx'
 
 export interface Persona {
   title?: string
@@ -32,7 +31,7 @@ export interface ThemeConfig {
     name: string
     url: string
   }[]
-  components?: Components
+  components?: ReturnType<UseMdxComponents>
   comments?: ReactNode
   cusdis?: {
     appId: string

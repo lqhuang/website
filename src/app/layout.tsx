@@ -2,6 +2,9 @@ import type { ReactNode } from 'react'
 import type { Metadata, Viewport } from 'next'
 
 import { Inter, Fira_Code } from 'next/font/google'
+import { GoogleAnalytics } from '@next/third-parties/google'
+
+import { env } from 'src/env/client'
 
 import { ThemeProvider } from 'next-themes'
 
@@ -39,12 +42,7 @@ export const metadata: Metadata = {
   },
   description: siteConfig.description,
   keywords: siteConfig.keywords,
-  authors: [
-    {
-      name: siteConfig.author,
-      url: siteConfig.url,
-    },
-  ],
+  authors: [{ name: siteConfig.author, url: siteConfig.url }],
   // openGraph: {
   //   type: 'website',
   //   locale: 'en_US',
@@ -81,6 +79,9 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           </div>
         </ThemeProvider>
       </body>
+      {env.NEXT_PUBLIC_GA_ID && (
+        <GoogleAnalytics gaId={env.NEXT_PUBLIC_GA_ID} />
+      )}
     </html>
   )
 }

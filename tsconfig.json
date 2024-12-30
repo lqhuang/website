@@ -2,19 +2,17 @@
   "compilerOptions": {
     // Type Checking
     "noFallthroughCasesInSwitch": true,
-    "noImplicitAny": true,
-    "noImplicitReturns": true,
     "strict": true,
     "types": ["vitest/importMeta"],
     // Modules
     "module": "esnext",
-    "moduleResolution": "nodenext",
+    "moduleResolution": "bundler",
     "resolveJsonModule": true,
     "paths": {
       "src/*": ["./src/*"],
       "content-collections": ["./.content-collections/generated"]
     },
-    "moduleDetection": "force",
+    //"moduleDetection": "force",
     "verbatimModuleSyntax": true,
     // Emit
     "declaration": true,
@@ -24,7 +22,7 @@
     "allowJs": false,
     "checkJs": false,
     // Interop Constraints
-    "allowSyntheticDefaultImports": true,
+    //"allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "isolatedModules": true,
@@ -37,7 +35,7 @@
     "incremental": true,
     "plugins": [{ "name": "next" }]
   },
-  "exclude": ["node_modules"],
+  "exclude": ["node_modules/", ".next/"],
   "include": [
     "next-env.d.ts",
     "src/**/*.ts",

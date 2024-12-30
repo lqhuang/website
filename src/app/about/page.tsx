@@ -18,6 +18,11 @@ export default function AboutMe() {
         Computing, Streaming System, Distributed System, HPC (yeah, all about
         computing).
       </p>
+      <p>
+        I'm a not qualified scientist, an overrated engineer, a pathetic
+        designer. Mostly, just a tireless researcher, a crafted coder, an
+        ideative creator.
+      </p>
       {social && (
         <p className="my-1">
           Find me on <a href={`https://github.com/${social.github}`}>Github</a>,{' '}

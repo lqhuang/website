@@ -1,16 +1,33 @@
 // @ts-check
+import { dirname } from 'path'
+import { fileURLToPath } from 'url'
+
+import { FlatCompat } from '@eslint/eslintrc'
+
 import tseslint from 'typescript-eslint'
-import nextLint from '@next/eslint-plugin-next'
-import eslintPluginPrettierRecommended from 'eslint-plugin-prettier/recommended'
-import eslintConfigPrettier from 'eslint-config-prettier'
+import * as eslintPluginPrettierRecommended from 'eslint-plugin-prettier/recommended'
+import * as eslintConfigPrettier from 'eslint-config-prettier'
 import react from '@eslint-react/eslint-plugin'
+
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = dirname(__filename)
+
+const compat = new FlatCompat({
+  baseDirectory: __dirname,
+})
 
 export default [
   react.configs.recommended,
   ...tseslint.configs.recommendedTypeChecked,
   ...tseslint.configs.stylisticTypeChecked,
-  nextLint.configs['recommended'],
-  eslintPluginPrettierRecommended,
+
+  ...compat.plugins('next-on-pages'),
+  ...compat.extends(
+    'next/core-web-vitals',
+    'next/typescript',
+    'plugin:next-on-pages/recommended',
+  ),
+
   {
     languageOptions: {
       parserOptions: {
@@ -23,5 +40,7 @@ export default [
       '@typescript-eslint/consistent-type-imports': 'error',
     },
   },
+
+  eslintPluginPrettierRecommended,
   eslintConfigPrettier, // eslint-config-prettier last
 ]

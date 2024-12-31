@@ -1,12 +1,12 @@
-export interface Metadata {
+export type Metadata = {
   fullPath: string
   slug: string
   isDir: boolean
-  files: string[]
+  // files: string[]
   date: Date | null
 }
 
-export interface Doc<T> {
+export type Doc<T> = {
   metadata: Metadata
   frontmatter: T
   content: string

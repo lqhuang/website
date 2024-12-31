@@ -8,7 +8,7 @@ interface MetaProps {
   tags?: string[]
 }
 
-const join2 = (a: ReactNode, b: ReactNode, sep: string = ',') => (
+const join2 = (a: ReactNode, b: ReactNode, sep = ',') => (
   <>
     {a}
     {`${sep} `}

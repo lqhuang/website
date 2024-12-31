@@ -10,7 +10,7 @@ import { buildCollection } from './local'
 export const NoteFrontMatter = z.object({
   title: z.string(),
   date: z.coerce.date(),
-  tags: z.array(z.string()),
+  tags: z.string().array().optional(),
   draft: z.boolean().optional(),
   ref: z.string().optional(),
 })
@@ -41,4 +41,7 @@ const notesDir = join(env.CONTENT_DIR, 'notes')
 //   },
 // })
 
-export const allNotes: Doc<NoteFrontMatter>[] = await buildCollection(notesDir)
+export const allNotes: Doc<NoteFrontMatter>[] = await buildCollection(
+  notesDir,
+  NoteFrontMatter,
+)

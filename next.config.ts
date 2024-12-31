@@ -7,11 +7,12 @@ const nextConfig: NextConfig = {
   images: {
     domains: ['avatars.githubusercontent.com'],
   },
+  transpilePackages: ['next-mdx-remote'],
   experimental: {
     optimizePackageImports: ['es-toolkit'],
     optimizeServerReact: true,
   },
-  transpilePackages: ['next-mdx-remote'],
+  // output: 'export',
 }
 
 export default nextConfig

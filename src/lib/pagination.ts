@@ -1,5 +1,5 @@
 export const genPaginations = (
-  container: Record<string, any>[],
+  container: Record<string, object>[],
   limit: number,
 ) => {
   return {

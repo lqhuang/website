@@ -24,7 +24,7 @@ export interface ThemeConfig {
     meta,
     title,
   }: {
-    meta: Record<string, any>
+    meta: Record<string, string | undefined>
     title: string
   }) => ReactNode
   navs?: {

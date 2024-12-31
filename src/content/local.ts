@@ -1,5 +1,6 @@
+import type { z } from 'zod'
 import type { PathLike } from 'node:fs'
-import type { Dirname, Doc, Metadata, Content, Slug } from './schema'
+import type { Doc, Metadata, Slug } from './schema'
 
 import * as path from 'path'
 import * as fs from 'fs/promises'
@@ -11,11 +12,14 @@ import { MARKDOWN_EXTENSION_REGEX, VALID_INDEX_REGEX } from 'src/constants'
 
 import { splitDateAndTitle } from 'src/utils/naming'
 
-export const buildCollection = async <T>(dir: PathLike): Promise<Doc<T>[]> => {
+export const buildCollection = async <T>(
+  dir: PathLike,
+  schema: z.ZodSchema<T>,
+): Promise<Doc<T>[]> => {
   const isDir = (await fs.stat(dir)).isDirectory()
 
   if (!isDir) {
-    throw new Error(`Invalid input: ${dir}, must be a directory`)
+    throw new Error(`Invalid input: ${dir.toString()}, must be a directory`)
   }
 
   const dbSet = new Set<Slug>()
@@ -26,7 +30,11 @@ export const buildCollection = async <T>(dir: PathLike): Promise<Doc<T>[]> => {
   for (const fullPath of files) {
     const metadata = genMetadata(fullPath)
     if (!dbSet.has(metadata.slug)) {
-      const source = await readContentAndFrontmatter(fullPath, metadata)
+      const source = await readContentAndFrontmatter<T>(
+        fullPath,
+        metadata,
+        schema,
+      )
       db.push(source)
       dbSet.add(metadata.slug)
     }
@@ -72,22 +80,23 @@ export const genMetadata = (fullPath: string): Metadata => {
   }
 }
 
-export const readContentAndFrontmatter = async (
+export const readContentAndFrontmatter = async <T>(
   fullPath: string,
   metadata: Metadata | undefined = undefined,
-): Promise<Doc<any>> => {
-  const _metadata = metadata || genMetadata(fullPath)
+  schema: z.ZodSchema<T>,
+): Promise<Doc<T>> => {
+  const _metadata = metadata ?? genMetadata(fullPath)
   const raw = await fs.readFile(fullPath)
   const { data: frontmatter, content } = matter(raw, {
     engines: {
       // Provide custom YAML engine to avoid parsing of date values https://github.com/jonschlinkert/gray-matter/issues/62)
-      yaml: str => parseYaml(str),
+      yaml: str => schema.parse(parseYaml(str)) as object,
     },
   })
 
   return {
     metadata: _metadata,
-    frontmatter,
+    frontmatter: frontmatter as T,
     content,
   }
 }

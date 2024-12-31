@@ -7,7 +7,11 @@ import { allPosts } from 'src/content/posts'
 
 import { WellTyped } from 'src/components/ui/well-typed'
 
-export default async function Page({ params }: { params: { pid: number } }) {
+export const dynamicParams = false
+export const dynamic = 'force-static'
+
+export default async function Page({}) {
+  return <div>WIP</div>
   return (
     <article className="prose lg:prose-lg">
       <h2 className="my-4">Posts</h2>
@@ -27,7 +31,7 @@ export default async function Page({ params }: { params: { pid: number } }) {
               <span>
                 Created: {created}
                 {updated && updated !== created && <>, Updated: {updated}</>}
-                {tags.length > 0 && <Tags tags={tags}></Tags>}
+                {tags && tags.length > 0 && <Tags tags={tags}></Tags>}
               </span>
             </WellTyped>
           )

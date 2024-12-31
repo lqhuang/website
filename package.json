@@ -15,8 +15,10 @@
   "type": "module",
   "scripts": {
     "dev": "next dev -H 0.0.0.0 --turbo",
-    "test": "vitest",
     "build": "next build",
+    "start": "next start --hostname 0.0.0.0",
+    "lint": "next lint",
+    "test": "vitest",
     "up-deps": "pnpm update",
     "up-greedy": "pnpm update --latest --filter=!@types/node",
     "clean": "rm -rf .next"

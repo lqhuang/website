@@ -72,6 +72,9 @@ export const metadata: Metadata = {
   // manifest: `${siteConfig.url}/site.webmanifest`,
 }
 
+export const dynamicParams = false
+export const dynamic = 'force-static'
+
 export default function RootLayout({ children }: { children: ReactNode }) {
   const { footer, navs, site, logo } = themeConfig
 

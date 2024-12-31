@@ -2,6 +2,9 @@ import Link from 'next/link'
 
 import { themeConfig } from 'src/theme-config'
 
+export const dynamicParams = false
+export const dynamic = 'force-static'
+
 export default function AboutMe() {
   const { site } = themeConfig
   if (!site) {
@@ -22,8 +25,8 @@ export default function AboutMe() {
         HPC (yeah, all about computing).
       </p>
       <p>
-        I'm probably an unqualified scientist, an overrated engineer, a pathetic
-        designer.
+        I{"'"}m probably an unqualified scientist, an overrated engineer, a
+        pathetic designer.
       </p>
       <p>
         Mostly, just a tireless researcher, a crafted coder, an ideative

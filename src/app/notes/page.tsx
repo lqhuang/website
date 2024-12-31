@@ -3,6 +3,7 @@ import { redirect } from 'next/navigation'
 import { allNotes } from 'src/content/notes'
 
 export const dynamicParams = false
+export const dynamic = 'force-static'
 
 export default function Page() {
   const latestNote = allNotes.at(-1)!

@@ -8,10 +8,9 @@ import { Article } from 'src/components/ui/article'
 import { allNotes } from 'src/content/notes'
 import { themeConfig } from 'src/theme-config'
 
-// Let dynamic segments not included in `generateStaticParams` will return a 404.
 export const dynamicParams = false
-
-export async function generateStaticParams() {
+export const dynamic = 'force-static'
+export const generateStaticParams = () => {
   return allNotes.map(doc => {
     if (!doc) throw new Error('doc is undefined')
     return { params: { slug: doc.metadata.slug } }

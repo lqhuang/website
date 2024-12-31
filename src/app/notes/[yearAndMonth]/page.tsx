@@ -12,18 +12,18 @@ import { datetimeBuckets } from 'src/lib/datetime-buckets'
 import { allNotes } from 'src/content/notes'
 import { sortDateDesc, getYearAndMonth } from 'src/utils'
 
-export const dynamicParams = false
-
 const buckets = datetimeBuckets(
   allNotes
     .filter(predicate => !predicate.frontmatter.draft)
     .map(n => n.frontmatter.date),
 )
 
-export const generateStaticParams = async () => {
-  return Array.from({ length: buckets.length }).map(each => {
-    return { params: { yearAndMonth: each } }
-  })
+export const dynamicParams = false
+export const dynamic = 'force-static'
+export const generateStaticParams = () => {
+  return Array.from({ length: buckets.length }).map(each => ({
+    params: { yearAndMonth: each },
+  }))
 }
 
 export default async function Page({

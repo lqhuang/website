@@ -4,7 +4,7 @@ const STRIP = /^[\-_\?]+|[-_\?]+$/g
 export const splitDateAndTitle = (
   str: string,
 ): { date: Date | null; title: string } => {
-  let hasDatePrefix = REGEX_DATE_IN_TITLE.test(str)
+  const hasDatePrefix = REGEX_DATE_IN_TITLE.test(str)
 
   if (!hasDatePrefix) {
     return { date: null, title: str.replace(STRIP, '') }

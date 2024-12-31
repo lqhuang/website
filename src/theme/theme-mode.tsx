@@ -16,6 +16,7 @@ export const ThemeMode = () => {
 
   return (
     <button
+      type="button"
       className="h-full cursor-pointer"
       aria-label="Toggle Dark Mode"
       onClick={() => setTheme(isDark ? 'light' : 'dark')}

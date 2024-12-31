@@ -11,7 +11,7 @@ export const PostFrontMatter = z.object({
   title: z.string(),
   created: z.coerce.string(),
   updated: z.coerce.string(),
-  tags: z.string().array().default([]),
+  tags: z.string().array().optional(),
   draft: z.coerce.boolean().optional(),
 })
 export type PostFrontMatter = z.infer<typeof PostFrontMatter>
@@ -40,4 +40,7 @@ const postsDir = join(env.CONTENT_DIR, 'writings')
 //   },
 // })
 
-export const allPosts: Doc<PostFrontMatter>[] = await buildCollection(postsDir)
+export const allPosts: Doc<PostFrontMatter>[] = await buildCollection(
+  postsDir,
+  PostFrontMatter,
+)

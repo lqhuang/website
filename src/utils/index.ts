@@ -1,6 +1,6 @@
 import { format } from 'date-fns/format'
 
-export const getYearWithMonth = (date: string | Date) => {
+export const getYearAndMonth = (date: string | Date) => {
   return format(new Date(date), 'yyyy-MM')
 }
 

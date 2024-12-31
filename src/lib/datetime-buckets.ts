@@ -1,4 +1,4 @@
-import { getYearWithMonth } from 'src/utils'
+import { getYearAndMonth } from 'src/utils'
 
 /**
  *
@@ -11,8 +11,6 @@ import { getYearWithMonth } from 'src/utils'
  */
 export const datetimeBuckets = (datetimes: Date[]): string[] => {
   const buckets = new Set<string>()
-  for (const dt of datetimes) {
-    buckets.add(getYearWithMonth(dt))
-  }
+  datetimes.forEach(dt => buckets.add(getYearAndMonth(dt)))
   return Array.from(buckets)
 }

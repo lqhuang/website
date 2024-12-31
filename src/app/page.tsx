@@ -1,10 +1,20 @@
+import Link from 'next/link'
+
+import { Article } from 'src/components/ui/article'
 import { AboutMe } from 'src/components/about-me'
 
 export default function Page() {
   return (
-    <article className="prose prose-neutral dark:prose-invert">
-      <div>Hi there 👋</div>
+    <Article>
+      <p>Hi there 👋</p>
       <AboutMe />
-    </article>
+      <p>Subjects:</p>
+      <ul>
+        <li>
+          <Link href="/notes">Notes</Link>: My daily thoughts or comments while
+          exploring.
+        </li>
+      </ul>
+    </Article>
   )
 }

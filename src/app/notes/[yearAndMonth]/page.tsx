@@ -10,7 +10,7 @@ import { PrevNextNav } from 'src/components/pagination'
 import { datetimeBuckets } from 'src/lib/datetime-buckets'
 
 import { allNotes } from 'src/content/notes'
-import { sortDateDesc, getYearWithMonth } from 'src/utils'
+import { sortDateDesc, getYearAndMonth } from 'src/utils'
 
 export const dynamicParams = false
 
@@ -22,26 +22,26 @@ const buckets = datetimeBuckets(
 
 export const generateStaticParams = async () => {
   return Array.from({ length: buckets.length }).map(each => {
-    return { params: { yearWithMonth: each } }
+    return { params: { yearAndMonth: each } }
   })
 }
 
 export default async function Page({
   params,
 }: {
-  params: { yearWithMonth: string }
+  params: { yearAndMonth: string }
 }) {
-  const { yearWithMonth } = await params
+  const { yearAndMonth } = await params
   const currPages = allNotes
     .filter(
       doc =>
         !doc.frontmatter.draft &&
-        getYearWithMonth(doc.frontmatter.date) === yearWithMonth,
+        getYearAndMonth(doc.frontmatter.date) === yearAndMonth,
     )
     .sort((a, b) => sortDateDesc(a.metadata.date, b.metadata.date))
 
-  const index = buckets.indexOf(yearWithMonth)
-  if (index === -1) throw new Error('Invalid yearWithMonth')
+  const index = buckets.indexOf(yearAndMonth)
+  if (index === -1) throw new Error('Invalid yearAndMonth')
 
   return (
     <>

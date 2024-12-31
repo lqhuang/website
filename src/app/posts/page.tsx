@@ -22,7 +22,7 @@ export default async function Page({ params }: { params: { pid: number } }) {
                 className="no-underline hover:underline"
                 href={`/post/${post.metadata.slug}`}
               >
-                <h3 className="my-1">{title}</h3>
+                <h1>{title}</h1>
               </Link>
               <span>
                 Created: {created}

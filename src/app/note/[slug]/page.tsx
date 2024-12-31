@@ -30,7 +30,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
   return (
     <>
       <Article>
-        <h1 className="mt-3">{title}</h1>
+        <h1>{title}</h1>
         <Meta date={date} tags={tags} />
         <Markdown content={doc.content} />
       </Article>

@@ -1,21 +1,20 @@
 import type { UseMdxComponents } from '@mdx-js/mdx'
-import type { ComponentProps, ReactElement } from 'react'
+import type { ComponentProps, FC } from 'react'
 
 import Link from 'next/link'
 
-function HeadingLink({
-  tag: Tag,
-  children,
-  id,
-  ...props
-}: ComponentProps<'h3'> & { tag: `h${1 | 2 | 3 | 4 | 5 | 6}` }): ReactElement {
+import './components.css'
+
+const HeadingLink: FC<
+  ComponentProps<'h3'> & { tag: `h${1 | 2 | 3 | 4 | 5 | 6}` }
+> = ({ tag: Tag, children, id, ...props }) => {
   return (
     <Link
       className="no-underline hover:underline"
       href={id ? `#${id}` : '#'}
       aria-label={id}
     >
-      <span className="absolute -mt-3" id={id} />
+      <span className="absolute -mt-3 hidden" id={id} />
       <Tag {...props}>{children}</Tag>
     </Link>
   )
@@ -54,5 +53,6 @@ export const useComponents: UseMdxComponents = () => {
     h5: props => <HeadingLink tag="h5" {...props} />,
     h6: props => <HeadingLink tag="h6" {...props} />,
     a: A,
+    // footnotes: Footnotes,
   }
 }

@@ -54,7 +54,7 @@ export default async function Page({
               className="no-underline hover:underline"
               href={`/note/${post.metadata.slug}`}
             >
-              <h3 className="my-1 pt-5">{fm.title}</h3>
+              <h1>{fm.title}</h1>
             </Link>
             <span>
               <span>date: {format(fm.date, 'yyyy-MM-dd')}</span>

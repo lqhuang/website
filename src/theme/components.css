@@ -1,0 +1,18 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.data-footnote-backref {
+  text-decoration: none;
+}
+
+@layer components {
+  section.footnotes a {
+    @apply no-underline hover:no-underline;
+  }
+
+  section.footnotes h2 {
+    @apply mt-8 text-lg font-normal;
+    color: var(--tw-prose-counters);
+  }
+}

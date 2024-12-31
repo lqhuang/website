@@ -10,7 +10,7 @@ export const Navigation = ({ navs }: { navs: ThemeConfig['navs'] }) => {
       {navs?.map(({ name, url }) => {
         return (
           <Link
-            className="text-gray-500 no-underline hover:text-black"
+            className="text-gray-500 no-underline hover:text-black dark:text-gray-300 dark:hover:text-white"
             key={name}
             href={url}
           >
@@ -42,7 +42,9 @@ export const Header = ({
             href="/"
             aria-label={`${title} - Back to home`}
           >
-            <span className="font-logo text-5xl text-black">{title}</span>
+            <span className="font-logo text-5xl text-black dark:text-white">
+              {title}
+            </span>
           </Link>
         </div>
         <div className="flex flex-row items-center justify-between">

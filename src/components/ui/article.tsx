@@ -6,7 +6,10 @@ export const Article: FC<ComponentProps<'article'>> = ({
   ...props
 }) => {
   return (
-    <article className={`prose dark:prose-invert ${className}`} {...props}>
+    <article
+      className={`prose dark:prose-invert prose-h1:my-3 ${className}`}
+      {...props}
+    >
       {children}
     </article>
   )

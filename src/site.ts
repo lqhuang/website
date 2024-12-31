@@ -13,7 +13,7 @@ export type SiteConfig = {
 }
 
 export const siteConfig: SiteConfig = {
-  name: 'Homepage of Lanqing Huang',
+  name: 'Space - Lanqing Huang',
   description: 'My little corner',
   url: 'https://lqhuang.io',
   author: 'Lanqing Huang',

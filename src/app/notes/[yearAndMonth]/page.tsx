@@ -18,19 +18,17 @@ const buckets = datetimeBuckets(
     .map(n => n.frontmatter.date),
 )
 
-export const dynamicParams = false
-export const dynamic = 'force-static'
-export const generateStaticParams = () => {
-  return Array.from({ length: buckets.length }).map(each => ({
-    params: { yearAndMonth: each },
-  }))
+type Params = {
+  yearAndMonth: string
 }
 
-export default async function Page({
-  params,
-}: {
-  params: { yearAndMonth: string }
-}) {
+export const dynamicParams = false
+export const dynamic = 'force-static'
+export const generateStaticParams = (): Params[] => {
+  return buckets.map(each => ({ yearAndMonth: each }))
+}
+
+export default async function Page({ params }: { params: Promise<Params> }) {
   const { yearAndMonth } = await params
   const currPages = allNotes
     .filter(

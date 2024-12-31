@@ -38,8 +38,6 @@ const eslintConfig = [
       '@typescript-eslint/no-unused-vars': 'warn',
       '@typescript-eslint/consistent-type-imports': 'error',
       '@typescript-eslint/consistent-type-definitions': 'off',
-      // not compatible with next.js 15 yet????
-      '@typescript-eslint/await-thenable': 'warn',
     },
   },
   eslintPluginPrettierRecommended,

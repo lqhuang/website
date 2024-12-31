@@ -17,7 +17,8 @@ export const splitDateAndTitle = (
     const date = new Date(dateOnlyString)
     if (isNaN(date.getTime())) return { date: null, title }
     return { date, title: title === '' ? dateOnlyString : title }
-  } catch (e) {
-    return { date: null, title: str }
+  } catch {
+    throw new Error(`Invalid date string: ${dateOnlyString}`)
+    // return { date: null, title: str }
   }
 }

@@ -11,13 +11,14 @@ import { themeConfig } from 'src/theme-config'
 export const dynamicParams = false
 export const dynamic = 'force-static'
 export const generateStaticParams = () => {
-  return allNotes.map(doc => {
-    if (!doc) throw new Error('doc is undefined')
-    return { params: { slug: doc.metadata.slug } }
-  })
+  return allNotes.map(doc => ({ slug: doc.metadata.slug }))
 }
 
-export default async function Page({ params }: { params: { slug: string } }) {
+type Params = {
+  slug: string
+}
+
+export default async function Page({ params }: { params: Promise<Params> }) {
   const { slug } = await params
 
   const doc = allNotes.find(p => p.metadata.slug === slug)

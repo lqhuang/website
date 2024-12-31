@@ -1,11 +1,14 @@
 export const dynamicParams = false
 export const dynamic = 'force-static'
-export const generateStaticParams = () => {
-  return [{ params: { tag: 'WIP' } }]
+export const generateStaticParams = (): Params[] => {
+  return [{ tag: 'dev' }, { tag: 'python' }]
 }
 
-export default async function Page({ params }: { params: { tag: string } }) {
-  const { tag } = await params
+type Params = {
+  tag: string
+}
 
-  return <h1>{tag}</h1>
+export default async function Page({ params }: { params: Promise<Params> }) {
+  const { tag } = await params
+  return <p>🚧 WIP: {tag}</p>
 }

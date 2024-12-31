@@ -7,13 +7,17 @@ import { allPosts } from 'src/content/posts'
 import { PrevNextNav } from 'src/components/pagination'
 import { themeConfig } from 'src/theme-config'
 
-export const dynamicParams = false
-export const dynamic = 'force-static'
-export const generateStaticParams = () => {
-  return allPosts.map(doc => ({ params: { slug: doc.metadata.slug } }))
+type Params = {
+  slug: string
 }
 
-export default async function Page({ params }: { params: { slug: string } }) {
+export const dynamicParams = false
+export const dynamic = 'force-static'
+export const generateStaticParams = (): Params[] => {
+  return allPosts.map(doc => ({ slug: doc.metadata.slug }))
+}
+
+export default async function Page({ params }: { params: Promise<Params> }) {
   const { slug } = await params
 
   const doc = allPosts.find(p => p.metadata.slug === slug)

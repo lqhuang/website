@@ -9,10 +9,11 @@ const nextConfig: NextConfig = {
   },
   transpilePackages: ['next-mdx-remote'],
   experimental: {
-    optimizePackageImports: ['es-toolkit'],
+    // optimizePackageImports: ['es-toolkit'],
     optimizeServerReact: true,
   },
-  // output: 'export',
+  output: 'export',
+  distDir: 'static-dist',
 }
 
 export default nextConfig

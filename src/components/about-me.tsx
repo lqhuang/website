@@ -2,7 +2,7 @@ import Link from 'next/link'
 
 import { themeConfig } from 'src/theme-config'
 
-export default function AboutMe() {
+export const AboutMe = () => {
   const { site } = themeConfig
   if (!site) {
     return <p>Site config is missing</p>
@@ -10,7 +10,7 @@ export default function AboutMe() {
   const { author, nickname, email, social } = site
 
   return (
-    <article>
+    <>
       <p>
         Here is personal index of {author}{' '}
         {nickname && <code>(@{nickname})</code>}, a simple and naïve guy,
@@ -37,6 +37,6 @@ export default function AboutMe() {
         </p>
       )}
       {/* <p>Say hi to me@lqhuang.io</p> */}
-    </article>
+    </>
   )
 }

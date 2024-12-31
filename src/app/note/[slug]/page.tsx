@@ -1,9 +1,12 @@
 import { notFound } from 'next/navigation'
 
 import { Meta } from 'src/components/meta'
-import { Markdown } from 'src/components/markdown'
+import { Markdown } from 'src/components/ui/markdown'
+import { PrevNextNav } from 'src/components/pagination'
+import { Article } from 'src/components/ui/article'
 
 import { allNotes } from 'src/content/notes'
+import { themeConfig } from 'src/theme-config'
 
 // Let dynamic segments not included in `generateStaticParams` will return a 404.
 export const dynamicParams = false
@@ -16,7 +19,7 @@ export async function generateStaticParams() {
 }
 
 export default async function Page({ params }: { params: { slug: string } }) {
-  const { slug } = params
+  const { slug } = await params
 
   const doc = allNotes.find(p => p.metadata.slug === slug)
   if (!doc) {
@@ -26,9 +29,14 @@ export default async function Page({ params }: { params: { slug: string } }) {
   const { title, tags, date } = doc.frontmatter
   return (
     <>
-      <h1 className="mt-3">{title}</h1>
-      <Meta date={date} tags={tags} />
-      <Markdown content={doc.content} />
+      <Article>
+        <h1 className="mt-3">{title}</h1>
+        <Meta date={date} tags={tags} />
+        <Markdown content={doc.content} />
+      </Article>
+      {/* <PrevNextNav /> */}
+      {themeConfig.postFooter}
+      {themeConfig.comments}
     </>
   )
 }

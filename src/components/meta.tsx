@@ -32,7 +32,7 @@ export const Tags = ({
             key={tag}
             href={`/tags/${tag.toLowerCase()}`}
           >
-            {tag}
+            #{tag}
           </Link>
         ))
         .reduce((prev, curr) => join2(prev, curr))}

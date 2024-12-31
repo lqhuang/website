@@ -71,9 +71,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
            */}
           <div className="container mx-auto flex max-w-[65ch] flex-col">
             <Header logo={logo} navs={navs} site={site} />
-            <main className="prose prose-neutral dark:prose-invert">
-              {children}
-            </main>
+            <main>{children}</main>
             {footer}
           </div>
         </ThemeProvider>

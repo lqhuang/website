@@ -20,11 +20,7 @@ export default [
   react.configs.recommended,
   ...tseslint.configs.recommendedTypeChecked,
   ...tseslint.configs.stylisticTypeChecked,
-  ...compat.extends(
-    'next/core-web-vitals',
-    'next/typescript',
-    'plugin:next-on-pages/recommended',
-  ),
+  ...compat.extends('next/core-web-vitals', 'next/typescript'),
   {
     languageOptions: {
       parserOptions: {
@@ -39,4 +35,7 @@ export default [
   },
   eslintPluginPrettierRecommended,
   eslintConfigPrettier, // eslint-config-prettier last
+  {
+    ignores: ['**/sequenced-map**'],
+  },
 ]

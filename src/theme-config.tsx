@@ -31,9 +31,9 @@ export const themeConfig: ThemeConfig = {
   ),
   navs: [
     { name: 'Home', url: '/' },
-    { name: 'Blog', url: '/posts' },
+    // { name: 'Blog', url: '/posts' },
     { name: 'Notes', url: '/notes' },
-    { name: 'About', url: '/about' },
+    // { name: 'About', url: '/about' },
   ],
   head: ({ title, meta }) => (
     <>

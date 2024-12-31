@@ -1,3 +1,10 @@
+import { AboutMe } from 'src/components/about-me'
+
 export default function Page() {
-  return <div>Hi there 👋</div>
+  return (
+    <article className="prose prose-neutral dark:prose-invert">
+      <div>Hi there 👋</div>
+      <AboutMe />
+    </article>
+  )
 }

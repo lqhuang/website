@@ -1,4 +1,4 @@
-import { describe, expect, it } from 'vitest'
+import { expect, it } from 'vitest'
 import { genMetadata } from './local'
 
 it('tests `genMetadata` function', () => {

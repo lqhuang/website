@@ -3,30 +3,33 @@ import Link from 'next/link'
 import { Tags } from 'src/components/meta'
 import { sortDateDesc } from 'src/utils'
 
-import { allPosts } from 'content-collections'
+import { allPosts } from 'src/content/posts'
 
-export default async function Page() {
+import { WellTyped } from 'src/components/ui/well-typed'
+
+export default async function Page({ params }: { params: { pid: number } }) {
   return (
-    <article>
+    <article className="prose lg:prose-lg">
       <h2 className="my-4">Posts</h2>
       {allPosts
-        .filter(p => p.draft === undefined || !p.draft)
-        .sort((a, b) => sortDateDesc(a.created, b.created))
+        .filter(p => !p.frontmatter.draft)
+        .sort((a, b) => sortDateDesc(a.metadata.date, b.metadata.date))
         .map(post => {
+          const { title, tags, created, updated } = post.frontmatter
           return (
-            <p className="my-5" key={post.metadata.slug}>
+            <WellTyped key={post.metadata.slug}>
               <Link
                 className="no-underline hover:underline"
                 href={`/post/${post.metadata.slug}`}
               >
-                <h3 className="my-1">{post.title}</h3>
+                <h3 className="my-1">{title}</h3>
               </Link>
               <span>
-                {post.created}
-                {', '}
-                <Tags tags={post.tags}></Tags>
+                Created: {created}
+                {updated && updated !== created && <>, Updated: {updated}</>}
+                {tags.length > 0 && <Tags tags={tags}></Tags>}
               </span>
-            </p>
+            </WellTyped>
           )
         })}
     </article>

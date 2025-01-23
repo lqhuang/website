@@ -1,7 +1,7 @@
 import type { NextConfig } from 'next'
 
-const now = new Date()
-const buildId = `${now.getUTCFullYear()}-${now.getUTCMonth() + 1}-${now.getUTCDate()}`
+// const now = new Date()
+// const buildId = `${now.getUTCFullYear()}-${now.getUTCMonth() + 1}-${now.getUTCDate()}`
 
 const nextConfig: NextConfig = {
   reactStrictMode: true,
@@ -16,7 +16,7 @@ const nextConfig: NextConfig = {
     optimizeServerReact: true,
   },
   output: 'export',
-  distDir: `dist/out-${buildId}`,
+  // distDir: `dist/out-${buildId}`,
 }
 
 export default nextConfig

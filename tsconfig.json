@@ -8,10 +8,7 @@
     "module": "esnext",
     "moduleResolution": "bundler",
     "resolveJsonModule": true,
-    "paths": {
-      "src/*": ["./src/*"],
-      "content-collections": ["./.content-collections/generated"]
-    },
+    "paths": { "src/*": ["./src/*"] },
     //"moduleDetection": "force",
     "verbatimModuleSyntax": true,
     // Emit
@@ -19,8 +16,8 @@
     "noEmit": true,
     "sourceMap": true,
     // JavaScript Support
-    "allowJs": false,
-    "checkJs": false,
+    "allowJs": true,
+    "checkJs": true,
     // Interop Constraints
     //"allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
@@ -35,18 +32,17 @@
     "incremental": true,
     "plugins": [{ "name": "next" }]
   },
-  "exclude": ["node_modules/", ".next/"],
   "include": [
-    "next-env.d.ts",
-    "src/**/*.ts",
-    "src/**/*.tsx",
-    "src/**/*.js",
-    "src/**/*.mjs",
-    "src/**/*.cjs",
-    "./*.ts",
     "./*.js",
     "./*.mjs",
-    "./*.cjs",
-    ".next/types/**/*.ts"
-  ]
+    "./.prettierrc.mjs",
+    "./*.ts",
+    ".next/types/**/*.ts",
+    "next-env.d.ts",
+    "src/**/*.js",
+    "src/**/*.mjs",
+    "src/**/*.ts",
+    "src/**/*.tsx"
+  ],
+  "exclude": ["node_modules/", ".next/", "retired/"]
 }

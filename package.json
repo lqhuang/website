@@ -6,13 +6,9 @@
   "author": "Lanqing Huang <lqhuang@outlook.com>",
   "homepage": "https://lqhuang.io",
   "license": "MIT",
-  "keywords": [
-    "blog"
-  ],
   "bugs": {
     "url": "https://github.com/lqhuang/website/issues"
   },
-  "type": "module",
   "scripts": {
     "dev": "next dev -H 0.0.0.0 --turbopack",
     "build": "next build",

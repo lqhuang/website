@@ -10,7 +10,7 @@ export default function AboutMe() {
   if (!site) {
     return <p>Site config is missing</p>
   }
-  const { author, nickname, email, social } = site
+  const { author, nickname, social } = site
 
   return (
     <article>

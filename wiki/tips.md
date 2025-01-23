@@ -21,3 +21,8 @@
 ## RSS
 
 - [yllhwa/RSSWorker](https://github.com/yllhwa/RSSWorker): 运行在Cloudflare Worker上的RSS订阅生成器
+
+## Cloudflare
+
+- [Redirects · Cloudflare Pages](https://developers.cloudflare.com/pages/configuration/redirects/)
+  - To use redirects on Cloudflare Pages, declare your redirects in a plain text file called `_redirects` without a file extension, in the output folder of your project.

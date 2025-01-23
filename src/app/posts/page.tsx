@@ -10,7 +10,7 @@ import { WellTyped } from 'src/components/ui/well-typed'
 export const dynamicParams = false
 export const dynamic = 'force-static'
 
-export default async function Page({}) {
+export default function Page({}) {
   return <div>WIP</div>
   return (
     <article className="prose lg:prose-lg">

@@ -14,8 +14,8 @@ export default function Page() {
       <p>Subjects:</p>
       <ul>
         <li>
-          <Link href="/notes">Notes</Link>: My daily thoughts or comments while
-          exploring.
+          <Link href="/notes">Notes</Link>: My random thoughts or 2-cent
+          comments while exploring.
         </li>
       </ul>
     </Article>

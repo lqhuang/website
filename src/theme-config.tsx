@@ -7,13 +7,14 @@ export const themeConfig: ThemeConfig = {
     author: 'Lanqing Huang',
     nickname: 'lqhuang',
     email: 'lqhuang@outlook.com',
-    description: 'A blog to record coding life',
+    description: 'A website to record digital life',
     url: 'https://lqhuang.io/',
     social: {
       twitter: '_lqhuang',
       github: 'lqhuang',
       linkedin: 'lqhuang',
       instgram: 'lanqing.huang',
+      bluesky: 'lqhuang',
     },
   },
   footer: (

@@ -13,6 +13,7 @@ export interface Persona {
     github?: string
     linkedin?: string
     instgram?: string
+    bluesky?: string
   }
 }
 

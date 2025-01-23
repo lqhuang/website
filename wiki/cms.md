@@ -1,2 +1,0 @@
-- [OXeu/Rin](https://github.com/OXeu/Rin): ⚡️Rin 是一个基于 Cloudflare Pages + Workers + D1 + R2 全家桶的博客，无需服务器无需备案，只需要一个解析到 Cloudflare 的域名即可部署。 <https://xeu.life>
-- [yllhwa/RSSWorker](https://github.com/yllhwa/RSSWorker): 运行在Cloudflare Worker上的RSS订阅生成器

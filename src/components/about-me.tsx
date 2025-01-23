@@ -22,12 +22,11 @@ export const AboutMe = () => {
         HPC (yeah, all about computing).
       </p>
       <p>
-        Perhaps an unqualified scientist, an overrated engineer, a subpar
+        Perhaps an unqualified scientist, an overreacted engineer, an unskilled
         designer.
       </p>
       <p>
-        Primarily, just a tireless researcher, a crafted coder, an ideative
-        creator.
+        Primarily, just a tireless researcher, a crafted coder, a trouble maker.
       </p>
       {social && (
         <p>

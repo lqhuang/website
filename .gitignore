@@ -20,13 +20,9 @@ pids
 *.seed
 *.pid.lock
 
-
-
-# Grunt intermediate storage (http://gruntjs.com/creating-plugins#storing-task-files)
-.grunt
-
-# Bower dependency directory (https://bower.io/)
-bower_components
+# Output / dist
+out/
+dist/
 
 # node-waf configuration
 .lock-wscript
@@ -72,6 +68,3 @@ yarn-error.log
 .pnp.js
 # Yarn Integrity file
 .yarn-integrity
-
-# pnpm
-pnpm-lock.yaml

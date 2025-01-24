@@ -19,7 +19,7 @@
     "up-deps": "pnpm update",
     "up-greedy": "pnpm update --latest --filter=!@types/node",
     "clean": "rm -rf .next",
-    "cf-build": "pnpm setup && stat blog && pnpm build"
+    "cf-build": "git clone https://github.com/lqhuang/blog --depth 1 && stat blog && pnpm build"
   },
   "dependencies": {
     "@fontsource/ia-writer-mono": "^5.1.0",

@@ -19,6 +19,7 @@
 - [Fontimize: Subset Fonts to Exactly and Only Your Website's Used Characters](https://daveon.design/introducing-fontimize-subset-fonts-to-exactly-and-only-your-websites-used-characters.html)
 - [iaolo/iA-Fonts](https://github.com/iaolo/iA-Fonts): Free variable writing fonts from iA <https://ia.net>
 - [Font Source](https://fontsource.org/)
+- [Optima](https://en.wikipedia.org/wiki/Optima): Optima is a humanist sans-serif typeface designed by Hermann Zapf and released by the D. Stempel AG foundry, Frankfurt, West Germany in 1958.
 
 ## Dark mode
 

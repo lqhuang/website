@@ -1,4 +1,6 @@
-# Markdown in NextJS
+# Markdown
+
+## Markdown in NextJS
 
 MDX is great, but I just want to use markdown files for now.
 
@@ -34,6 +36,10 @@ MDX is great, but I just want to use markdown files for now.
 - [goblindegook/littlefoot](https://github.com/goblindegook/littlefoot): Footnotes without the footprint. <https://littlefoot.js.org>
 
 - [Enhance TypeScript Code Samples with Compiler Diagnostic](https://fatihkalifa.com/blog/typescript-twoslash): Build-time Type Annotation and Syntax Highlighting using Twoslash and Shiki
+
+## markdown-it plugins
+
+- https://github.com/arothuis/markdown-it-biblatex
 
 ## NextJS for Cloudflare pages
 

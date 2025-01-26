@@ -4,6 +4,7 @@
 
 - [Webmention.io](https://webmention.io/): Webmention.io is a hosted service created to easily receive webmentions on any web page.
 - [Webmention | W3C Recommendation 12 January 2017](https://www.w3.org/TR/webmention/)
+- [Adding webmentions to my site](https://bobmonsour.com/blog/adding-webmentions-to-my-site/)
 - [srcl](https://www.sacred.computer/): SRCL is an open-source React component and style repository that helps you build web applications, desktop applications, and static websites with terminal aesthetics.
 
 ## CSS

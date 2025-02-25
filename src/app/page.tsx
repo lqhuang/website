@@ -17,6 +17,10 @@ export default function Page() {
           <Link href="/notes">Notes</Link>: My random thoughts or 2-cent
           comments while exploring.
         </li>
+        <li>
+          <Link href="/projects">Projects</Link>: My ongoing projects and
+          progress.
+        </li>
       </ul>
     </Article>
   )

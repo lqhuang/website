@@ -15,7 +15,7 @@ export default function AboutMe() {
   return (
     <article>
       <p>
-        Here is personal index of {author}{' '}
+        Here is a personal website of {author}{' '}
         {nickname && <code>(@{nickname})</code>}, a simple and naïve guy,
         graduated from Physics.
       </p>

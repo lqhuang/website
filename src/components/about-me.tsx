@@ -12,14 +12,14 @@ export const AboutMe = () => {
   return (
     <>
       <p>
-        Here is personal index of {author}{' '}
+        Here is the personal index of {author}{' '}
         {nickname && <code>(@{nickname})</code>}, a simple and naïve guy,
         graduated from Physics.
       </p>
-      <p>Coding in Python, TypeScript, Scala, sometimes Haskell or Rust.</p>
+      <p>Coding in Python, TypeScript, Scala, sometimes Cpp or Haskell.</p>
       <p>
         Learning on Scientific Computing, Streaming System, Distributed System,
-        HPC (yeah, all about computing).
+        HPC, Machine Learning Algorithms (yeah, all about computing).
       </p>
       <p>
         Perhaps an unqualified scientist, an overreacted engineer, an unskilled

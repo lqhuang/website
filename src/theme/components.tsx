@@ -52,6 +52,10 @@ export const useComponents: UseMdxComponents = () => {
     h4: props => <HeadingLink tag="h4" {...props} />,
     h5: props => <HeadingLink tag="h5" {...props} />,
     h6: props => <HeadingLink tag="h6" {...props} />,
+    p: props => {
+      const { className, ...rest } = props
+      return <p className={`${className} my-4`} {...rest} />
+    },
     a: A,
     // footnotes: Footnotes,
   }

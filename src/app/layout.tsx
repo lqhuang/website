@@ -90,7 +90,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
            ** `65ch` comes from tailwindcss-typography
            ** ref: https://github.com/tailwindlabs/tailwindcss-typography/blob/master/src/styles.js
            */}
-          <div className="container flex max-w-[65ch] flex-col sm:mx-4 md:mx-auto">
+          <div className="container mx-auto flex max-w-[65ch] flex-col px-6">
             <Header logo={logo} navs={navs} site={site} />
             <main>{children}</main>
             {footer}

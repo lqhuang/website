@@ -62,3 +62,11 @@
 - [Tyler Kennedy](https://tkte.ch/): Tech babble and other stuff
   - looking for his PGP key LOL
 - [Now, I'm in IndieWeb? - Owen Young's Blog](https://www.owenyoung.com/en/blog/indieweb/)
+- [genehack.org: the mighty genehack web empire](https://genehack.org/#empire)
+  - interesting "empire" part
+- [Writing Slowly](https://writingslowly.com)
+- [Daniel De Laney](https://danieldelaney.net/): Product designer + execution lead for complex technical products
+  - His problem solving flow is awesome!
+- [How I Build — Adam Montgomery](https://montasaurus.com/posts/how-i-build): My tools and how I use them.
+- [NetOpWibby/blog](https://github.com/NetOpWibby/blog): My awesome blog <https://blog.webb.page>
+  - awesome indeed

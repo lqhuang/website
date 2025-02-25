@@ -1,5 +1,3 @@
-import Link from 'next/link'
-
 import { themeConfig } from 'src/theme-config'
 
 export const AboutMe = () => {
@@ -31,8 +29,8 @@ export const AboutMe = () => {
       {social && (
         <p>
           Find me on{' '}
-          <Link href={`https://github.com/${social.github}`}>Github</Link>,{' '}
-          <Link href={`https://x.com/${social.twitter}`}>X (Twitter)</Link>.
+          <link href={`https://github.com/${social.github}`}>Github</link>,{' '}
+          <link href={`https://x.com/${social.twitter}`}>X (Twitter)</link>.
         </p>
       )}
       {/* <p>Say hi to me@lqhuang.io</p> */}

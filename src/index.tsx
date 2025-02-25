@@ -1,4 +1,4 @@
-import Link from 'next/link'
+// import Link from 'next/link'
 
 import { Article } from 'src/components/ui/article'
 import { AboutMe } from 'src/components/about-me'
@@ -14,7 +14,7 @@ export default function Page() {
       <p>Subjects:</p>
       <ul>
         <li>
-          <Link href="/notes">Notes</Link>: My random thoughts or 2-cent
+          <link href="/notes">Notes</link>: My random thoughts or 2-cent
           comments while exploring.
         </li>
       </ul>

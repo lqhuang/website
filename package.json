@@ -1,24 +1,22 @@
 {
-  "name": "lqhuang-blog",
+  "name": "lqhuang-website",
   "version": "0.2.0",
-  "description": "lqhuang's blog",
+  "description": "lqhuang's personal website",
+  "homepage": "https://lqhuang.io",
   "repository": "https://github.com/lqhuang/website",
   "author": "Lanqing Huang <lqhuang@outlook.com>",
-  "homepage": "https://lqhuang.io",
   "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/lqhuang/website/issues"
-  },
+  "type": "module",
   "scripts": {
-    "dev": "tsx node_modules/.bin/eleventy --config=eleventy.ts --serve --incremental",
-    "setup": "git clone https://github.com/lqhuang/blog --depth 1",
-    "build": "eleventy && cp -f _redirects out/_redirects",
+    "dev": "tsx node_modules/@11ty/eleventy/cmd.cjs --config=eleventy.config.ts --serve --incremental",
+    "build": "eleventy && cp -f _redirects _site/_redirects",
     "start": "eleventy --serve",
     "lint": "eslint",
     "test": "vitest",
     "up-deps": "pnpm update",
     "up-greedy": "pnpm update --latest --filter=!@types/node",
-    "clean": "rm -rf .next",
+    "clean": "rm -rf _site/",
+    "setup": "git clone https://github.com/lqhuang/blog --depth 1",
     "cf-build": "git clone https://github.com/lqhuang/blog --depth 1 && stat blog && pnpm build"
   },
   "dependencies": {
@@ -43,7 +41,7 @@
     "zod": "^3.24.1"
   },
   "devDependencies": {
-    "@11ty/eleventy": "^3.0.0",
+    "@11ty/eleventy": "3.0.1-alpha.3",
     "@eslint-react/eslint-plugin": "^1.22.1",
     "@eslint/eslintrc": "^3.2.0",
     "@tailwindcss/typography": "^0.5.15",

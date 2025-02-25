@@ -1,5 +1,3 @@
-import { notFound } from 'next/navigation'
-
 import { Meta } from 'src/components/meta'
 import { Markdown } from 'src/components/ui/markdown'
 import { PrevNextNav } from 'src/components/pagination'

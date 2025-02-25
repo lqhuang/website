@@ -27,3 +27,8 @@
 
 - [Redirects · Cloudflare Pages](https://developers.cloudflare.com/pages/configuration/redirects/)
   - To use redirects on Cloudflare Pages, declare your redirects in a plain text file called `_redirects` without a file extension, in the output folder of your project.
+
+## Local dev for 11ty
+
+- [eradman/entr](https://github.com/eradman/entr): Run arbitrary commands when files change <http://eradman.com/entrproject/>
+- watchman

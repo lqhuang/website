@@ -29,20 +29,17 @@
     "jsx": "preserve",
     // Completeness
     "skipLibCheck": true,
-    "incremental": true,
-    "plugins": [{ "name": "next" }]
+    "incremental": true
   },
   "include": [
     "./*.js",
     "./*.mjs",
     "./.prettierrc.mjs",
     "./*.ts",
-    ".next/types/**/*.ts",
-    "next-env.d.ts",
     "src/**/*.js",
     "src/**/*.mjs",
     "src/**/*.ts",
     "src/**/*.tsx"
   ],
-  "exclude": ["node_modules/", ".next/", "retired/"]
+  "exclude": ["node_modules/", "_site/", "retired/"]
 }

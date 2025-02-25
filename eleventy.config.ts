@@ -1,25 +1,17 @@
 import 'tsx/esm'
-
 import { renderToStaticMarkup } from 'react-dom/server'
-// @ts-expect-error no types for this package
-import { EleventyConfig, UserConfig } from '@11ty/eleventy'
 
-export const config: EleventyConfig = {
-  // Control which files Eleventy will process
-  // e.g.: *.md, *.njk, *.html, *.liquid
-  templateFormats: ['md', 'njk', 'html', 'liquid', '11ty.ts', '11ty.tsx'],
+import type { EleventyConfig, UserConfig } from '@11ty/eleventy'
 
-  // // Pre-process *.md files with: (default: `liquid`)
-  // markdownTemplateEngine: 'njk',
-
-  // // Pre-process *.html files with: (default: `liquid`)
-  // htmlTemplateEngine: 'njk',
-
-  // These are all optional:
+export const config: Partial<EleventyConfig> = {
+  templateFormats: ['njk', '11ty.tsx'],
+  htmlTemplateEngine: 'njk',
+  markdownTemplateEngine: 'njk',
   dir: {
-    input: 'src', // default: "."
-    // includes: 'src/includes', // default: "_includes" (`input` relative)
-    // data: 'src/data', // default: "_data" (`input` relative)
+    input: 'src/content',
+    data: '../_data',
+    layouts: '../_layouts',
+    includes: '../_includes',
     output: '_site',
   },
 }
@@ -28,12 +20,15 @@ export default async function (eleventyConfig: UserConfig) {
   eleventyConfig.addPassthroughCopy({
     'public/': '/',
   })
+  // eleventyConfig.setServerPassthroughCopyBehavior("passthrough");
 
   // We can add support for JSX too, at the same time:
   eleventyConfig.addExtension(['11ty.ts', '11ty.tsx'], {
     key: '11ty.js',
-    compile: () => {
-      return async function (data) {
+    compile: function () {
+      // NOTE: arrow functions do not have access to `this`
+      return async function (data: any) {
+        // @ts-expect-error from official 11ty docs
         let content = await this.defaultRenderer(data)
         return renderToStaticMarkup(content)
       }
@@ -45,16 +40,6 @@ export default async function (eleventyConfig: UserConfig) {
 
   // Watch images for the image pipeline.
   eleventyConfig.addWatchTarget('content/**/*.{svg,webp,png,jpg,jpeg,gif}')
-
-  // Per-page bundles, see https://github.com/11ty/eleventy-plugin-bundle
-  // Adds the {% css %} paired shortcode
-  eleventyConfig.addBundle('css', {
-    toFileDirectory: 'dist',
-  })
-  // Adds the {% js %} paired shortcode
-  eleventyConfig.addBundle('js', {
-    toFileDirectory: 'dist',
-  })
 
   // // Official plugins
   // eleventyConfig.addPlugin(pluginSyntaxHighlight, {
@@ -128,6 +113,4 @@ export default async function (eleventyConfig: UserConfig) {
   // If your passthrough copy gets heavy and cumbersome, add this line
   // to emulate the file copy on the dev server. Learn more:
   // https://www.11ty.dev/docs/copy/#emulate-passthrough-copy-during-serve
-
-  // eleventyConfig.setServerPassthroughCopyBehavior("passthrough");
 }

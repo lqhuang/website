@@ -57,6 +57,10 @@ export const useComponents: UseMdxComponents = () => {
       return <p className={`${className} my-4`} {...rest} />
     },
     a: A,
+    li: props => {
+      const { className, ...rest } = props
+      return <li className={`${className} my-2`} {...rest} />
+    },
     // footnotes: Footnotes,
   }
 }

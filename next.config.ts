@@ -9,13 +9,14 @@ const nextConfig: NextConfig = {
   reactStrictMode: true,
   trailingSlash: false,
   poweredByHeader: false,
+  turbopack: {},
   images: {
     domains: ['avatars.githubusercontent.com'],
   },
   pageExtensions: ['ts', 'tsx', 'md', 'mdx'],
   transpilePackages: ['next-mdx-remote'],
   experimental: {
-    // optimizePackageImports: ['es-toolkit'],
+    optimizePackageImports: ['es-toolkit'],
     optimizeServerReact: true,
     mdxRs: true,
   },
@@ -23,8 +24,8 @@ const nextConfig: NextConfig = {
   // distDir: `dist/out-${buildId}`,
 }
 
-const withMDX = createMDX({
-  // Add markdown plugins here, as desired
-})
+// const withMDX = createMDX({
+//   // Add markdown plugins here, as desired
+// })
 
-export default withMDX(nextConfig)
+export default nextConfig

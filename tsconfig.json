@@ -33,16 +33,13 @@
     "plugins": [{ "name": "next" }]
   },
   "include": [
-    "./*.js",
-    "./*.mjs",
-    "./.prettierrc.mjs",
-    "./*.ts",
     ".next/types/**/*.ts",
+    ".prettierrc.mjs",
+    "eslint.config.mjs",
+    "postcss.config.mjs",
     "next-env.d.ts",
-    "src/**/*.js",
-    "src/**/*.mjs",
-    "src/**/*.ts",
-    "src/**/*.tsx"
+    "next.config.ts",
+    "src/"
   ],
   "exclude": ["node_modules/", ".next/", "retired/"]
 }

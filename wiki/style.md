@@ -61,3 +61,13 @@
 - [Tyler Kennedy](https://tkte.ch/): Tech babble and other stuff
   - looking for his PGP key LOL
 - [Now, I'm in IndieWeb? - Owen Young's Blog](https://www.owenyoung.com/en/blog/indieweb/)
+- [tomfran/typo](https://github.com/tomfran/typo): A simple Hugo theme <https://tomfran.github.io/typo-wiki/>
+- [Eric's Research Soundbites](https://notes.ekzhang.com/reflections/research): A field’s spirit is conveyed by the words of its practitioners.
+  - it's better than just call them "quotes"
+- [Eric's Notes](https://notes.ekzhang.com/)
+- [shuding's personal website ](https://github.com/shuding/shud.in)
+- [Micro](https://kyswtn.com/micro): Notes, thoughts, opinions
+  - icons for tags are pretty
+- [radishzzz/astro-theme-retypeset](https://github.com/radishzzz/astro-theme-retypeset): Revive the beauty of typography. <https://retypeset.radishzz.cc/en/>
+  - CJK typography
+- [让你的 RSS/Atom feed 更好看](https://taxodium.ink/pretty-feed.html)

@@ -4,6 +4,7 @@ export const MARKDOWN_EXTENSION_REGEX = /\.mdx?$/i
 export const MARKDOWN_URL_EXTENSION_REGEX = /\.mdx?(?:(?=[#?])|$)/
 export const MARKDOWN_EXTENSIONS = ['md', 'mdx'] as const
 
+export const VALID_EXT_REGEX = /^(md|mdx)$/i
 export const VALID_INDEX_REGEX = /^(index|readme)$/i
 
 export const LOCALE_REGEX = /\.([a-z]{2}(-[A-Z]{2})?)$/

@@ -9,7 +9,7 @@
     "moduleResolution": "bundler",
     "resolveJsonModule": true,
     "paths": { "src/*": ["./src/*"] },
-    //"moduleDetection": "force",
+    "moduleDetection": "force",
     "verbatimModuleSyntax": true,
     // Emit
     "declaration": true,
@@ -19,8 +19,8 @@
     "allowJs": true,
     "checkJs": true,
     // Interop Constraints
-    //"allowSyntheticDefaultImports": true,
-    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": false,
+    "esModuleInterop": false,
     "forceConsistentCasingInFileNames": true,
     "isolatedModules": true,
     // Language and Environment
@@ -39,6 +39,7 @@
     "postcss.config.mjs",
     "next-env.d.ts",
     "next.config.ts",
+    "vitest.config.ts",
     "src/"
   ],
   "exclude": ["node_modules/", ".next/", "retired/"]

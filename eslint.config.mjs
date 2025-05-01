@@ -4,8 +4,8 @@ import tseslint from 'typescript-eslint'
 import react from '@eslint-react/eslint-plugin'
 
 import { FlatCompat } from '@eslint/eslintrc'
-import eslintConfigPrettier from 'eslint-config-prettier'
-import eslintPluginPrettierRecommended from 'eslint-plugin-prettier/recommended'
+import * as eslintConfigPrettier from 'eslint-config-prettier'
+import * as eslintPluginPrettierRecommended from 'eslint-plugin-prettier/recommended'
 
 // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-call
 const compat = new FlatCompat({

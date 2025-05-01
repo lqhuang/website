@@ -1,15 +1,20 @@
+import type { JSXElementConstructor } from 'react'
+
 export type Metadata = {
-  fullPath: string
+  path: string
+  stem: string
+  ext: 'md' | 'mdx'
   slug: string
   isDir: boolean
-  // files: string[]
   date: Date | null
+  files?: string[]
 }
 
 export type Doc<T> = {
   metadata: Metadata
   frontmatter: T
-  content: string
+  content?: string
+  MDXContent: JSXElementConstructor<any>
 }
 
 export type Dirname = string

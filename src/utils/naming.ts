@@ -1,5 +1,5 @@
 export const REGEX_DATE_IN_TITLE = /^(\d{4}-\d{2}-\d{2})(?!\d)/
-const STRIP = /^[\-_\?]+|[-_\?]+$/g
+export const STRIP = /^[\-_\?]+|[-_\?]+$/g
 
 export const splitDateAndTitle = (
   str: string,
@@ -11,7 +11,7 @@ export const splitDateAndTitle = (
   }
 
   const dateOnlyString = str.split('-', 3).join('-')
-  const title = str.slice(dateOnlyString.length).replace(STRIP, '')
+  const title = str.slice(dateOnlyString.length).replace(STRIP, '').trim()
 
   try {
     const date = new Date(dateOnlyString)

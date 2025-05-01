@@ -8,7 +8,7 @@ import { env } from 'src/env/server'
 import { buildCollection } from './local'
 
 export const PostFrontMatter = z.object({
-  title: z.string(),
+  title: z.coerce.string(),
   created: z.coerce.string(),
   updated: z.coerce.string(),
   tags: z.string().array().optional(),

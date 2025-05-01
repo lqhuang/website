@@ -9,10 +9,11 @@ import * as fs from 'node:fs/promises'
 import { globby } from 'globby'
 import * as matter from 'gray-matter'
 import { parse as parseYaml } from 'yaml'
+import { compileMDX } from 'next-mdx-remote/rsc'
 
 import { VALID_EXT_REGEX, VALID_INDEX_REGEX } from 'src/constants'
 
-import { splitDateAndTitle } from 'src/utils/naming'
+import { splitDateAndTitle } from 'src/lib/naming'
 
 export const buildCollection = async <T>(
   dir: PathLike,
@@ -99,38 +100,22 @@ export const readContentAndFrontmatter = async <T>(
   schema: z.ZodSchema<T>,
 ): Promise<Doc<T>> => {
   const _metadata = metadata ?? genMetadata(entry.path)
-  // const raw = await fs.readFile(fullPath)
-  // const { data: frontmatter, content } = matter(raw, {
-  //   engines: {
-  //     // Provide custom YAML engine to avoid parsing of date values https://github.com/jonschlinkert/gray-matter/issues/62)
-  //     yaml: str => schema.parse(parseYaml(str)) as object,
-  //   },
-  // })
+  const { content, frontmatter } = await compileMDX<T>({
+    source: _metadata.path,
+    options: {
+      mdxOptions: {},
+      parseFrontmatter: true,
+    },
+  })
 
-  const prefix = path.dirname(_metadata.path)
-
-  if (_metadata.ext === 'md') {
-    console.log(prefix + '/' + _metadata.stem + '.md')
-    const { default: MDXContent, metadata: frontmatter } = await import(
-      prefix + '/' + _metadata.stem + '.md'
-    )
-    return {
-      metadata: _metadata,
-      frontmatter: schema.parse(frontmatter),
-      MDXContent,
-    }
-  } else if (_metadata.ext === 'mdx') {
-    console.log(prefix + '/' + _metadata.stem + '.mdx')
-    const { default: MDXContent, metadata: frontmatter } = await import(
-      prefix + '/' + _metadata.stem + '.mdx'
-    )
-
-    return {
-      metadata: _metadata,
-      frontmatter: schema.parse(frontmatter),
-      MDXContent,
-    }
-  } else throw Error('unreachable path')
+  // console.log(_metadata.path)
+  // console.log(frontmatter)
+  // console.log(content)
+  return {
+    metadata: _metadata,
+    frontmatter: schema.parse(frontmatter),
+    content,
+  }
 }
 
 const collectFiles = async (dir: string): Promise<GlobEntry[]> => {
@@ -138,6 +123,7 @@ const collectFiles = async (dir: string): Promise<GlobEntry[]> => {
   const validEntries = await globby(pattern, {
     gitignore: true,
     objectMode: true,
+    cwd: dir,
   })
   // const validFiles = (
   //   await fs.readdir(dir, {

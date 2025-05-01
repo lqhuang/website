@@ -2,13 +2,11 @@ import Link from 'next/link'
 
 import { format } from 'date-fns/format'
 
-import { Markdown } from 'src/components/ui/markdown'
 import { WellTyped } from 'src/components/ui/well-typed'
 import { Tags } from 'src/components/meta'
 import { PrevNextNav } from 'src/components/pagination'
 
 import { datetimeBuckets } from 'src/lib/datetime-buckets'
-
 import { allNotes } from 'src/content/notes'
 import { sortDateDesc, getYearAndMonth } from 'src/utils'
 
@@ -45,7 +43,6 @@ export default async function Page({ params }: { params: Promise<Params> }) {
     <>
       {currPages.map(post => {
         const fm = post.frontmatter
-
         return (
           <WellTyped key={post.metadata.slug}>
             <Link
@@ -58,7 +55,7 @@ export default async function Page({ params }: { params: Promise<Params> }) {
               <span>date: {format(fm.date, 'yyyy-MM-dd')}</span>
               {fm.tags && fm.tags.length > 0 && <Tags tags={fm.tags} />}
             </span>
-            <Markdown content={post.content} />
+            {post.content}
           </WellTyped>
         )
       })}

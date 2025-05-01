@@ -1,31 +1,19 @@
 import type { NextConfig } from 'next'
 
-import createMDX from '@next/mdx'
-
-// const now = new Date()
-// const buildId = `${now.getUTCFullYear()}-${now.getUTCMonth() + 1}-${now.getUTCDate()}`
-
 const nextConfig: NextConfig = {
+  pageExtensions: ['ts', 'tsx'],
   reactStrictMode: true,
   trailingSlash: false,
   poweredByHeader: false,
-  turbopack: {},
   images: {
     domains: ['avatars.githubusercontent.com'],
+    contentDispositionType: 'inline',
+    contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
   },
-  pageExtensions: ['ts', 'tsx', 'md', 'mdx'],
-  transpilePackages: ['next-mdx-remote'],
-  experimental: {
-    optimizePackageImports: ['es-toolkit'],
-    optimizeServerReact: true,
-    mdxRs: true,
-  },
+  transpilePackages: ['next-mdx-remote', 'shiki'],
+  experimental: { viewTransition: true },
   output: 'export',
   // distDir: `dist/out-${buildId}`,
 }
-
-// const withMDX = createMDX({
-//   // Add markdown plugins here, as desired
-// })
 
 export default nextConfig

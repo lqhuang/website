@@ -2,6 +2,7 @@
 /* @import '@fontsource/inter'; */
 
 @import 'tailwindcss';
+@plugin "@tailwindcss/typography";
 
 @theme {
   --font-logo: 'var(--font-zilla-slab)';

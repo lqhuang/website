@@ -19,7 +19,7 @@
     "allowJs": true,
     "checkJs": true,
     // Interop Constraints
-    // "allowSyntheticDefaultImports": false,
+    "allowSyntheticDefaultImports": false,
     "esModuleInterop": true, // `esModuleInterop` was set to true (requirement for SWC / babel)
     "forceConsistentCasingInFileNames": true,
     "isolatedModules": true,

@@ -19,8 +19,8 @@
     "allowJs": true,
     "checkJs": true,
     // Interop Constraints
-    "allowSyntheticDefaultImports": false,
-    "esModuleInterop": false,
+    // "allowSyntheticDefaultImports": false,
+    "esModuleInterop": true, // `esModuleInterop` was set to true (requirement for SWC / babel)
     "forceConsistentCasingInFileNames": true,
     "isolatedModules": true,
     // Language and Environment
@@ -34,13 +34,9 @@
   },
   "include": [
     ".next/types/**/*.ts",
-    ".prettierrc.mjs",
-    "eslint.config.mjs",
-    "postcss.config.mjs",
     "next-env.d.ts",
-    "next.config.ts",
-    "vitest.config.ts",
-    "src/"
+    "src/",
+    "eslint.config.js"
   ],
   "exclude": ["node_modules/", ".next/", "retired/"]
 }

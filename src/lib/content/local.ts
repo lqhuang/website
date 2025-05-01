@@ -7,13 +7,10 @@ import * as path from 'node:path'
 import * as fs from 'node:fs/promises'
 
 import { globby } from 'globby'
-import * as matter from 'gray-matter'
-import { parse as parseYaml } from 'yaml'
 import { compileMDX } from 'next-mdx-remote/rsc'
 
-import { VALID_EXT_REGEX, VALID_INDEX_REGEX } from 'src/constants'
-
 import { splitDateAndTitle } from 'src/lib/naming'
+import { VALID_EXT_REGEX, VALID_INDEX_REGEX } from 'src/constants'
 
 export const buildCollection = async <T>(
   dir: PathLike,

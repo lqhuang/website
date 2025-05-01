@@ -1,11 +1,11 @@
-import type { Doc } from './schema'
+import type { Doc } from 'src/lib/content/schema'
 
-import { join, resolve } from 'path'
+import { join } from 'node:path'
 import { z } from 'zod'
 
 import { env } from 'src/env/server'
 
-import { buildCollection } from './local'
+import { buildCollection } from 'src/lib/content/local'
 
 export const NoteFrontMatter = z.object({
   title: z.string(),

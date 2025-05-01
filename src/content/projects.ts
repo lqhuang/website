@@ -1,14 +1,14 @@
-import type { Doc } from './schema'
+import type { Doc } from 'src/lib/content/schema'
 
-import { join, resolve } from 'path'
+import { join } from 'node:path'
 import { z } from 'zod'
 
 import { env } from 'src/env/server'
 
-import { buildCollection } from './local'
+import { buildCollection } from 'src/lib/content/local'
 
-export const NoteFrontMatter = z.object({})
-export type NoteFrontMatter = z.infer<typeof NoteFrontMatter>
+export const ProjectFrontMatter = z.object({})
+export type ProjectFrontMatter = z.infer<typeof ProjectFrontMatter>
 
 const projectsDir = join(env.CONTENT_DIR, 'projects')
 // const projects = defineCollection({
@@ -16,7 +16,7 @@ const projectsDir = join(env.CONTENT_DIR, 'projects')
 //   directory: projectsDir,
 //   include: '**/*.md',
 //   //   yaml: true,
-//   schema: NoteFrontMatter,
+//   schema: ProjectFrontMatter,
 //   transform: async (doc, context) => {
 //     const fullPath = resolve(join(projectsDIR, doc._meta.filePath))
 //     const { metadata, frontmatter, content } =
@@ -35,7 +35,7 @@ const projectsDir = join(env.CONTENT_DIR, 'projects')
 //   },
 // })
 
-export const allProjects: Doc<NoteFrontMatter>[] = await buildCollection(
+export const allProjects: Doc<ProjectFrontMatter>[] = await buildCollection(
   projectsDir,
-  NoteFrontMatter,
+  ProjectFrontMatter,
 )

@@ -1,12 +1,12 @@
 import type { NextConfig } from 'next'
 
 const nextConfig: NextConfig = {
-  pageExtensions: ['ts', 'tsx'],
+  pageExtensions: ['ts', 'tsx', 'mdx'],
   reactStrictMode: true,
   trailingSlash: false,
   poweredByHeader: false,
   images: {
-    domains: ['avatars.githubusercontent.com'],
+    formats: ['image/avif', 'image/webp'],
     contentDispositionType: 'inline',
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
   },

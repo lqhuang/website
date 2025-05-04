@@ -23,6 +23,7 @@ pids
 # Output / dist
 out/
 dist/
+_site/
 
 # node-waf configuration
 .lock-wscript
@@ -68,3 +69,6 @@ yarn-error.log
 .pnp.js
 # Yarn Integrity file
 .yarn-integrity
+
+# Vitest
+__snapshots__/

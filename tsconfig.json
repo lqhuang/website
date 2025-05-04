@@ -8,7 +8,7 @@
     "module": "esnext",
     "moduleResolution": "bundler",
     "resolveJsonModule": true,
-    "paths": { "src/*": ["./src/*"] },
+    "paths": { "src/*": ["./src/*"], "tests": ["./tests/*"] },
     "moduleDetection": "force",
     "verbatimModuleSyntax": true,
     // Emit
@@ -36,6 +36,7 @@
     ".next/types/**/*.ts",
     "next-env.d.ts",
     "src/",
+    "tests/",
     "eslint.config.js"
   ],
   "exclude": ["node_modules/", ".next/", "retired/"]

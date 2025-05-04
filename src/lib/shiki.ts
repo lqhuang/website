@@ -1,3 +1,4 @@
+import type { BundledLanguage } from 'shiki'
 // import { bundledLanguages, createHighlighter } from 'shiki/bundle/full'
 
 export const configuredLangs = [
@@ -39,7 +40,7 @@ export const configuredLangs = [
   'typst',
   'viml', // 'vim', 'vimscript',
   'yaml',
-]
+] satisfies BundledLanguage[]
 export const shikiLightTheme = 'catppuccin-latte'
 export const shikiDarkTheme = 'tokyo-night'
 

@@ -13,7 +13,7 @@ import { compileMDX } from 'next-mdx-remote/rsc'
 import { splitDateAndTitle } from 'src/lib/naming'
 import { VALID_EXT_REGEX, VALID_INDEX_REGEX } from 'src/constants'
 import { defaultComponents } from 'src/theme/components'
-import { remarkPlugins, rehypePlugins } from 'src/lib/markdown'
+import { defaultMdxOptions } from 'src/lib/markdown'
 
 export const buildCollection = async <T>(
   dir: PathLike,
@@ -109,14 +109,9 @@ export const readContentAndFrontmatter = async <T>(
       }),
       options: {
         mdxOptions: {
-          elementAttributeNameCase: _metadata.ext == 'md' ? 'html' : 'react',
+          // elementAttributeNameCase: _metadata.ext == 'md' ? 'html' : 'react',
           format: _metadata.ext,
-          remarkPlugins: remarkPlugins,
-          rehypePlugins: rehypePlugins,
-          remarkRehypeOptions: {
-            // allowDangerousHtml: true, // Content is controlled by myself
-            footnoteLabelProperties: { className: 'footnote-label' },
-          },
+          ...defaultMdxOptions,
         },
         parseFrontmatter: true,
       },

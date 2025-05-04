@@ -33,17 +33,27 @@ Remark
 - [remcohaszing/remark-mermaidjs](https://github.com/remcohaszing/remark-mermaidjs): A remark plugin to render mermaid diagrams using playwright
 - [remcohaszing/rehype-mermaid](https://github.com/remcohaszing/rehype-mermaid): A rehype plugin to render mermaid diagrams
 - [alvinometric/remark-inline-svg](https://github.com/alvinometric/remark-inline-svg): Plugin that inlines SVG images from markdown and optimises them with svgo
+- [benrbray/remark-cite](https://github.com/benrbray/remark-cite): Adds support for pandoc-style citations to the Markdown syntax for the remark and micromark parsers.
+- [tats-u/markdown-cjk-friendly](https://github.com/tats-u/markdown-cjk-friendly): Make CommonMark more friendly for Japanese/Chinese/Korean (CommonMark next specification draft)—plugins & patched packages
+
+How to write a remark plugin
+
+- [Create a remark plugin - unified](https://unifiedjs.com/learn/guide/create-a-remark-plugin/): Guide that shows how to create a remark plugin
+- 🌟 [Transforming Markdown with Remark & Rehype | ryanfiller.com](https://www.ryanfiller.com/blog/remark-and-rehype-plugins): Writing custom plugins to give extra powers to Markdown syntax using the Unified ecosystem.
 
 Rehype
 
 - [rehypejs/rehype-slug](https://github.com/rehypejs/rehype-slug): plugin to add `id` attributes to headings <https://unifiedjs.com>
 - [rehypejs/rehype-autolink-headings](https://github.com/rehypejs/rehype-autolink-headings): plugin to add links to headings in HTML <https://unifiedjs.com>
+- [PrinOrange/rehype-graphviz-diagram](https://github.com/PrinOrange/rehype-graphviz-diagram): This is the Unified/Rehype plugin that transform Graphviz codes into SVG diagrams for html content. <https://www.npmjs.com/package/rehype-graphviz-diagram>
 
 Misc
 
 - [goblindegook/littlefoot](https://github.com/goblindegook/littlefoot): Footnotes without the footprint. <https://littlefoot.js.org>
 - [Enhance TypeScript Code Samples with Compiler Diagnostic](https://fatihkalifa.com/blog/typescript-twoslash): Build-time Type Annotation and Syntax Highlighting using Twoslash and Shiki
 - [micromark/micromark-extension-gfm-footnote](https://github.com/micromark/micromark-extension-gfm-footnote): micromark extension to support GFM footnotes <https://unifiedjs.com>
+
+- [Syntax highlighting for MDX](https://itsbruno.dev/blog/syntax-highlighting-for-mdx): Easily adding syntax highlighting to MDX files in Next.js.
 
 ## NextJS for Cloudflare pages
 

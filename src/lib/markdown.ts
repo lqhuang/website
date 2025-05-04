@@ -1,21 +1,14 @@
 import type { CompileOptions } from '@mdx-js/mdx'
 import type { RemarkHeadingOptions } from 'fumadocs-core/mdx-plugins'
-import type { RehypeShikiOptions } from '@shikijs/rehype'
 
 import { remarkGfm, remarkHeading } from 'fumadocs-core/mdx-plugins'
 import remarkMath from 'remark-math'
 import remarkCjkFriendly from 'remark-cjk-friendly'
 
 import rehypeKatex from 'rehype-katex'
-import rehypeShiki from '@shikijs/rehype'
-import {
-  transformerNotationDiff,
-  transformerNotationHighlight,
-  transformerNotationErrorLevel,
-  transformerMetaHighlight,
-} from '@shikijs/transformers'
-import { shikiDarkTheme, shikiLightTheme, configuredLangs } from 'src/lib/shiki'
+import rehypeShikiFromHighlighter from '@shikijs/rehype/core'
 
+import { highlighter, rehypeShikiOptions } from 'src/lib/shiki'
 import { remarkImageResolve } from 'src/lib/remark-image-resolve'
 
 export const remarkPlugins: CompileOptions['remarkPlugins'] = [
@@ -28,22 +21,7 @@ export const remarkPlugins: CompileOptions['remarkPlugins'] = [
 export const rehypePlugins: CompileOptions['rehypePlugins'] = [
   // `rehypeKatex` should be executed before the syntax highlighter
   rehypeKatex,
-  [
-    rehypeShiki,
-    {
-      langs: configuredLangs,
-      defaultLanguage: 'plaintext',
-      fallbackLanguage: 'plaintext',
-      themes: { light: shikiLightTheme, dark: shikiDarkTheme },
-      inline: 'tailing-curly-colon',
-      transformers: [
-        transformerNotationDiff({ matchAlgorithm: 'v3' }),
-        transformerNotationHighlight({ matchAlgorithm: 'v3' }),
-        transformerNotationErrorLevel(),
-        transformerMetaHighlight(),
-      ],
-    } satisfies RehypeShikiOptions,
-  ],
+  [rehypeShikiFromHighlighter, highlighter, rehypeShikiOptions],
 ]
 
 export const remarkRehypeOptions: CompileOptions['remarkRehypeOptions'] = {

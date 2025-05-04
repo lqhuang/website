@@ -1,5 +1,3 @@
-'use server'
-
 import type { FC, ComponentProps, ReactNode } from 'react'
 
 import * as path from 'node:path'
@@ -44,10 +42,7 @@ async function getLocalImageProps(src: string): Promise<CustomImageProps> {
   const buffer = await readFile(abs)
   const size = imageSize(new Uint8Array(buffer))
 
-  const imageRegex = /\.(png|jpg|jpeg|gif|webp|avif)$/i
-
   const mimeType = `image/${size.type}`
-
   return {
     src: `data:${mimeType};base64,${buffer.toString('base64')}`,
     ...size,

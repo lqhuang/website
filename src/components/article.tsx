@@ -1,4 +1,5 @@
 import type { ComponentProps, FC } from 'react'
+import { twMerge } from 'tailwind-merge'
 
 export const Article: FC<ComponentProps<'article'>> = ({
   className,
@@ -7,7 +8,7 @@ export const Article: FC<ComponentProps<'article'>> = ({
 }) => {
   return (
     <article
-      className={`prose dark:prose-invert prose-h1:my-3 ${className}`}
+      className={twMerge('prose dark:prose-invert prose-h1:my-3', className)}
       {...props}
     >
       {children}

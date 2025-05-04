@@ -5,6 +5,7 @@ import { remarkGfm, remarkHeading } from 'fumadocs-core/mdx-plugins'
 import remarkMath from 'remark-math'
 import remarkCjkFriendly from 'remark-cjk-friendly'
 
+import rehypeSlug from 'rehype-slug'
 import rehypeKatex from 'rehype-katex'
 import rehypeShikiFromHighlighter from '@shikijs/rehype/core'
 
@@ -14,13 +15,13 @@ import { remarkImageResolve } from 'src/lib/remark-image-resolve'
 export const remarkPlugins: CompileOptions['remarkPlugins'] = [
   remarkGfm,
   [remarkHeading, { generateToc: false } satisfies RemarkHeadingOptions],
-  remarkCjkFriendly,
   remarkMath,
+  remarkCjkFriendly,
   remarkImageResolve,
 ]
 export const rehypePlugins: CompileOptions['rehypePlugins'] = [
-  // `rehypeKatex` should be executed before the syntax highlighter
-  rehypeKatex,
+  // rehypeSlug,
+  rehypeKatex, // `rehypeKatex` should be executed before the syntax highlighter
   [rehypeShikiFromHighlighter, highlighter, rehypeShikiOptions],
 ]
 

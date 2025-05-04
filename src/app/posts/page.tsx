@@ -12,8 +12,8 @@ export const dynamic = 'force-static'
 
 export default function Page({}) {
   return (
-    <article className="prose lg:prose-lg">
-      <h2 className="my-4">Posts</h2>
+    <div className="prose dark:prose-invert">
+      <h1 className="mb-4">Posts</h1>
       {allPosts
         .filter(p => !p.frontmatter.draft)
         .sort((a, b) => sortDateDesc(a.metadata.date, b.metadata.date))
@@ -25,7 +25,7 @@ export default function Page({}) {
                 className="no-underline hover:underline"
                 href={`/post/${post.metadata.slug}`}
               >
-                <h1>{title}</h1>
+                <h2 className="mt-3 mb-1">{title}</h2>
               </Link>
               <span>
                 Created: {created}
@@ -35,6 +35,6 @@ export default function Page({}) {
             </WellTyped>
           )
         })}
-    </article>
+    </div>
   )
 }

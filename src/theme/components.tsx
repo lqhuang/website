@@ -2,23 +2,39 @@ import type { UseMdxComponents } from '@mdx-js/mdx'
 import type { ComponentProps, FC } from 'react'
 
 import Link from 'next/link'
+import { twMerge } from 'tailwind-merge'
 
 import { Img, SVG, Picture } from './images'
-// import { Code } from './codeblock'
 
-import './components.css'
+const makeAnchor = (tag: `h${1 | 2 | 3 | 4 | 5 | 6}`) => {
+  switch (tag) {
+    case 'h1':
+      return '#'
+    case 'h2':
+      return '##'
+    case 'h3':
+      return '###'
+    case 'h4':
+      return '####'
+    case 'h5':
+      return '#####'
+    case 'h6':
+      return '######'
+  }
+}
 
 const HeadingLink: FC<
   ComponentProps<'h3'> & { tag: `h${1 | 2 | 3 | 4 | 5 | 6}` }
-> = ({ tag: Tag, children, id, ...props }) => {
+> = ({ tag: Tag, className, id, ...props }) => {
+  const content = makeAnchor(Tag)
   return (
     <Link
-      className="no-underline hover:underline"
+      className={`hover: no-underline hover:underline hover:after:content-['${content}']`}
       href={id ? `#${id}` : '#'}
       aria-label={id}
     >
       <span className="absolute -mt-3 hidden" id={id} />
-      <Tag {...props}>{children}</Tag>
+      <Tag className={twMerge(className, 'text-balance')} {...props} />
     </Link>
   )
 }
@@ -29,6 +45,7 @@ const A = ({ href, target, rel, ...props }: ComponentProps<'a'>) => {
   const targetFallback = isExternal ? '_blank' : target
   const relFallback = isExternal ? 'noopener noreferrer' : rel
   return (
+    // after:content-['_↗']
     <Link
       className="no-underline hover:underline"
       href={href}
@@ -48,30 +65,38 @@ export const useComponents: UseMdxComponents = () => {
     h4: props => <HeadingLink tag="h4" {...props} />,
     h5: props => <HeadingLink tag="h5" {...props} />,
     h6: props => <HeadingLink tag="h6" {...props} />,
-    p: props => {
-      const { className, ...rest } = props
-      return <p className={`${className ?? ''} my-3`} {...rest} />
-    },
-    strong: props => <strong className="font-bold" {...props} />,
-    a: A,
-    li: props => {
-      const { className, ...rest } = props
-      return <li className={`${className ?? ''} my-1`} {...rest} />
-    },
-    blockquote: props => (
-      <blockquote
-        className="not-mobile:text-rurikon-400 -ml-6 pl-6 sm:-ml-10 sm:pl-10 md:-ml-14 md:pl-14"
+    p: ({ className, ...props }) => (
+      <p className={twMerge(className, 'my-3 text-pretty')} {...props} />
+    ),
+    strong: ({ className, ...props }) => (
+      <strong className={twMerge(className, 'font-bold')} {...props} />
+    ),
+    ul: ({ className, ...props }) => (
+      <ul className={twMerge(className, 'list-outside list-disc')} {...props} />
+    ),
+    ol: ({ className, ...props }) => (
+      <ol
+        className={twMerge(className, 'list-outside list-decimal')}
         {...props}
       />
     ),
-    pre: props => (
-      <pre className="mt-7 whitespace-pre md:whitespace-pre-wrap" {...props} />
+    li: ({ className, ...props }) => (
+      <li className={twMerge(className, '')} {...props} />
     ),
-    // code: Code,
+    blockquote: ({ className, ...props }) => (
+      <blockquote className={twMerge(className)} {...props} />
+    ),
+    a: A,
+    pre: ({ className, ...props }) => (
+      <pre
+        className={twMerge(
+          className,
+          'mt-7 whitespace-pre md:whitespace-pre-wrap',
+        )}
+        {...props}
+      />
+    ),
     img: Img,
-    // picture: Picture,
-    // svg: SVG,
-    // footnotes: Footnotes,
   }
 }
 

@@ -3,8 +3,9 @@ import { notFound } from 'next/navigation'
 import { Meta } from 'src/components/meta'
 import { PrevNextNav } from 'src/components/pagination'
 
-import { allPosts } from 'src/content/posts'
+import { Article } from 'src/components/article'
 import { themeConfig } from 'src/theme-config'
+import { allPosts } from 'src/content/posts'
 
 type Params = {
   slug: string
@@ -24,13 +25,13 @@ export default async function Page({ params }: { params: Promise<Params> }) {
 
   const { title, tags, created, updated } = doc.frontmatter
   return (
-    <>
+    <Article>
       <h1 className="mt-3">{title}</h1>
       <Meta created={created} updated={updated} tags={tags} />
       {doc.content}
       <PrevNextNav />
       {themeConfig.postFooter}
       {themeConfig.comments}
-    </>
+    </Article>
   )
 }

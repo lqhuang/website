@@ -11,7 +11,7 @@ const nextConfig: NextConfig = {
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
   },
   transpilePackages: ['next-mdx-remote', 'shiki'],
-  experimental: { viewTransition: true },
+  experimental: { viewTransition: true, useCache: true },
   output: 'export',
   // distDir: `dist/out-${buildId}`,
 }

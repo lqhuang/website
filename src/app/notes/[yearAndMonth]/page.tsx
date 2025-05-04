@@ -2,7 +2,7 @@ import Link from 'next/link'
 
 import { format } from 'date-fns/format'
 
-import { WellTyped } from 'src/components/ui/well-typed'
+import { WellTyped } from 'src/components/well-typed'
 import { Tags } from 'src/components/meta'
 import { PrevNextNav } from 'src/components/pagination'
 

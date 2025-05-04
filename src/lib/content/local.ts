@@ -1,16 +1,19 @@
-import type { z } from 'zod'
 import type { PathLike } from 'node:fs'
 import type { GlobEntry } from 'globby'
+import type { z } from 'zod'
 import type { Doc, Metadata, Slug } from './schema'
 
 import * as path from 'node:path'
 import * as fs from 'node:fs/promises'
 
 import { globby } from 'globby'
+import { VFile } from 'vfile'
 import { compileMDX } from 'next-mdx-remote/rsc'
 
 import { splitDateAndTitle } from 'src/lib/naming'
 import { VALID_EXT_REGEX, VALID_INDEX_REGEX } from 'src/constants'
+import { defaultComponents } from 'src/theme/components'
+import { remarkPlugins, rehypePlugins } from 'src/lib/markdown'
 
 export const buildCollection = async <T>(
   dir: PathLike,
@@ -97,21 +100,36 @@ export const readContentAndFrontmatter = async <T>(
   schema: z.ZodSchema<T>,
 ): Promise<Doc<T>> => {
   const _metadata = metadata ?? genMetadata(entry.path)
-  const { content, frontmatter } = await compileMDX<T>({
-    source: _metadata.path,
-    options: {
-      mdxOptions: {},
-      parseFrontmatter: true,
-    },
-  })
-
-  // console.log(_metadata.path)
-  // console.log(frontmatter)
-  // console.log(content)
-  return {
-    metadata: _metadata,
-    frontmatter: schema.parse(frontmatter),
-    content,
+  const raw = await fs.readFile(_metadata.path, { encoding: 'utf-8' })
+  try {
+    const { content, frontmatter } = await compileMDX<T>({
+      source: new VFile({
+        path: _metadata.path,
+        value: raw,
+      }),
+      options: {
+        mdxOptions: {
+          elementAttributeNameCase: _metadata.ext == 'md' ? 'html' : 'react',
+          format: _metadata.ext,
+          remarkPlugins: remarkPlugins,
+          rehypePlugins: rehypePlugins,
+          remarkRehypeOptions: {
+            // allowDangerousHtml: true, // Content is controlled by myself
+            footnoteLabelProperties: { className: 'footnote-label' },
+          },
+        },
+        parseFrontmatter: true,
+      },
+      components: defaultComponents,
+    })
+    return {
+      metadata: _metadata,
+      frontmatter: schema.parse(frontmatter),
+      content,
+    }
+  } catch (error) {
+    console.error('Error compiling MDX for file', _metadata)
+    throw error
   }
 }
 

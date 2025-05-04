@@ -2,7 +2,7 @@ import { notFound } from 'next/navigation'
 
 import { Meta } from 'src/components/meta'
 import { PrevNextNav } from 'src/components/pagination'
-import { Article } from 'src/components/ui/article'
+import { Article } from 'src/components/article'
 
 import { allNotes } from 'src/content/notes'
 import { themeConfig } from 'src/theme-config'

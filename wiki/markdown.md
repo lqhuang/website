@@ -7,7 +7,8 @@ MDX is great, but I just want to use markdown files for now.
 - [hashicorp/next-mdx-remote](https://github.com/hashicorp/next-mdx-remote): Load MDX content from anywhere
 - [emanuelefavero/nextjs-app-router-blog](https://github.com/emanuelefavero/nextjs-app-router-blog): A simple blog built with NextJS 13 App Router and Typescript to show its features <https://nextjs-blog-typescript-rho.vercel.app/>
 - 🌟 [Next.js 15 static first MDX starterkit | chris.lu](https://chris.lu/web_development/tutorials/next-js-static-first-mdx-starterkit)
-  - [remcohaszing/rehype-mdx-import-media](https://github.com/remcohaszing/rehype-mdx-import-media): An MDX rehype plugin for turning media paths into imports.
+  - [Optimizing images in MDX using next/image | chris.lu](https://chris.lu/web_development/tutorials/next-js-static-first-mdx-starterkit/optimizing-using-next-image)
+    - [remcohaszing/rehype-mdx-import-media](https://github.com/remcohaszing/rehype-mdx-import-media): An MDX rehype plugin for turning media paths into imports.
 - [contentlayerdev/contentlayer](https://github.com/contentlayerdev/contentlayer): Contentlayer turns your content into data - making it super easy to import MD(X) and CMS content in your app <https://www.contentlayer.dev>
   - last release: 2023-06-29 ... Project isn't being maintained
   - [State of the project #429](https://github.com/contentlayerdev/contentlayer/issues/429)
@@ -26,12 +27,23 @@ MDX is great, but I just want to use markdown files for now.
 
 ## Plugins
 
+Remark
+
+- [remarkjs/remark-images](https://github.com/remarkjs/remark-images): plugin to add a simpler image syntax <https://remark.js.org/>
 - [remcohaszing/remark-mermaidjs](https://github.com/remcohaszing/remark-mermaidjs): A remark plugin to render mermaid diagrams using playwright
 - [remcohaszing/rehype-mermaid](https://github.com/remcohaszing/rehype-mermaid): A rehype plugin to render mermaid diagrams
+- [alvinometric/remark-inline-svg](https://github.com/alvinometric/remark-inline-svg): Plugin that inlines SVG images from markdown and optimises them with svgo
+
+Rehype
+
 - [rehypejs/rehype-slug](https://github.com/rehypejs/rehype-slug): plugin to add `id` attributes to headings <https://unifiedjs.com>
 - [rehypejs/rehype-autolink-headings](https://github.com/rehypejs/rehype-autolink-headings): plugin to add links to headings in HTML <https://unifiedjs.com>
+
+Misc
+
 - [goblindegook/littlefoot](https://github.com/goblindegook/littlefoot): Footnotes without the footprint. <https://littlefoot.js.org>
 - [Enhance TypeScript Code Samples with Compiler Diagnostic](https://fatihkalifa.com/blog/typescript-twoslash): Build-time Type Annotation and Syntax Highlighting using Twoslash and Shiki
+- [micromark/micromark-extension-gfm-footnote](https://github.com/micromark/micromark-extension-gfm-footnote): micromark extension to support GFM footnotes <https://unifiedjs.com>
 
 ## NextJS for Cloudflare pages
 

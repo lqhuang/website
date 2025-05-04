@@ -1,6 +1,6 @@
 import Link from 'next/link'
 
-import { Article } from 'src/components/ui/article'
+import { Article } from 'src/components/article'
 import { AboutMe } from 'src/components/about-me'
 
 export const dynamicParams = false

@@ -5,13 +5,12 @@ import { sortDateDesc } from 'src/utils'
 
 import { allPosts } from 'src/content/posts'
 
-import { WellTyped } from 'src/components/ui/well-typed'
+import { WellTyped } from 'src/components/well-typed'
 
 export const dynamicParams = false
 export const dynamic = 'force-static'
 
 export default function Page({}) {
-  return <div>WIP</div>
   return (
     <article className="prose lg:prose-lg">
       <h2 className="my-4">Posts</h2>

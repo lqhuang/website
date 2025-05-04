@@ -1,4 +1,4 @@
-import { WellTyped } from 'src/components/ui/well-typed'
+import { WellTyped } from 'src/components/well-typed'
 
 import { allProjects } from 'src/content/projects'
 

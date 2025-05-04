@@ -1,17 +1,23 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
 
-.data-footnote-backref {
-  text-decoration: none;
-}
+@layer mdx {
+  [data-footnote-ref]::before {
+    content: '[';
+  }
 
-@layer components {
-  section.footnotes a {
+  [data-footnote-ref]::after {
+    content: ']';
+  }
+
+  .data-footnote-backref {
+    text-decoration: none;
+  }
+
+  .footnotes a {
     @apply no-underline hover:no-underline;
   }
 
-  section.footnotes h2 {
+  .footnotes h2 {
     @apply mt-8 text-lg font-normal;
     color: var(--tw-prose-counters);
   }

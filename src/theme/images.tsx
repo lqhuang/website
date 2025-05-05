@@ -9,7 +9,7 @@ import Image from 'next/image'
 import { BlockSideTitle } from 'src/components/block-sidetitle'
 import { readFile } from 'node:fs/promises'
 
-const EXTERNAL_URL_REGEX = /^https?:\/\//
+import { VIDEO_EXT_REGEX, EXTERNAL_URL_REGEX } from 'src/lib/regex'
 
 export const Picture: FC<ComponentProps<'picture'>> = async props => {
   console.log('picture', props)
@@ -52,11 +52,12 @@ async function getLocalImageProps(src: string): Promise<CustomImageProps> {
 export const Video: FC<
   ComponentProps<'video'> & { src: string | undefined }
 > = async ({ src, title, ...props }) => {
+  const ext = path.extname(src ?? '').replace('.', '')
   return (
     <video title={title} controls loop autoPlay {...props}>
       Sorry, your browser doesn't support embedded videos.
-      <source src={src} type="video/mp4" />
-      <track kind="descriptions" />
+      <source src={src} type={`video/${ext}`} />
+      <track />
     </video>
   )
 }
@@ -73,7 +74,8 @@ export const Img: FC<ComponentProps<'img'>> = async ({
     throw new Error('type `Blob` for <img> is not implemented')
 
   // const ext = path.extname(src)
-  if (src.endsWith('.mp4')) return <Video src={src} title={title} />
+  if (VIDEO_EXT_REGEX.test(path.extname(src)))
+    return <Video src={src} title={title} />
 
   const isExternal = EXTERNAL_URL_REGEX.test(src)
   const image = isExternal

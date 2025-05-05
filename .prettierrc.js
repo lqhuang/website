@@ -1,4 +1,5 @@
 // @ts-check
+/* eslint-disable @eslint-react/naming-convention/filename */
 /** @type {import('prettier').Config} */
 const config = {
   trailingComma: 'all',

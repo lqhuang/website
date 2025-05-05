@@ -1,4 +1,4 @@
-import type { CompileMDXResult } from 'next-mdx-remote/rsc'
+import type { ReactElement } from 'react'
 
 export type Dirname = string
 export type Slug = string
@@ -15,6 +15,6 @@ export type Metadata = {
 export type Doc<T> = {
   metadata: Metadata
   frontmatter: T
-  content: CompileMDXResult<T>['content']
+  content: ReactElement
 }
 export type Content<T> = Doc<T>[]

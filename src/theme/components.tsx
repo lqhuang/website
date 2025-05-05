@@ -1,5 +1,5 @@
-import type { UseMdxComponents } from '@mdx-js/mdx'
 import type { ComponentProps, FC } from 'react'
+import type { MDXComponents } from 'mdx/types'
 
 import Link from 'next/link'
 import { twMerge } from 'tailwind-merge'
@@ -57,47 +57,43 @@ const A = ({ href, target, rel, ...props }: ComponentProps<'a'>) => {
   )
 }
 
-export const useComponents: UseMdxComponents = () => {
-  return {
-    h1: props => <HeadingLink tag="h1" {...props} />,
-    h2: props => <HeadingLink tag="h2" {...props} />,
-    h3: props => <HeadingLink tag="h3" {...props} />,
-    h4: props => <HeadingLink tag="h4" {...props} />,
-    h5: props => <HeadingLink tag="h5" {...props} />,
-    h6: props => <HeadingLink tag="h6" {...props} />,
-    p: ({ className, ...props }) => (
-      <p className={twMerge(className, 'my-3 text-pretty')} {...props} />
-    ),
-    strong: ({ className, ...props }) => (
-      <strong className={twMerge(className, 'font-bold')} {...props} />
-    ),
-    ul: ({ className, ...props }) => (
-      <ul className={twMerge(className, 'list-outside list-disc')} {...props} />
-    ),
-    ol: ({ className, ...props }) => (
-      <ol
-        className={twMerge(className, 'list-outside list-decimal')}
-        {...props}
-      />
-    ),
-    li: ({ className, ...props }) => (
-      <li className={twMerge(className, '')} {...props} />
-    ),
-    blockquote: ({ className, ...props }) => (
-      <blockquote className={twMerge(className)} {...props} />
-    ),
-    a: A,
-    pre: ({ className, ...props }) => (
-      <pre
-        className={twMerge(
-          className,
-          'mt-7 whitespace-pre md:whitespace-pre-wrap',
-        )}
-        {...props}
-      />
-    ),
-    img: Img,
-  }
+export const defaultComponents: MDXComponents = {
+  h1: props => <HeadingLink tag="h1" {...props} />,
+  h2: props => <HeadingLink tag="h2" {...props} />,
+  h3: props => <HeadingLink tag="h3" {...props} />,
+  h4: props => <HeadingLink tag="h4" {...props} />,
+  h5: props => <HeadingLink tag="h5" {...props} />,
+  h6: props => <HeadingLink tag="h6" {...props} />,
+  p: ({ className, ...props }) => (
+    <p className={twMerge(className, 'my-3 text-pretty')} {...props} />
+  ),
+  strong: ({ className, ...props }) => (
+    <strong className={twMerge(className, 'font-bold')} {...props} />
+  ),
+  ul: ({ className, ...props }) => (
+    <ul className={twMerge(className, 'list-outside list-disc')} {...props} />
+  ),
+  ol: ({ className, ...props }) => (
+    <ol
+      className={twMerge(className, 'list-outside list-decimal')}
+      {...props}
+    />
+  ),
+  li: ({ className, ...props }) => (
+    <li className={twMerge(className, '')} {...props} />
+  ),
+  blockquote: ({ className, ...props }) => (
+    <blockquote className={twMerge(className)} {...props} />
+  ),
+  a: A,
+  pre: ({ className, ...props }) => (
+    <pre
+      className={twMerge(
+        className,
+        'mt-7 whitespace-pre md:whitespace-pre-wrap',
+      )}
+      {...props}
+    />
+  ),
+  img: Img,
 }
-
-export const defaultComponents = useComponents()

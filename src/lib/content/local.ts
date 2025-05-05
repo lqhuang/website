@@ -15,7 +15,7 @@ import { VALID_EXT_REGEX, VALID_INDEX_REGEX } from 'src/constants'
 import { defaultComponents } from 'src/theme/components'
 import { defaultMdxOptions } from 'src/lib/markdown'
 
-export const buildCollection = async <T>(
+export const buildCollection = async <T extends Record<string, unknown>>(
   dir: PathLike,
   schema: z.ZodSchema<T>,
 ): Promise<Doc<T>[]> => {
@@ -30,6 +30,7 @@ export const buildCollection = async <T>(
   const validEntries = await collectFiles(dir.toString())
 
   for (const entry of validEntries) {
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument, @typescript-eslint/no-unsafe-member-access
     const metadata = genMetadata(entry.path)
     if (!dbSet.has(metadata.slug)) {
       const collection = await readContentAndFrontmatter<T>(
@@ -94,14 +95,18 @@ export const genMetadata = (filePath: string): Metadata => {
   }
 }
 
-export const readContentAndFrontmatter = async <T>(
+export const readContentAndFrontmatter = async <
+  T extends Record<string, unknown>,
+>(
   entry: GlobEntry,
   metadata: Metadata | undefined = undefined,
   schema: z.ZodSchema<T>,
 ): Promise<Doc<T>> => {
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-argument, @typescript-eslint/no-unsafe-member-access
   const _metadata = metadata ?? genMetadata(entry.path)
   const raw = await fs.readFile(_metadata.path, { encoding: 'utf-8' })
   try {
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
     const { content, frontmatter } = await compileMDX<T>({
       source: new VFile({
         path: _metadata.path,
@@ -120,6 +125,7 @@ export const readContentAndFrontmatter = async <T>(
     return {
       metadata: _metadata,
       frontmatter: schema.parse(frontmatter),
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
       content,
     }
   } catch (error) {

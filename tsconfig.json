@@ -37,7 +37,11 @@
     "next-env.d.ts",
     "src/",
     "tests/",
-    "eslint.config.js"
+    "eslint.config.js",
+    ".prettierrc.js",
+    "postcss.config.js",
+    "vitest.config.ts",
+    "next.config.ts",
   ],
-  "exclude": ["node_modules/", ".next/", "retired/"]
+  "exclude": ["node_modules/", ".next/", "retired/", "out/"]
 }

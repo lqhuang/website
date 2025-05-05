@@ -1,22 +1,6 @@
 import { it, expect } from 'vitest'
 
-import { splitDateAndTitle, REGEX_DATE_IN_TITLE } from './naming'
-
-it('test regex `REGEX_DATE_IN_TITLE`', () => {
-  expect(REGEX_DATE_IN_TITLE.test('2016-04-15-markdown-example')).toBe(true)
-  expect(REGEX_DATE_IN_TITLE.test('2016-04-15-markdown')).toBe(true)
-  expect(REGEX_DATE_IN_TITLE.test('2016-04-15---mark____down')).toBe(true)
-
-  expect(REGEX_DATE_IN_TITLE.test('2016-04-15-')).toBe(true)
-  expect(REGEX_DATE_IN_TITLE.test('2016-04-15')).toBe(true)
-
-  expect(REGEX_DATE_IN_TITLE.test('2016-04-15markdown-example')).toBe(true)
-  expect(REGEX_DATE_IN_TITLE.test('2016-04a-15')).toBe(false)
-  expect(REGEX_DATE_IN_TITLE.test('2016-043-15')).toBe(false)
-  expect(REGEX_DATE_IN_TITLE.test('2016-0a-15')).toBe(false)
-  expect(REGEX_DATE_IN_TITLE.test('20116-01-15')).toBe(false)
-  expect(REGEX_DATE_IN_TITLE.test('2016-04-015')).toBe(false)
-})
+import { splitDateAndTitle } from './naming'
 
 it('test function `splitDateAndTitle`', () => {
   expect(splitDateAndTitle('2016-04-15-markdown-example')).toStrictEqual({

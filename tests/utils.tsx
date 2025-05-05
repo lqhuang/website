@@ -13,6 +13,7 @@ export async function compileAndRenderStatic({
 }: MDXRemoteProps): Promise<string> {
   const mdxSource = await serialize(source, options)
   return renderToStaticMarkup(
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
     <MDXRemote {...mdxSource} components={components} />,
   )
 }

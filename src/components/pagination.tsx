@@ -2,12 +2,12 @@ import type { FC } from 'react'
 
 import Link from 'next/link'
 
-interface PostLinkProps {
+type PostLinkProps = {
   text: string
   href: string
 }
 
-interface PrevNext {
+type PrevNext = {
   prev?: PostLinkProps
   next?: PostLinkProps
   className?: string

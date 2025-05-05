@@ -1,7 +1,7 @@
 import type { ReactNode } from 'react'
 import Link from 'next/link'
 
-interface MetaProps {
+type MetaProps = {
   date?: string | Date
   created?: string | Date
   updated?: string | Date

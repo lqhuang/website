@@ -16,7 +16,7 @@
     "build": "next build && cp -f _redirects out/_redirects",
     "start": "next start --hostname 0.0.0.0",
     "lint": "next lint",
-    "test": "vitest --exclude retired/",
+    "test": "vitest --exclude retired/ src/ tests/",
     "up-deps": "pnpm update -iL",
     "up-greedy": "pnpm update --latest --filter=!@types/node",
     "clean": "rm -rf ./.next/ ./node_modules/",

@@ -1,7 +1,7 @@
 import type { ReactNode } from 'react'
 import type { UseMdxComponents } from '@mdx-js/mdx'
 
-export interface Persona {
+export type Persona = {
   title?: string
   author?: string
   nickname?: string
@@ -17,7 +17,7 @@ export interface Persona {
   }
 }
 
-export interface ThemeConfig {
+export type ThemeConfig = {
   logo?: ReactNode
   darkMode?: boolean
   footer?: ReactNode
@@ -45,7 +45,7 @@ export interface ThemeConfig {
   site?: Persona
 }
 
-export interface Node {
+export type Node = {
   id: string
   excerpt: string
   body: string
@@ -64,7 +64,7 @@ export interface Node {
   [key: string]: unknown
 }
 
-export interface PaginationNode {
+export type PaginationNode = {
   fields: {
     slug: string
     // tagSlugs?: string[]

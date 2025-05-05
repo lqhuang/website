@@ -1,5 +1,4 @@
-export const REGEX_DATE_IN_TITLE = /^(\d{4}-\d{2}-\d{2})(?!\d)/
-export const STRIP = /^[\-_\?]+|[-_\?]+$/g
+import { REGEX_DATE_IN_TITLE, STRIP } from './regex'
 
 export const splitDateAndTitle = (
   str: string,

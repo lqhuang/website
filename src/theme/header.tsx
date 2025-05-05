@@ -36,7 +36,7 @@ export const Header = ({
     <>
       <header className="bottom-3">
         <div className="my-3">
-          {logo ? logo : <></>}
+          {logo ?? <></>}
           <Link
             className="no-underline"
             href="/"

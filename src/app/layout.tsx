@@ -13,33 +13,37 @@ import { Header } from 'src/theme/header'
 import { siteConfig } from 'src/site'
 import { themeConfig } from 'src/theme-config'
 
+import 'katex/dist/katex.min.css'
+
 import 'src/styles/globals.css'
 
 const fontInter = Inter({
   subsets: ['latin'],
+  // If loading a variable font, you don't need to specify the font weight
+  display: 'swap',
   variable: '--font-inter',
 })
 
 const fontZillaSlab = Zilla_Slab({
   subsets: ['latin'],
-  weight: '300',
+  weight: ['300', '400', '500', '600'],
   variable: '--font-zilla-slab',
   display: 'swap',
 })
 
 const fontPlexMono = IBM_Plex_Mono({
   subsets: ['latin'],
-  weight: ['300', '400', '700'],
+  weight: ['300', '400', '500', '600'],
   variable: '--font-plex-mono',
   display: 'swap',
 })
 
-// export const viewport: Viewport = {
-//   themeColor: [
-//     { media: '(prefers-color-scheme: light)', color: 'white' },
-//     { media: '(prefers-color-scheme: dark)', color: 'black' },
-//   ],
-// }
+export const viewport: Viewport = {
+  themeColor: [
+    { media: '(prefers-color-scheme: light)', color: 'white' },
+    { media: '(prefers-color-scheme: dark)', color: 'black' },
+  ],
+}
 
 export const generateViewport = (): Viewport => {
   return {
@@ -82,7 +86,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
     <html
       lang="en"
       suppressHydrationWarning
-      className={`${fontZillaSlab.variable} ${fontInter.variable} ${fontPlexMono.variable}`}
+      className={`${fontZillaSlab.variable} ${fontInter.variable} ${fontPlexMono.variable} antialiased`}
     >
       <body>
         <ThemeProvider attribute="class">

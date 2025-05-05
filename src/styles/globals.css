@@ -7,11 +7,14 @@
 @variant dark (&:is(.dark *));
 
 @theme {
-  --font-logo: 'var(--font-zilla-slab)';
+  --font-logo: var(--font-zilla-slab), var(--font-serif);
   --font-sans:
-    var(--font-inter), ui-sans-serif, system-ui, sans-serif,
-    'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
-  --font-serif: ui-serif, Georgia, Cambria, 'Times New Roman', Times, serif;
+    var(--font-inter), ui-sans-serif, system-ui, sans-serif, 'PingFang SC',
+    'Noto Sans CJK SC', 'Apple Color Emoji', 'Segoe UI Emoji',
+    'Segoe UI Symbol', 'Noto Color Emoji';
+  --font-serif:
+    ui-serif, Georgia, Cambria, 'Times New Roman', Times, 'Noto Serif CJK SC',
+    serif;
   --font-mono:
     var(--font-plex-mono), ui-monospace, SFMono-Regular, Menlo, Monaco,
     Consolas, 'Liberation Mono', 'Courier New', monospace;

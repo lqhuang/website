@@ -55,7 +55,7 @@ export const Video: FC<
   const ext = path.extname(src ?? '').replace('.', '')
   return (
     <video title={title} controls loop autoPlay {...props}>
-      Sorry, your browser doesn't support embedded videos.
+      {"Sorry, your browser doesn't support embedded videos."}
       <source src={src} type={`video/${ext}`} />
       <track />
     </video>

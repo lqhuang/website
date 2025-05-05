@@ -5,6 +5,7 @@
 - [Tailwind CSS Color Generator](https://uicolors.app/create)
 - [Curated colors in context](https://www.happyhues.co/palettes/12)
 - [evilmartians/harmony](https://github.com/evilmartians/harmony): Harmony color palette
+- [sindresorhus/github-markdown-css](https://github.com/sindresorhus/github-markdown-css): The minimal amount of CSS to replicate the GitHub Markdown style <https://sindresorhus.com/github-markdown-css>
 
 ## Icons
 

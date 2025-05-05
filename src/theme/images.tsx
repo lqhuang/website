@@ -17,7 +17,7 @@ export const Picture: FC<ComponentProps<'picture'>> = async props => {
 }
 
 export type CustomImageProps = {
-  src: string | Blob
+  src: string
   width: number
   height: number
   orientation?: number
@@ -86,7 +86,7 @@ export const Img: FC<ComponentProps<'img'>> = async ({
     <Image
       className="mt-7"
       src={image.src}
-      alt={alt}
+      alt={alt ?? ''}
       quality={95}
       width={image.width}
       height={image.height}

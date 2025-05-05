@@ -48,7 +48,7 @@ const A = ({ href, target, rel, ...props }: ComponentProps<'a'>) => {
     // after:content-['_↗']
     <Link
       className="no-underline hover:underline"
-      href={href}
+      href={href ?? ''}
       passHref
       target={targetFallback}
       rel={relFallback}

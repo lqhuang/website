@@ -5,7 +5,6 @@ import { remarkGfm, remarkHeading } from 'fumadocs-core/mdx-plugins'
 import remarkMath from 'remark-math'
 import remarkCjkFriendly from 'remark-cjk-friendly'
 
-import rehypeSlug from 'rehype-slug'
 import rehypeKatex from 'rehype-katex'
 import rehypeShikiFromHighlighter from '@shikijs/rehype/core'
 

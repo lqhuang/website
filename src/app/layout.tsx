@@ -2,7 +2,6 @@ import type { ReactNode } from 'react'
 import type { Metadata, Viewport } from 'next'
 
 import { Inter, Zilla_Slab, IBM_Plex_Mono } from 'next/font/google'
-import { GoogleAnalytics } from '@next/third-parties/google'
 
 import { env } from 'src/env/client'
 
@@ -101,9 +100,6 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           </div>
         </ThemeProvider>
       </body>
-      {env.NEXT_PUBLIC_GA_ID && (
-        <GoogleAnalytics gaId={env.NEXT_PUBLIC_GA_ID} />
-      )}
     </html>
   )
 }

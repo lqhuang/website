@@ -2,6 +2,8 @@
 /* @import '@fontsource/inter'; */
 
 @import 'tailwindcss';
+@import 'katex/dist/katex.min.css';
+
 @plugin "@tailwindcss/typography";
 
 @variant dark (&:is(.dark *));

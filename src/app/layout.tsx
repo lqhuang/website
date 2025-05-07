@@ -12,8 +12,6 @@ import { Header } from 'src/theme/header'
 import { siteConfig } from 'src/site'
 import { themeConfig } from 'src/theme-config'
 
-import 'katex/dist/katex.min.css'
-
 import 'src/styles/globals.css'
 
 const fontInter = Inter({

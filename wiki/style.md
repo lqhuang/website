@@ -72,3 +72,5 @@
 - [radishzzz/astro-theme-retypeset](https://github.com/radishzzz/astro-theme-retypeset): Revive the beauty of typography. <https://retypeset.radishzz.cc/en/>
   - CJK typography
 - [让你的 RSS/Atom feed 更好看](https://taxodium.ink/pretty-feed.html)
+- [怎么让 favicon 动起来 | imbAnt's blog](https://imbant.github.io/blog/2023/03/30/%E6%80%8E%E4%B9%88%E8%AE%A9-favicon-%E5%8A%A8%E8%B5%B7%E6%9D%A5/): 技术博客，记录语言服务器(LSP)开发、VS Code/Cursor 插件开发、生成式 AI 与 Agent 技术、前端开发和 golang
+  - Wow animated favicon

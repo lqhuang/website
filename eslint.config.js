@@ -5,7 +5,10 @@ import react from '@eslint-react/eslint-plugin'
 
 const compat = new FlatCompat({ baseDirectory: import.meta.dirname })
 
-export default tseslint.config([
+/**
+ * @type {import('typescript-eslint').ConfigArray}
+ */
+const config = tseslint.config([
   ...compat.extends('next/core-web-vitals', 'next/typescript'),
   react.configs.recommended,
   ...tseslint.configs.recommendedTypeChecked,
@@ -24,3 +27,4 @@ export default tseslint.config([
   },
   { ignores: ['node_modules/', '.next/', 'retired/', 'out/'] },
 ])
+export default config

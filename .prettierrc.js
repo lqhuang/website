@@ -9,7 +9,11 @@ const config = {
   bracketSpacing: true,
   bracketSameLine: false,
   arrowParens: 'avoid',
-  plugins: ['prettier-plugin-tailwindcss'],
+  plugins: [
+    'prettier-plugin-tailwindcss',
+    'prettier-plugin-packagejson',
+    '@prettier/plugin-oxc',
+  ],
   tailwindFunctions: ['clsx', 'cva', 'cx', 'cn', 'tv'],
 }
 export default config

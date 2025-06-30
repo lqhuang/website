@@ -6,6 +6,7 @@
 - [Curated colors in context](https://www.happyhues.co/palettes/12)
 - [evilmartians/harmony](https://github.com/evilmartians/harmony): Harmony color palette
 - [sindresorhus/github-markdown-css](https://github.com/sindresorhus/github-markdown-css): The minimal amount of CSS to replicate the GitHub Markdown style <https://sindresorhus.com/github-markdown-css>
+- [Huemint](https://huemint.com/): AI color palette generator
 
 ## Icons
 
@@ -20,6 +21,7 @@
 - [Fontimize: Subset Fonts to Exactly and Only Your Website's Used Characters](https://daveon.design/introducing-fontimize-subset-fonts-to-exactly-and-only-your-websites-used-characters.html)
 - [iaolo/iA-Fonts](https://github.com/iaolo/iA-Fonts): Free variable writing fonts from iA <https://ia.net>
 - [Font Source](https://fontsource.org/)
+- [Google Fonts superfamilies](https://anthonyhobday.com/sideprojects/googlefontsfamilies/)
 
 ## Dark mode
 
@@ -29,6 +31,7 @@
 
 - [cdransf/coryd.dev](https://github.com/cdransf/coryd.dev): 🎧 The source for my personal site. Built using 11ty. <https://coryd.dev>
 - [Paco Coursey](https://paco.me/)
+- https://stephango.com/vault
 - [Austin Z. Henley](https://austinhenley.com/publications.html)
 - [Chris Nicholas](https://chrisnicholas.dev/)
 - [Notion Site | Ivan Zhao Photography](https://www.ivanzhaophotos.com)

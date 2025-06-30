@@ -10,7 +10,6 @@
     "resolveJsonModule": true,
     "paths": { "src/*": ["./src/*"], "tests": ["./tests/*"] },
     "moduleDetection": "force",
-    "verbatimModuleSyntax": true,
     // Emit
     "declaration": true,
     "noEmit": true,
@@ -18,19 +17,24 @@
     // JavaScript Support
     "allowJs": true,
     "checkJs": true,
+    // Editor Support
+    "plugins": [{ "name": "next" }],
     // Interop Constraints
     // "allowSyntheticDefaultImports": false, // stuck on nextjs ...
     "esModuleInterop": true, // `esModuleInterop` was set to true (requirement for SWC / babel)
+    "erasableSyntaxOnly": true,
     "forceConsistentCasingInFileNames": true,
     "isolatedModules": true,
+    "verbatimModuleSyntax": true,
     // Language and Environment
-    "target": "esnext",
+    "target": "es2022",
     "lib": ["DOM", "DOM.Iterable", "ESNext"],
     "jsx": "preserve",
-    // Completeness
-    "skipLibCheck": true,
+    // Projects
+    "composite": true,
     "incremental": true,
-    "plugins": [{ "name": "next" }]
+    // Completeness
+    "skipLibCheck": true
   },
   "include": [
     ".next/types/**/*.ts",

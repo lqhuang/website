@@ -24,13 +24,13 @@ export const Tags = ({
   className?: string
 }) => {
   const tagsLink = (
-    <span className="ml-1">
+    <span className={`ml-1 ${className ?? ''}`}>
       {tags
         .map(tag => (
           <Link
             className={`no-underline hover:underline hover:decoration-current ${className ?? ''}`}
             key={tag}
-            href={`/tags/${tag.toLowerCase()}`}
+            href={`/tag/${tag.toLowerCase()}`}
           >
             #{tag}
           </Link>
@@ -38,7 +38,12 @@ export const Tags = ({
         .reduce((prev, curr) => join2(prev, curr))}
     </span>
   )
-  return <> · Tags: {tagsLink}</>
+  return (
+    <>
+      <span className={`${className ?? ''}`}> · Tags: </span>
+      {tagsLink}
+    </>
+  )
 }
 
 export const Meta = ({ date, created, updated, tags }: MetaProps) => {

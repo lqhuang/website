@@ -9,6 +9,7 @@ const nextConfig: NextConfig = {
     formats: ['image/avif', 'image/webp'],
     contentDispositionType: 'inline',
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
+    unoptimized: true,
   },
   transpilePackages: ['next-mdx-remote', 'shiki'],
   experimental: { viewTransition: true, useCache: true },

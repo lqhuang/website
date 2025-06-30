@@ -37,7 +37,8 @@ export default async function Page({ params }: { params: Promise<Params> }) {
     .sort((a, b) => sortDateDesc(a.metadata.date, b.metadata.date))
 
   const index = buckets.indexOf(yearAndMonth)
-  if (index === -1) throw new Error('Invalid yearAndMonth')
+  if (index === -1)
+    throw new Error('Invalid yearAndMonth or No notes found in current range')
 
   return (
     <>

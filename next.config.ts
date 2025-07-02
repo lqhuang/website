@@ -1,5 +1,18 @@
 import type { NextConfig } from 'next'
 
+const cspHeader = `
+    default-src 'self';
+    script-src 'self' 'unsafe-eval' 'unsafe-inline';
+    style-src 'self' 'unsafe-inline';
+    img-src 'self' blob: data:;
+    font-src 'self';
+    object-src 'none';
+    base-uri 'self';
+    form-action 'self';
+    frame-ancestors 'none';
+    upgrade-insecure-requests;
+`
+
 const nextConfig: NextConfig = {
   pageExtensions: ['ts', 'tsx', 'mdx'],
   reactStrictMode: true,
@@ -15,6 +28,44 @@ const nextConfig: NextConfig = {
   experimental: { viewTransition: true, useCache: true },
   output: 'export',
   // distDir: `dist/out-${buildId}`,
+
+  /**
+   * ....
+   *
+   * Warn: Specified "headers" will not automatically work with "output: export".
+   *       See more info here: https://nextjs.org/docs/messages/export-no-custom-routes
+   */
+  headers: async () => [
+    {
+      source: '/(.*)',
+      headers: [
+        {
+          key: 'Content-Security-Policy',
+          value: cspHeader.replace(/\s+/g, ' ').trim(),
+        },
+        {
+          key: 'Permissions-Policy',
+          value: 'camera=(), microphone=(), geolocation=(), browsing-topics=()',
+        },
+        {
+          key: 'Referrer-Policy',
+          value: 'origin-when-cross-origin',
+        },
+        {
+          key: 'X-Content-Type-Options',
+          value: 'nosniff',
+        },
+        {
+          key: 'X-DNS-Prefetch-Control',
+          value: 'on',
+        },
+        {
+          key: 'X-Frame-Options',
+          value: 'SAMEORIGIN',
+        },
+      ],
+    },
+  ],
 }
 
 export default nextConfig

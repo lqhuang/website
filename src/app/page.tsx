@@ -21,6 +21,11 @@ export default function Page() {
           <Link href="/projects">Projects</Link>: My ongoing projects and
           progress.
         </li>
+        or
+        <li>
+          <Link href="/tags">Tags</Link>: Filter what you're interested in
+          through tags.
+        </li>
       </ul>
     </Article>
   )

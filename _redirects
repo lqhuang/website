@@ -1,6 +1,6 @@
 # Lines starting with a `#` will be treated as comments.
 
-/post /posts
-
-/notes /notes/2025-04
-/note /notes/2025-04
+/post    /posts
+/note    /notes
+/tag     /tags
+/project /projects

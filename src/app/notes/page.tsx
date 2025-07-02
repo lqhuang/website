@@ -22,15 +22,20 @@ export default async function Page() {
 
   return (
     <>
-      <WellTyped className="mb-3">
-        Record my comments or digests for my readings
+      <WellTyped className="mb-3 text-black">
+        Record notes from my readings or what interesting things I learned
       </WellTyped>
       <div className="flex flex-col gap-4">
         {Object.entries(monthGrouped).map(([yearAndMonth, notes], i) => (
           <div key={yearAndMonth}>
-            <h1 className="prose dark:prose-invert font-sans text-2xl font-bold text-black mt-3 mb-1">
-              {yearAndMonth}
-            </h1>
+            <Link
+              className="no-underline hover:underline"
+              href={`/notes/${yearAndMonth}`}
+            >
+              <h2 className="prose dark:prose-invert font-sans text-xl font-bold text-black mt-3 mb-1">
+                {yearAndMonth}
+              </h2>
+            </Link>
             {notes.map(post => {
               const fm = post.frontmatter
               return (
@@ -39,9 +44,9 @@ export default async function Page() {
                     className="no-underline hover:underline"
                     href={`/note/${post.metadata.slug}`}
                   >
-                    <h2 className="text-balance font-normal mt-2 mb-1">
+                    <h3 className="text-balance font-normal mt-2 mb-1">
                       {fm.title}
-                    </h2>
+                    </h3>
                   </Link>
                   <span>
                     <span className="text-gray-500 hover:text-black">

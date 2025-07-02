@@ -33,6 +33,7 @@ export const themeConfig: ThemeConfig = {
     // { name: 'Blog', url: '/posts' },
     { name: 'Notes', url: '/notes' },
     { name: 'Projects', url: '/projects' },
+    { name: 'Tags', url: '/tags' },
     // { name: 'About', url: '/about' },
   ],
   head: ({ title, meta }) => (

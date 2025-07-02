@@ -22,7 +22,7 @@ export default async function Page() {
 
   return (
     <>
-      <WellTyped className="mb-3 text-black">
+      <WellTyped className="mb-3 text-black dark:text-white">
         Record notes from my readings or what interesting things I learned
       </WellTyped>
       <div className="flex flex-col gap-4">
@@ -32,7 +32,7 @@ export default async function Page() {
               className="no-underline hover:underline"
               href={`/notes/${yearAndMonth}`}
             >
-              <h2 className="prose dark:prose-invert font-sans text-xl font-bold text-black mt-3 mb-1">
+              <h2 className="prose dark:prose-invert text-black dark:text-white font-sans text-xl font-bold mt-3 mb-1">
                 {yearAndMonth}
               </h2>
             </Link>
@@ -44,17 +44,17 @@ export default async function Page() {
                     className="no-underline hover:underline"
                     href={`/note/${post.metadata.slug}`}
                   >
-                    <h3 className="text-balance font-normal mt-2 mb-1">
+                    <h3 className="text-balance font-normal mt-2 mb-0">
                       {fm.title}
                     </h3>
                   </Link>
                   <span>
-                    <span className="text-gray-500 hover:text-black">
+                    <span className="text-gray-500 hover:text-black dark:hover:text-white">
                       date: {format(fm.date, 'yyyy-MM-dd')}
                     </span>
                     {fm.tags && fm.tags.length > 0 && (
                       <Tags
-                        className="text-gray-500 hover:text-black"
+                        className="text-gray-500 hover:text-black dark:hover:text-white"
                         tags={fm.tags}
                       />
                     )}

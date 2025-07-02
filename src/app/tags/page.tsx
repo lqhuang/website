@@ -27,7 +27,7 @@ export default async function Page() {
         {sortedEntries.map(([tag, count], i) => (
           <Link
             key={tag}
-            className="no-underline text-gray-400 group hover:text-black  flex flex-row justify-between gap-1"
+            className="no-underline text-gray-400 group hover:text-black dark:hover:text-white  flex flex-row justify-between gap-1"
             href={`/tag/${tag}`}
           >
             <span className="grow text-nowrap">{tag}</span>

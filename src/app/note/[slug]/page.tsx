@@ -20,8 +20,11 @@ export default async function Page({ params }: { params: Promise<Params> }) {
 
   const doc = allNotes.find(p => p.metadata.slug === slug)
   if (!doc) return notFound()
-
+  const index = allNotes.indexOf(doc)
   const { title, tags, date } = doc.frontmatter
+  const prev = allNotes.at(index - 1) ?? undefined
+  const next = allNotes.at(index + 1) ?? undefined
+
   return (
     <>
       <Article>
@@ -29,7 +32,25 @@ export default async function Page({ params }: { params: Promise<Params> }) {
         <Meta date={date} tags={tags} />
         {doc.content}
       </Article>
-      {/* <PrevNextNav /> */}
+      <PrevNextNav
+        className="pt-4"
+        next={
+          next === undefined
+            ? undefined
+            : {
+                text: next.frontmatter.title,
+                href: `/note/${next.metadata.slug}`,
+              }
+        }
+        prev={
+          prev === undefined
+            ? undefined
+            : {
+                text: prev.frontmatter.title,
+                href: `/note/${prev.metadata.slug}`,
+              }
+        }
+      />
       {themeConfig.postFooter}
       {themeConfig.comments}
     </>

@@ -14,7 +14,7 @@ export default async function Page() {
     .sort((a, b) => sortDateDesc(a.metadata.date, b.metadata.date))
 
   const flattenTags = new Array(
-    ...validNotes.flatMap(doc => doc.frontmatter.tags || []),
+    ...validNotes.flatMap(doc => doc.frontmatter.tags ?? []),
   )
   const sortedEntries = Object.entries(countBy(flattenTags, tag => tag)).sort(
     ([, countA], [, countB]) => countB - countA,

@@ -23,8 +23,8 @@ export default function Page() {
         </li>
         or
         <li>
-          <Link href="/tags">Tags</Link>: Filter what you're interested in
-          through tags.
+          <Link href="/tags">Tags</Link>
+          {": Filter what you're interested in through tags."}
         </li>
       </ul>
     </Article>

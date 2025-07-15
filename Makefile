@@ -21,6 +21,10 @@ build:
 .PHONY: cf-build
 cf-build: pre-build build
 
+.PHONY:
+cf-deploy:
+	pnpm run cf-deploy
+
 #### Chore tasks ####
 
 up-deps:

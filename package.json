@@ -12,6 +12,7 @@
   "type": "module",
   "scripts": {
     "build": "next build && cp -f _redirects out/_redirects",
+    "cf-deploy": "wrangler pages deploy",
     "compile": "tsc --noEmit --allowSyntheticDefaultImports false",
     "dev": "next dev -H 0.0.0.0 --turbopack",
     "lint": "next lint",

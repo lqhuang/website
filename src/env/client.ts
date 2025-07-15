@@ -5,7 +5,7 @@ export const env = createEnv({
   client: {
     NEXT_PUBLIC_GA_ID: z.string().optional(),
     NEXT_PUBLIC_CLARITY_ID: z.string().optional(),
-    NEXT_PUBLIC_SELINE_TOKEN: z.string().optional(),
+    NEXT_PUBLIC_SELINE_TOKEN: z.string(),
   },
   runtimeEnv: {
     NEXT_PUBLIC_GA_ID: process.env.NEXT_PUBLIC_GA_ID,

@@ -26,3 +26,5 @@
 
 - [Redirects · Cloudflare Pages](https://developers.cloudflare.com/pages/configuration/redirects/)
   - To use redirects on Cloudflare Pages, declare your redirects in a plain text file called `_redirects` without a file extension, in the output folder of your project.
+- [Headers · Cloudflare Pages](https://developers.cloudflare.com/pages/configuration/headers/)
+  - The default response headers served on static asset responses can be overridden, removed, or added to, by creating a plain text file called `_headers` without a file extension, in the static asset directory of your project.

@@ -11,7 +11,7 @@
   "author": "Lanqing Huang <lqhuang@outlook.com>",
   "type": "module",
   "scripts": {
-    "build": "next build && cp -f _redirects out/_redirects",
+    "build": "next build && cp -f _headers _redirects out/",
     "cf-deploy": "wrangler pages deploy",
     "compile": "tsc --noEmit --allowSyntheticDefaultImports false",
     "dev": "next dev -H 0.0.0.0 --turbopack",

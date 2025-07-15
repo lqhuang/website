@@ -1,6 +1,6 @@
 {
   "name": "lqhuang-blog",
-  "version": "0.2.1",
+  "version": "2025.07.15",
   "description": "lqhuang's blog",
   "homepage": "https://lqhuang.io",
   "bugs": {
@@ -12,16 +12,11 @@
   "type": "module",
   "scripts": {
     "build": "next build && cp -f _redirects out/_redirects",
-    "cf-build": "git clone https://github.com/lqhuang/blog --depth 1 && stat blog && pnpm build",
-    "clean": "rm -rf ./.next/ ./node_modules/ ./out/",
     "compile": "tsc --noEmit --allowSyntheticDefaultImports false",
     "dev": "next dev -H 0.0.0.0 --turbopack",
     "lint": "next lint",
-    "setup": "git clone https://github.com/lqhuang/blog --depth 1",
     "start": "next start --hostname 0.0.0.0",
-    "test": "vitest --exclude retired/ src/ tests/",
-    "up-deps": "pnpm update -iL",
-    "up-greedy": "pnpm update --latest --filter=!@types/node"
+    "test": "vitest --exclude retired/ src/ tests/"
   },
   "dependencies": {
     "@fontsource/ia-writer-mono": "^5.2.5",

@@ -19,9 +19,9 @@ export const themeConfig: ThemeConfig = {
   },
   footer: (
     <>
-      <footer className="flex flex-col">
-        <hr className="my-2" />
-        <div className="self-center">
+      <footer className="flex flex-col my-2 gap-2">
+        <hr />
+        <div className="self-center prose">
           Science {'\u00d7'} Tech {'\u00d7'} Design © Lanqing Huang{' '}
           {new Date().getFullYear()} Build with ❤️
         </div>

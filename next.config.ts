@@ -35,37 +35,37 @@ const nextConfig: NextConfig = {
    * Warn: Specified "headers" will not automatically work with "output: export".
    *       See more info here: https://nextjs.org/docs/messages/export-no-custom-routes
    */
-  headers: async () => [
-    {
-      source: '/(.*)',
-      headers: [
-        {
-          key: 'Content-Security-Policy',
-          value: cspHeader.replace(/\s+/g, ' ').trim(),
-        },
-        {
-          key: 'Permissions-Policy',
-          value: 'camera=(), microphone=(), geolocation=(), browsing-topics=()',
-        },
-        {
-          key: 'Referrer-Policy',
-          value: 'origin-when-cross-origin',
-        },
-        {
-          key: 'X-Content-Type-Options',
-          value: 'nosniff',
-        },
-        {
-          key: 'X-DNS-Prefetch-Control',
-          value: 'on',
-        },
-        {
-          key: 'X-Frame-Options',
-          value: 'SAMEORIGIN',
-        },
-      ],
-    },
-  ],
+  // headers: async () => [
+  //   {
+  //     source: '/(.*)',
+  //     headers: [
+  //       {
+  //         key: 'Content-Security-Policy',
+  //         value: cspHeader.replace(/\s+/g, ' ').trim(),
+  //       },
+  //       {
+  //         key: 'Permissions-Policy',
+  //         value: 'camera=(), microphone=(), geolocation=(), browsing-topics=()',
+  //       },
+  //       {
+  //         key: 'Referrer-Policy',
+  //         value: 'origin-when-cross-origin',
+  //       },
+  //       {
+  //         key: 'X-Content-Type-Options',
+  //         value: 'nosniff',
+  //       },
+  //       {
+  //         key: 'X-DNS-Prefetch-Control',
+  //         value: 'on',
+  //       },
+  //       {
+  //         key: 'X-Frame-Options',
+  //         value: 'SAMEORIGIN',
+  //       },
+  //     ],
+  //   },
+  // ],
 }
 
 export default nextConfig

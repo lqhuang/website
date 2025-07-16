@@ -1,7 +1,6 @@
 import type { ReactNode } from 'react'
 import type { Metadata, Viewport } from 'next'
 
-import Head from 'next/head'
 import Script from 'next/script'
 import { Inter, Zilla_Slab, IBM_Plex_Mono } from 'next/font/google'
 import { ThemeProvider } from 'next-themes'
@@ -85,13 +84,6 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       suppressHydrationWarning
       className={`${fontZillaSlab.variable} ${fontInter.variable} ${fontPlexMono.variable} antialiased`}
     >
-      <Head>
-        <Script
-          src="https://cdn.seline.com/seline.js"
-          data-token={env.NEXT_PUBLIC_SELINE_TOKEN}
-          strategy="afterInteractive"
-        />
-      </Head>
       <body>
         <ThemeProvider attribute="class">
           {/*
@@ -104,6 +96,11 @@ export default function RootLayout({ children }: { children: ReactNode }) {
             {footer}
           </div>
         </ThemeProvider>
+        <Script
+          src="https://cdn.seline.com/seline.js"
+          data-token={env.NEXT_PUBLIC_SELINE_TOKEN}
+          strategy="afterInteractive"
+        />
       </body>
     </html>
   )

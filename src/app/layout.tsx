@@ -86,18 +86,11 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       className={`${fontZillaSlab.variable} ${fontInter.variable} ${fontPlexMono.variable} antialiased`}
     >
       <Head>
-        {env.NEXT_PUBLIC_SELINE_TOKEN && (
-          <Script
-            src="https://cdn.seline.com/seline.js"
-            data-token={env.NEXT_PUBLIC_SELINE_TOKEN}
-            strategy="afterInteractive"
-          />
-          // <script
-          //   async
-          //   src="https://cdn.seline.com/seline.js"
-          //   data-token={env.NEXT_PUBLIC_SELINE_TOKEN}
-          // ></script>
-        )}
+        <Script
+          src="https://cdn.seline.com/seline.js"
+          data-token={env.NEXT_PUBLIC_SELINE_TOKEN}
+          strategy="afterInteractive"
+        />
       </Head>
       <body>
         <ThemeProvider attribute="class">

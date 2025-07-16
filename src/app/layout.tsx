@@ -2,6 +2,7 @@ import type { ReactNode } from 'react'
 import type { Metadata, Viewport } from 'next'
 
 import Head from 'next/head'
+import Script from 'next/script'
 import { Inter, Zilla_Slab, IBM_Plex_Mono } from 'next/font/google'
 import { ThemeProvider } from 'next-themes'
 
@@ -86,16 +87,16 @@ export default function RootLayout({ children }: { children: ReactNode }) {
     >
       <Head>
         {env.NEXT_PUBLIC_SELINE_TOKEN && (
-          // <Script
-          //   src="https://cdn.seline.com/seline.js"
-          //   data-token={env.NEXT_PUBLIC_SELINE_TOKEN}
-          //   strategy="afterInteractive"
-          // />
-          <script
-            async
+          <Script
             src="https://cdn.seline.com/seline.js"
             data-token={env.NEXT_PUBLIC_SELINE_TOKEN}
-          ></script>
+            strategy="afterInteractive"
+          />
+          // <script
+          //   async
+          //   src="https://cdn.seline.com/seline.js"
+          //   data-token={env.NEXT_PUBLIC_SELINE_TOKEN}
+          // ></script>
         )}
       </Head>
       <body>

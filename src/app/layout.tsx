@@ -96,11 +96,16 @@ export default function RootLayout({ children }: { children: ReactNode }) {
             {footer}
           </div>
         </ThemeProvider>
-        <Script
+        {/* <Script
           src="https://cdn.seline.com/seline.js"
           data-token={env.NEXT_PUBLIC_SELINE_TOKEN}
           strategy="afterInteractive"
-        />
+        /> */}
+        <script
+          data-token={env.NEXT_PUBLIC_SELINE_TOKEN}
+          src="https://cdn.seline.com/seline.js"
+          async
+        ></script>
       </body>
     </html>
   )

@@ -14,8 +14,11 @@ const cspHeader = `
 `
 
 const nextConfig: NextConfig = {
-  pageExtensions: ['ts', 'tsx', 'mdx'],
+  // Dev
   reactStrictMode: true,
+  allowedDevOrigins: ['*'],
+
+  pageExtensions: ['ts', 'tsx', 'mdx'],
   trailingSlash: false,
   poweredByHeader: false,
   images: {
@@ -25,7 +28,12 @@ const nextConfig: NextConfig = {
     unoptimized: true,
   },
   transpilePackages: ['next-mdx-remote', 'shiki'],
-  experimental: { viewTransition: true, useCache: true },
+  experimental: {
+    // typedRoutes: true, // conflict with `--turbopack` now
+    viewTransition: true,
+    useCache: true,
+    useLightningcss: true,
+  },
   output: 'export',
   // distDir: `dist/out-${buildId}`,
 

@@ -32,7 +32,7 @@ const nextConfig: NextConfig = {
     // typedRoutes: true, // conflict with `--turbopack` now
     viewTransition: true,
     useCache: true,
-    useLightningcss: true,
+    // useLightningcss: true,
   },
   output: 'export',
   // distDir: `dist/out-${buildId}`,

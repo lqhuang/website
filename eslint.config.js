@@ -32,6 +32,14 @@ const config = tseslint.config([
       '@eslint-react/naming-convention/filename': ['error', 'kebab-case'],
     },
   },
-  { ignores: ['node_modules/', '.next/', 'retired/', 'out/'] },
+  {
+    ignores: [
+      'node_modules/',
+      '.next/',
+      'retired/',
+      'out/',
+      'src/content/data',
+    ],
+  },
 ])
 export default config

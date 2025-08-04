@@ -5,7 +5,7 @@ import { format } from 'date-fns/format'
 
 import { Tags } from 'src/components/meta'
 
-import { allNotes } from 'src/content/notes'
+import { notes } from 'src/content/notes'
 import { sortDateDesc } from 'src/utils'
 import { WellTyped } from 'src/components/well-typed'
 
@@ -18,17 +18,16 @@ type Params = {
 
 export const generateStaticParams = (): Params[] => {
   const tagSet = new Set<string>()
-  allNotes.forEach(doc => doc.frontmatter.tags?.forEach(tag => tagSet.add(tag)))
+  notes.forEach(doc => doc.frontmatter.tags?.forEach(tag => tagSet.add(tag)))
   return Array.from(tagSet).map(tag => ({ tag }))
 }
 
 export default async function Page({ params }: { params: Promise<Params> }) {
   const { tag } = await params
 
-  const sortedNotes = allNotes
+  const sortedNotes = notes
     .filter(doc => !doc.frontmatter.draft)
     .sort((a, b) => sortDateDesc(a.metadata.date, b.metadata.date))
-
   const docsByTag = sortedNotes.filter(doc =>
     doc.frontmatter.tags?.includes(tag),
   )

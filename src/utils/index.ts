@@ -1,6 +1,11 @@
 import { format } from 'date-fns/format'
 
 export const getYearAndMonth = (date: string | Date) => {
+  if (typeof date !== 'string' && !(date instanceof Date))
+    throw Error(
+      `input arg 'date' expects string or Date type, but received ${typeof date}`,
+    )
+
   return format(new Date(date), 'yyyy-MM')
 }
 

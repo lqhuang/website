@@ -7,13 +7,11 @@ import { Tags } from 'src/components/meta'
 import { PrevNextNav } from 'src/components/pagination'
 
 import { datetimeBuckets } from 'src/lib/datetime-buckets'
-import { allNotes } from 'src/content/notes'
+import { notes } from 'src/content/notes'
 import { sortDateDesc, getYearAndMonth } from 'src/utils'
 
 const buckets = datetimeBuckets(
-  allNotes
-    .filter(predicate => !predicate.frontmatter.draft)
-    .map(n => n.frontmatter.date),
+  notes.filter(doc => !doc.frontmatter.draft).map(n => n.frontmatter.date),
 )
 
 type Params = {
@@ -28,7 +26,7 @@ export const generateStaticParams = (): Params[] => {
 
 export default async function Page({ params }: { params: Promise<Params> }) {
   const { yearAndMonth } = await params
-  const currPages = allNotes
+  const currPages = notes
     .filter(
       doc =>
         !doc.frontmatter.draft &&
@@ -56,7 +54,7 @@ export default async function Page({ params }: { params: Promise<Params> }) {
               <span>date: {format(fm.date, 'yyyy-MM-dd')}</span>
               {fm.tags && fm.tags.length > 0 && <Tags tags={fm.tags} />}
             </span>
-            {post.content}
+            <post.Body />
           </WellTyped>
         )
       })}

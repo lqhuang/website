@@ -5,14 +5,14 @@ import { groupBy } from 'es-toolkit'
 
 import { WellTyped } from 'src/components/well-typed'
 import { Tags } from 'src/components/meta'
-import { allNotes } from 'src/content/notes'
+import { notes } from 'src/content/notes'
 import { sortDateDesc, getYearAndMonth } from 'src/utils'
 
 export const dynamicParams = false
 export const dynamic = 'force-static'
 
 export default async function Page() {
-  const validNotes = allNotes
+  const validNotes = notes
     .filter(doc => !doc.frontmatter.draft)
     .sort((a, b) => sortDateDesc(a.metadata.date, b.metadata.date))
 

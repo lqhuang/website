@@ -8,7 +8,10 @@
     "module": "esnext",
     "moduleResolution": "bundler",
     "resolveJsonModule": true,
-    "paths": { "src/*": ["./src/*"], "tests": ["./tests/*"] },
+    "paths": {
+      "src/*": ["./src/*"],
+      "tests/*": ["./tests/*"]
+    },
     "moduleDetection": "force",
     // Emit
     "declaration": true,

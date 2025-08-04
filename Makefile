@@ -12,7 +12,7 @@ setup:
 .PHONY: pre-build
 pre-build: setup
 	DOC_DIR="./blog/projects/2024-12-11-requests-scala-native-support-bounty"; \
-	    cat $${DOC_DIR}/2025*.md >> $${DOC_DIR}/README.md
+	    cat $${DOC_DIR}/20*.md >> $${DOC_DIR}/README.md
 
 .PHONY: build
 build:

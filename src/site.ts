@@ -12,6 +12,8 @@ export type SiteConfig = {
   }
 }
 
+export const buildTime = new Date().toISOString()
+
 export const siteConfig: SiteConfig = {
   name: 'Space - Lanqing Huang',
   description: 'My little corner',

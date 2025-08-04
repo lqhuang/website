@@ -13,7 +13,7 @@ import { VALID_MD_EXT_REGEX, VALID_INDEX_REGEX } from 'src/constants'
 import { defaultComponents } from 'src/theme/components'
 import { defaultMdxOptions } from 'src/lib/markdown'
 
-export const buildCollection = async <T extends Record<string, unknown>>(
+export const defineDocs = async <T extends Record<string, unknown>>(
   dir: string,
   schema: z.ZodSchema<T>,
 ): Promise<Doc<T>[]> => {
@@ -108,7 +108,6 @@ export const readContentAndFrontmatter = async <
 ): Promise<Doc<T>> => {
   const raw = await fs.readFile(metadata.path, { encoding: 'utf-8' })
   try {
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
     const { content, frontmatter } = await compileMDX<T>({
       source: new VFile({
         path: metadata.path,
@@ -127,7 +126,6 @@ export const readContentAndFrontmatter = async <
     return {
       metadata,
       frontmatter: schema.parse(frontmatter),
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
       content,
     }
   } catch (error) {
@@ -168,7 +166,7 @@ const collectDoc = async (docPath: string): Promise<string> => {
   if (docPath.endsWith('.md') || docPath.endsWith('.mdx')) {
     return docPath
   } else {
-    const pattern = '**.{md,mdx}'
+    const pattern = '*.{md,mdx}'
     const cwd = path.isAbsolute(docPath)
       ? docPath
       : path.resolve(process.cwd(), docPath)

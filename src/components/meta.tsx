@@ -1,4 +1,5 @@
 import type { ReactNode } from 'react'
+
 import Link from 'next/link'
 
 type MetaProps = {
@@ -40,7 +41,7 @@ export const Tags = ({
   )
   return (
     <>
-      <span className={`${className ?? ''}`}> · Tags: </span>
+      <span className={`${className ?? ''}`}>{` · Tags: `}</span>
       {tagsLink}
     </>
   )

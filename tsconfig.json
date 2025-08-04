@@ -9,6 +9,7 @@
     "moduleResolution": "bundler",
     "resolveJsonModule": true,
     "paths": {
+      "@/*": ["./*"],
       "src/*": ["./src/*"],
       "tests/*": ["./tests/*"]
     },
@@ -40,6 +41,8 @@
     "skipLibCheck": true
   },
   "include": [
+    ".source/**/*.ts",
+    "source.config.ts",
     ".next/types/**/*.ts",
     "next-env.d.ts",
     "src/",

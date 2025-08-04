@@ -1,4 +1,4 @@
-import type { BundledLanguage } from 'shiki'
+import type { BundledLanguage, Highlighter } from 'shiki'
 import type { RehypeShikiOptions } from '@shikijs/rehype'
 
 import {
@@ -14,7 +14,6 @@ import {
   bundledThemes,
   createHighlighter,
 } from 'shiki/bundle/full'
-import rehypeShikiFromHighlighter from '@shikijs/rehype/core'
 
 export const configuredLangs = [
   'asciidoc', // 'adoc',
@@ -142,7 +141,7 @@ const makeSingletonShikiHighlighter = async () => {
 }
 
 const globalForShiki = global as unknown as {
-  highlighter: ReturnType<typeof makeSingletonShikiHighlighter>
+  highlighter: Highlighter
 }
 
 /**

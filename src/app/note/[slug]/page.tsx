@@ -34,7 +34,7 @@ export default async function Page({ params }: { params: Promise<Params> }) {
       <Article>
         <h1>{title}</h1>
         <Meta date={format(date, 'MMM dd, yyyy')} tags={tags} />
-        <doc.Body />
+        {doc.content}
       </Article>
       <PrevNextNav
         className="pt-4"

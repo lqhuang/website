@@ -1,6 +1,6 @@
 import type { NextConfig } from 'next'
 
-import { createMDX } from 'fumadocs-mdx/next'
+// import { createMDX } from 'fumadocs-mdx/next'
 
 const cspHeader = `
     default-src 'self';
@@ -15,10 +15,10 @@ const cspHeader = `
     upgrade-insecure-requests;
 `
 
-const withMDX = createMDX({
-  configPath: `${import.meta.dirname}/src/content/source.ts`,
-  outDir: `${import.meta.dirname}/src/content/data/`,
-})
+// const withMDX = createMDX({
+//   configPath: `${import.meta.dirname}/src/content/source.ts`,
+//   outDir: `${import.meta.dirname}/src/content/data/`,
+// })
 
 const nextConfig: NextConfig = {
   // Dev
@@ -83,4 +83,5 @@ const nextConfig: NextConfig = {
   // ],
 }
 
-export default withMDX(nextConfig)
+// export default withMDX(nextConfig)
+export default nextConfig

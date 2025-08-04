@@ -55,7 +55,7 @@ export default async function Page({ params }: { params: Promise<Params> }) {
               <span>date: {format(fm.date, 'yyyy-MM-dd')}</span>
               {fm.tags && fm.tags.length > 0 && <Tags tags={fm.tags} />}
             </span>
-            <post.Body />
+            {post.content}
           </WellTyped>
         )
       })}

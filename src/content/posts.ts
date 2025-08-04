@@ -5,7 +5,7 @@ import { z } from 'zod'
 
 import { env } from 'src/env/server'
 
-import { buildCollection } from 'src/lib/content/local'
+import { defineDocs } from 'src/lib/content/local'
 
 export const PostFrontMatter = z.object({
   title: z.coerce.string(),
@@ -40,7 +40,7 @@ const postsDir = join(env.CONTENT_DIR, 'writings')
 //   },
 // })
 
-export const allPosts: Doc<PostFrontMatter>[] = await buildCollection(
+export const allPosts: Doc<PostFrontMatter>[] = await defineDocs(
   postsDir,
   PostFrontMatter,
 )

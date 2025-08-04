@@ -12,13 +12,17 @@ export type NoteFrontMatter = z.infer<typeof NoteFrontMatter>
 
 export const PostFrontMatter = z.object({
   title: z.coerce.string(),
-  created: z.coerce.string(),
-  updated: z.coerce.string(),
+  created: z.coerce.date(),
+  updated: z.coerce.date(),
   tags: z.string().array().optional(),
   draft: z.coerce.boolean().optional(),
   deprecated: z.boolean().optional(),
 })
 export type PostFrontMatter = z.infer<typeof PostFrontMatter>
 
-export const ProjectFrontMatter = z.object({})
+export const ProjectFrontMatter = z.object({
+  title: z.coerce.string().optional(),
+  date: z.coerce.date().optional(),
+  tags: z.string().array().optional(),
+})
 export type ProjectFrontMatter = z.infer<typeof ProjectFrontMatter>

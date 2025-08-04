@@ -16,5 +16,6 @@ export type Doc<T> = {
   metadata: Metadata
   frontmatter: T
   content: ReactElement
+  // body:
 }
 export type Content<T> = Doc<T>[]

@@ -18,8 +18,9 @@ import remarkCjkFriendly from 'remark-cjk-friendly'
 
 import rehypeRaw from 'rehype-raw'
 import rehypeKatex from 'rehype-katex'
+import rehypeShikiFromHighlighter from '@shikijs/rehype/core'
 
-import { rehypeShiki } from 'src/lib/shiki'
+import { highlighter, defaultRehypeShikiOptions } from 'src/lib/shiki'
 import { remarkImageResolve } from 'src/lib/remark-image-resolve'
 
 export const remarkPlugins: CompileOptions['remarkPlugins'] = [
@@ -33,7 +34,7 @@ export const remarkPlugins: CompileOptions['remarkPlugins'] = [
 export const rehypePlugins: CompileOptions['rehypePlugins'] = [
   rehypeRaw,
   rehypeKatex, // `rehypeKatex` should be executed before the syntax highlighter
-  rehypeShiki,
+  [rehypeShikiFromHighlighter, highlighter, defaultRehypeShikiOptions],
   // [
   //   rehypeCode,
   //   {

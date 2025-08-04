@@ -32,7 +32,7 @@ export default async function Page() {
           >
             <span className="grow text-nowrap">{tag}</span>
             <span className="invisible group-hover:visible overflow-hidden">
-              {'.'.repeat(1000)}
+              {'.'.repeat(500)}
             </span>
             <span>{count}</span>
           </Link>

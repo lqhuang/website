@@ -13,7 +13,7 @@ export const dynamic = 'force-static'
 
 export default async function Page() {
   const validNotes = notes
-    .filter(doc => !doc.frontmatter.draft)
+    .filter(doc => !doc.frontmatter.draft && !doc.frontmatter.deprecated)
     .sort((a, b) => sortDateDesc(a.metadata.date, b.metadata.date))
 
   const monthGrouped = groupBy(validNotes, post =>

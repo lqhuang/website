@@ -35,13 +35,13 @@ export default async function Page({ params }: { params: Promise<Params> }) {
 
   return (
     <>
-      <WellTyped className="mb-1 text-black">
+      <WellTyped className="mb-4 text-black">
         Things tagged with <span className="font-mono">`{tag}`</span> (
-        {docsByTag.length} records).
+        {docsByTag.length} records).{' '}
+        <Link className="no-underline hover:underline" href={`/tags`}>
+          Go back ⤴
+        </Link>
       </WellTyped>
-      <Link className="no-underline hover:underline" href={`/tags`}>
-        <WellTyped className="mb-3 text-black">Go back ⤴</WellTyped>
-      </Link>
       <div className="flex flex-col gap-3">
         {docsByTag.map(doc => {
           const fm = doc.frontmatter

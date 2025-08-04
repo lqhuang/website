@@ -30,6 +30,7 @@ export default async function Page({ params }: { params: Promise<Params> }) {
     .filter(
       doc =>
         !doc.frontmatter.draft &&
+        !doc.frontmatter.deprecated &&
         getYearAndMonth(doc.frontmatter.date) === yearAndMonth,
     )
     .sort((a, b) => sortDateDesc(a.metadata.date, b.metadata.date))

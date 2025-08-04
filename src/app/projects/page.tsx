@@ -1,20 +1,19 @@
-import { WellTyped } from 'src/components/well-typed'
+import { Article } from 'src/components/article'
 
-import { allProjects } from 'src/content/projects'
+import { readme } from 'src/content/projects'
 
 export const dynamicParams = false
 export const dynamic = 'force-static'
 
 export default function Page({}) {
-  const post = allProjects[0]
-  const { metadata, content } = post
+  const { metadata, content } = readme
 
   return (
-    <WellTyped key={metadata.slug}>
+    <Article key={metadata.slug}>
       <h1 className="no-underline hover:underline">
         The Projects I{"'"}m Working on
       </h1>
       {content}
-    </WellTyped>
+    </Article>
   )
 }

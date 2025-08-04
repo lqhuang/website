@@ -4,8 +4,9 @@ export const NoteFrontMatter = z.object({
   title: z.string(),
   date: z.coerce.date(),
   tags: z.string().array().optional(),
-  draft: z.boolean().optional(),
   ref: z.string().optional(),
+  draft: z.boolean().optional(),
+  deprecated: z.boolean().optional(),
 })
 export type NoteFrontMatter = z.infer<typeof NoteFrontMatter>
 
@@ -15,6 +16,7 @@ export const PostFrontMatter = z.object({
   updated: z.coerce.string(),
   tags: z.string().array().optional(),
   draft: z.coerce.boolean().optional(),
+  deprecated: z.boolean().optional(),
 })
 export type PostFrontMatter = z.infer<typeof PostFrontMatter>
 

@@ -1,45 +1,27 @@
-import Link from 'next/link'
+import { join } from 'node:path'
 
+import z from 'zod'
+
+import { defineOneDoc } from 'src/lib/content/local'
 import { themeConfig } from 'src/theme-config'
+import { Article } from 'src/components/article'
+import { env } from 'src/env/server'
 
 export const dynamicParams = false
 export const dynamic = 'force-static'
 
-export default function AboutMe() {
+export default async function AboutMe() {
   const { site } = themeConfig
   if (!site) {
     return <p>Site config is missing</p>
   }
   const { author, nickname, social } = site
 
-  return (
-    <article>
-      <p>
-        Here is a personal website of {author}{' '}
-        {nickname && <code>(@{nickname})</code>}, a simple and naïve guy,
-        graduated from Physics.
-      </p>
-      <p>Coding in Python, TypeScript, Scala, sometimes Haskell or Rust.</p>
-      <p>
-        Learning on Scientific Computing, Streaming System, Distributed System,
-        HPC (yeah, all about computing).
-      </p>
-      <p>
-        I{"'"}m probably an unqualified scientist, an overrated engineer, a
-        pathetic designer.
-      </p>
-      <p>
-        Mostly, just a tireless researcher, a crafted coder, an ideative
-        creator.
-      </p>
-      {social && (
-        <p>
-          Find me on{' '}
-          <Link href={`https://github.com/${social.github}`}>Github</Link>,{' '}
-          <Link href={`https://x.com/${social.twitter}`}>X (Twitter)</Link>.
-        </p>
-      )}
-      {/* <p>Say hi to me@lqhuang.io</p> */}
-    </article>
+  const about = await defineOneDoc(
+    join(env.CONTENT_DIR, 'about.md'),
+    z.object({}),
   )
+  const { metadata, content } = about
+
+  return <Article key={metadata.slug}>{content}</Article>
 }

@@ -1,4 +1,5 @@
 import { notFound } from 'next/navigation'
+import { format } from 'date-fns/format'
 
 import { Meta } from 'src/components/meta'
 import { PrevNextNav } from 'src/components/pagination'
@@ -10,7 +11,9 @@ import { themeConfig } from 'src/theme-config'
 export const dynamicParams = false
 export const dynamic = 'force-static'
 export const generateStaticParams = () => {
-  return notes.map(doc => ({ slug: doc.metadata.slug }))
+  return notes
+    .filter(doc => !doc.frontmatter.draft && !doc.frontmatter.deprecated)
+    .map(doc => ({ slug: doc.metadata.slug }))
 }
 
 type Params = { slug: string }
@@ -30,7 +33,7 @@ export default async function Page({ params }: { params: Promise<Params> }) {
     <>
       <Article>
         <h1>{title}</h1>
-        <Meta date={date} tags={tags} />
+        <Meta date={format(date, 'MMM dd, yyyy')} tags={tags} />
         <doc.Body />
       </Article>
       <PrevNextNav

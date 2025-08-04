@@ -25,9 +25,9 @@ export const buildCollection = async <T extends Record<string, unknown>>(
   const dbSet = new Set<Slug>()
   const db: Doc<T>[] = []
 
-  const validEntries = await collectFiles(dir)
+  const validEntries = await collectDocs(dir)
   for (const entry of validEntries) {
-    const metadata = genMetadata(path.join(entry))
+    const metadata = genMetadata(entry)
     if (!dbSet.has(metadata.slug)) {
       const collection = await readContentAndFrontmatter<T>(metadata, schema)
       db.push(collection)
@@ -36,6 +36,21 @@ export const buildCollection = async <T extends Record<string, unknown>>(
   }
 
   return db
+}
+
+export const defineOneDoc = async <T extends Record<string, unknown>>(
+  docPath: string,
+  schema: z.ZodSchema<T>,
+): Promise<Doc<T>> => {
+  const fsStat = await fs.stat(docPath)
+  if (!fsStat.isFile() && !fsStat.isDirectory()) {
+    throw new Error(`Invalid input: ${docPath} must be a directory or a file`)
+  }
+
+  const entry = await collectDoc(docPath)
+  const metadata = genMetadata(entry)
+
+  return await readContentAndFrontmatter<T>(metadata, schema)
 }
 
 export const isValidExt = (ext: string): 'md' | 'mdx' => {
@@ -121,7 +136,7 @@ export const readContentAndFrontmatter = async <
   }
 }
 
-const collectFiles = async (dir: string): Promise<string[]> => {
+const collectDocs = async (dir: string): Promise<string[]> => {
   const pattern = '**/*.{md,mdx}'
   const cwd = path.isAbsolute(dir) ? dir : path.resolve(process.cwd(), dir)
   const validEntries = await glob(pattern, {
@@ -147,4 +162,27 @@ const collectFiles = async (dir: string): Promise<string[]> => {
     )
   }
   return validEntries
+}
+
+const collectDoc = async (docPath: string): Promise<string> => {
+  if (docPath.endsWith('.md') || docPath.endsWith('.mdx')) {
+    return docPath
+  } else {
+    const pattern = '**.{md,mdx}'
+    const cwd = path.isAbsolute(docPath)
+      ? docPath
+      : path.resolve(process.cwd(), docPath)
+    const validEntries = await glob(pattern, {
+      cwd,
+      ignore: ['**/node_modules/**', '**/.git/**', '**/.next/**'],
+      absolute: true,
+    })
+
+    if (validEntries.length == 0) {
+      throw new Error(
+        `No valid markdown/mdx file found in ${cwd} with pattern ${pattern}`,
+      )
+    }
+    return validEntries[0]
+  }
 }

@@ -1,4 +1,5 @@
 import type { ComponentProps, FC } from 'react'
+
 import { twMerge } from 'tailwind-merge'
 
 export const Article: FC<ComponentProps<'article'>> = ({

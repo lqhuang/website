@@ -6,7 +6,7 @@
 - [Curated colors in context](https://www.happyhues.co/palettes/12)
 - [evilmartians/harmony](https://github.com/evilmartians/harmony): Harmony color palette
 - [sindresorhus/github-markdown-css](https://github.com/sindresorhus/github-markdown-css): The minimal amount of CSS to replicate the GitHub Markdown style <https://sindresorhus.com/github-markdown-css>
-- [Huemint](https://huemint.com/): AI color palette generator
+- [Flexoki — Steph Ango](https://stephango.com/flexoki): An inky color scheme for prose and code.
 
 ## Icons
 
@@ -77,3 +77,15 @@
 - [让你的 RSS/Atom feed 更好看](https://taxodium.ink/pretty-feed.html)
 - [怎么让 favicon 动起来 | imbAnt's blog](https://imbant.github.io/blog/2023/03/30/%E6%80%8E%E4%B9%88%E8%AE%A9-favicon-%E5%8A%A8%E8%B5%B7%E6%9D%A5/): 技术博客，记录语言服务器(LSP)开发、VS Code/Cursor 插件开发、生成式 AI 与 Agent 技术、前端开发和 golang
   - Wow animated favicon
+- [How to make your RSS feed pretty](https://cassidoo.co/post/prettify-rss/): Life is too short for ugly XML.
+- [martin-fieber.de | Website style guide](https://martin-fieber.de/blog/style-guide/): The style guide for my website, how components are created and then used, as simplicity saved me from falling into the hole of "not creating".
+- [skyzh/skyzh-site](https://github.com/skyzh/skyzh-site): Alex Chi's personal site <https://www.skyzh.dev>
+  - Reactions API
+  - I could impl that by ValTown
+- [Pedro Duarte's Personal Website](https://ped.ro/writing): Code, content, and other things.
+- [john phamous](https://pham.codes/)
+- [Blog @ tonsky.me](https://tonsky.me/)
+- [Marco Cornacchia](https://www.marco.fyi/): Product Designer in SF
+- [Kevin Wilson](https://kevin.design/): I'm a Product Design Leader with over 15 years of experience in leading teams at companies like Cloudflare and Discord.
+- [Mononofu/kaihan](https://github.com/Mononofu/kaihan): custom static site generator used for <https://www.furidamu.org>
+- [nandanmen/NotANumber](https://github.com/nandanmen/NotANumber): An interactive blog on computer science and web dev 💡 <https://nan.fyi>

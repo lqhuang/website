@@ -8,10 +8,11 @@ import { ThemeProvider } from 'next-themes'
 import { env } from 'src/env/client'
 import { Header } from 'src/theme/header'
 
-import { siteConfig } from 'src/site'
-import { themeConfig } from 'src/theme-config'
+import { themeConfig, site } from 'src/config'
 
 import 'src/styles/globals.css'
+
+const sm = site.meta
 
 const fontInter = Inter({
   subsets: ['latin'],
@@ -35,27 +36,22 @@ const fontPlexMono = IBM_Plex_Mono({
 })
 
 export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1.0,
   themeColor: [
     { media: '(prefers-color-scheme: light)', color: 'white' },
     { media: '(prefers-color-scheme: dark)', color: 'black' },
   ],
 }
 
-export const generateViewport = (): Viewport => {
-  return {
-    width: 'device-width',
-    initialScale: 1.0,
-  }
-}
-
 export const metadata: Metadata = {
   title: {
-    default: siteConfig.name,
-    template: `%s | ${siteConfig.name}`,
+    default: sm.applicationName,
+    template: `%s | ${sm.title}`,
   },
-  description: siteConfig.description,
-  keywords: siteConfig.keywords,
-  authors: [{ name: siteConfig.author, url: siteConfig.url }],
+  description: sm.description,
+  keywords: sm.keywords,
+  authors: [{ name: site.name, url: site.url }],
   // openGraph: {
   //   type: 'website',
   //   locale: 'en_US',
@@ -76,7 +72,7 @@ export const dynamicParams = false
 export const dynamic = 'force-static'
 
 export default function RootLayout({ children }: { children: ReactNode }) {
-  const { footer, navs, site, logo } = themeConfig
+  const { footer, navs, logo } = themeConfig
 
   return (
     <html

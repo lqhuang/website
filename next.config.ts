@@ -28,6 +28,8 @@ const nextConfig: NextConfig = {
   pageExtensions: ['ts', 'tsx', 'mdx'],
   trailingSlash: false,
   poweredByHeader: false,
+  typedRoutes: true, // stable since Next.js 16
+  // cacheComponents: true, // not compatible with `dynamic = 'force-static'`
   images: {
     formats: ['image/avif', 'image/webp'],
     contentDispositionType: 'inline',
@@ -35,10 +37,10 @@ const nextConfig: NextConfig = {
     unoptimized: true,
   },
   transpilePackages: ['next-mdx-remote', 'shiki'],
+
   experimental: {
-    // typedRoutes: true, // conflict with `--turbopack` now
     viewTransition: true,
-    useCache: true,
+    cssChunking: true,
     // useLightningcss: true,
   },
   output: 'export',

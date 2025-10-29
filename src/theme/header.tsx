@@ -1,4 +1,4 @@
-import type { ThemeConfig } from './types'
+import type { ThemeConfig, SiteConfig } from './types'
 
 import Link from 'next/link'
 
@@ -6,18 +6,29 @@ import { ThemeMode } from './theme-mode'
 
 export const Navigation = ({ navs }: { navs: ThemeConfig['navs'] }) => {
   return (
-    <nav className="flex flex-grow space-x-4">
-      {navs?.map(({ name, url }) => {
-        return (
-          <Link
-            className="text-gray-500 no-underline hover:text-black dark:text-gray-300 dark:hover:text-white"
-            key={name}
-            href={url}
-          >
-            <span>{name}</span>
-          </Link>
-        )
-      })}
+    <nav
+      className="overflow-x-scroll"
+      style={{
+        scrollbarWidth: 'none',
+      }}
+    >
+      <ul className="flex space-x-4 ">
+        {navs?.map(({ name, url }) => {
+          return (
+            <li
+              key={name}
+              // aria-current="page" // TODO: set active link, but how??
+            >
+              <Link
+                className="text-gray-500 no-underline hover:text-black dark:text-gray-300 dark:hover:text-white"
+                href={url}
+              >
+                {name}
+              </Link>
+            </li>
+          )
+        })}
+      </ul>
     </nav>
   )
 }
@@ -27,15 +38,15 @@ export const Header = ({
   logo,
   navs,
 }: {
-  site: ThemeConfig['site']
+  site: SiteConfig
   logo: ThemeConfig['logo']
   navs: ThemeConfig['navs']
 }) => {
-  const title = site?.title ?? 'Unknown'
+  const title = site.meta.title
   return (
     <>
-      <header className="bottom-3">
-        <div className="my-3">
+      <header className="flex flex-col my-3">
+        <div className="mb-3">
           {logo ?? <></>}
           <Link
             className="no-underline"
@@ -51,7 +62,7 @@ export const Header = ({
           <Navigation navs={navs} />
           <ThemeMode />
         </div>
-        <hr className="my-2" />
+        <hr />
       </header>
     </>
   )

@@ -6,7 +6,7 @@ import { PrevNextNav } from 'src/components/pagination'
 import { Article } from 'src/components/article'
 
 import { notes } from 'src/content/notes'
-import { themeConfig } from 'src/theme-config'
+import { themeConfig } from 'src/config'
 
 export const dynamicParams = false
 export const dynamic = 'force-static'

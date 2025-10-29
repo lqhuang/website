@@ -1,18 +1,14 @@
 import Link from 'next/link'
 
-import { themeConfig } from 'src/theme-config'
+import { site } from 'src/config'
 
 export const AboutMe = () => {
-  const { site } = themeConfig
-  if (!site) {
-    return <p>Site config is missing</p>
-  }
-  const { author, nickname, email, social } = site
+  const { name, nickname, social } = site
 
   return (
     <>
       <p>
-        Here is the personal index of {author}{' '}
+        Here is the personal index of {name}{' '}
         {nickname && <code>(@{nickname})</code>}, a simple and naïve guy,
         graduated from Physics.
       </p>
@@ -31,11 +27,11 @@ export const AboutMe = () => {
       {social && (
         <p>
           Find me on{' '}
-          <Link href={`https://github.com/${social.github}`}>Github</Link>,{' '}
-          <Link href={`https://x.com/${social.twitter}`}>X (Twitter)</Link>.
+          <Link href={social.github ?? 'https://github.com'}>Github</Link>,{' '}
+          <Link href={social.x ?? 'https://x.com'}>X (Twitter)</Link>{' '}
+          <Link href={social.bluesky ?? 'https://bsky.app'}>Bluesky</Link>.
         </p>
       )}
-      {/* <p>Say hi to me@lqhuang.io</p> */}
     </>
   )
 }

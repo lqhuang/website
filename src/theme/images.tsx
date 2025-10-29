@@ -1,8 +1,7 @@
-import type { FC, ComponentProps, ReactNode } from 'react'
+import type { FC, ComponentProps } from 'react'
 
 import * as path from 'node:path'
 
-import dynamic from 'next/dynamic'
 import { imageSize } from 'image-size'
 import Image from 'next/image'
 
@@ -25,7 +24,7 @@ export type CustomImageProps = {
 }
 
 async function getExternalImageProps(src: string): Promise<CustomImageProps> {
-  'use cache'
+  // 'use cache'
   if (!EXTERNAL_URL_REGEX.test(src) || src.startsWith('/'))
     throw new Error('Only allowed external URLs')
   const buffer = await fetch(src).then(res => res.arrayBuffer())
@@ -36,7 +35,7 @@ async function getExternalImageProps(src: string): Promise<CustomImageProps> {
   }
 }
 async function getLocalImageProps(src: string): Promise<CustomImageProps> {
-  'use cache'
+  // 'use cache'
   const abs = path.resolve(src.toString())
 
   const buffer = await readFile(abs)

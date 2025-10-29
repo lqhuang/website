@@ -9,7 +9,6 @@
     "moduleResolution": "bundler",
     "resolveJsonModule": true,
     "paths": {
-      "@/*": ["./*"],
       "src/*": ["./src/*"],
       "tests/*": ["./tests/*"]
     },
@@ -33,7 +32,7 @@
     // Language and Environment
     "target": "es2022",
     "lib": ["DOM", "DOM.Iterable", "ESNext"],
-    "jsx": "preserve",
+    "jsx": "react-jsx",
     // Projects
     "composite": true,
     "incremental": true,
@@ -43,7 +42,6 @@
   "include": [
     ".source/**/*.ts",
     "source.config.ts",
-    ".next/types/**/*.ts",
     "next-env.d.ts",
     "src/",
     "tests/",
@@ -51,7 +49,9 @@
     ".prettierrc.js",
     "postcss.config.js",
     "vitest.config.ts",
-    "next.config.ts"
+    "next.config.ts",
+    ".next/dev/types/**/*.ts",
+    ".next/types/**/*.ts"
   ],
   "exclude": ["node_modules/", ".next/", "retired/", "out/"]
 }

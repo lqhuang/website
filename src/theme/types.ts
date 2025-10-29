@@ -1,19 +1,25 @@
+import type { Metadata } from 'next'
 import type { ReactNode } from 'react'
 import type { UseMdxComponents } from '@mdx-js/mdx'
 
-export type Persona = {
-  title?: string
-  author?: string
+export type SiteConfig = {
+  name: string
   nickname?: string
   email?: string
-  description?: string
   url?: string
+  meta: Metadata & {
+    title: string
+    description: string
+    applicationName: string
+  }
   social?: {
-    twitter?: string
+    x?: string
     github?: string
+    telegram?: string
     linkedin?: string
     instgram?: string
     bluesky?: string
+    retro?: string
   }
 }
 
@@ -42,7 +48,6 @@ export type ThemeConfig = {
   postFooter?: string
   readMore?: string
   titleSuffix?: string
-  site?: Persona
 }
 
 export type Node = {

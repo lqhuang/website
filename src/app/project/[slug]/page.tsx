@@ -4,7 +4,7 @@ import { Meta } from 'src/components/meta'
 import { PrevNextNav } from 'src/components/pagination'
 
 import { Article } from 'src/components/article'
-import { themeConfig } from 'src/theme-config'
+import { themeConfig } from 'src/config'
 import { projects } from 'src/content/projects'
 
 type Params = {

@@ -50,20 +50,15 @@ export const site: SiteConfig = {
 
 export const themeConfig: ThemeConfig = {
   darkMode: true,
-  footer: (
-    <>
-      <footer className="flex flex-col my-3 gap-0.5 justify-center">
-        <hr />
-        <span className="prose dark:prose-invert text-center">
-          Science {'\u00d7'} Tech {'\u00d7'} Design © Lanqing Huang{' '}
-          {new Date().getFullYear()}
-        </span>
-        <span className="prose dark:prose-invert text-center">
-          Last built at {new Date().toISOString()} with ❤️
-        </span>
-      </footer>
-    </>
-  ),
+  footer: {
+    children: (
+      <span className="prose dark:prose-invert text-center">
+        Science {'\u00d7'} Tech {'\u00d7'} Design © {site.name}{' '}
+        {new Date().getFullYear()}
+      </span>
+    ),
+    lastBuilt: true,
+  },
   navs: [
     // { name: 'Home', url: '/' },
     { name: 'About', url: '/about' },
@@ -72,5 +67,5 @@ export const themeConfig: ThemeConfig = {
     { name: 'Projects', url: '/projects' },
     { name: 'Tags', url: '/tags' },
   ],
-  readMore: 'Read More →',
+  readMore: 'Read More ->',
 }

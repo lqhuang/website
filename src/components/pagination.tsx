@@ -1,5 +1,7 @@
 import type { FC } from 'react'
+import type { Metadata } from 'next'
 
+import Head from 'next/head'
 import Link from 'next/link'
 
 type PostLinkProps = {
@@ -15,29 +17,30 @@ type PrevNext = {
 
 export const PrevNextNav: FC<PrevNext> = ({ prev, next, className }) => {
   return (
-    <div className={`flex flex-col ${className}`}>
-      {prev && (
-        <Link className="self-start no-underline" href={prev.href}>
-          <div className="flex flex-row">
-            <div className="mr-3 flex items-center">{'<'}</div>
-            <div className="flex flex-col">
-              <div>Prev</div>
-              <div>{prev.text}</div>
+    <>
+      <Head>
+        {/* FIXME: not work ??? */}
+        {prev && <link rel="prev" href={prev.href} />}
+        {next && <link rel="next" href={next.href} />}
+      </Head>
+      <div className={`flex flex-col ${className}`}>
+        {prev && (
+          <Link className="self-start no-underline" href={prev.href}>
+            <div className="flex flex-row items-center gap-3">
+              <span className="text-nowrap">{'<-'}</span>
+              <span className="text-sm">{prev.text}</span>
             </div>
-          </div>
-        </Link>
-      )}
-      {next && (
-        <Link className="self-end no-underline" href={next.href}>
-          <div className="flex flex-row">
-            <div className="flex flex-col">
-              <div className="self-end">Next</div>
-              <div>{next.text}</div>
+          </Link>
+        )}
+        {next && (
+          <Link className="self-end no-underline" href={next.href}>
+            <div className="flex flex-row items-center gap-3">
+              <span className="text-sm text-end">{next.text}</span>
+              <span className="text-nowrap">{'->'}</span>
             </div>
-            <div className="ml-3 flex items-center">{'>'}</div>
-          </div>
-        </Link>
-      )}
-    </div>
+          </Link>
+        )}
+      </div>
+    </>
   )
 }

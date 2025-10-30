@@ -9,7 +9,10 @@ export const Article: FC<ComponentProps<'article'>> = ({
 }) => {
   return (
     <article
-      className={twMerge('prose dark:prose-invert prose-h1:my-3', className)}
+      className={twMerge(
+        'prose dark:prose-invert prose-h1:text-3xl prose-h1:my-2 dark:prose-h1:my-2 prose-p:my-3',
+        className,
+      )}
       {...props}
     >
       {children}

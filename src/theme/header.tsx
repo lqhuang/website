@@ -37,33 +37,33 @@ export const Header = ({
   site,
   logo,
   navs,
+  className,
 }: {
   site: SiteConfig
   logo: ThemeConfig['logo']
   navs: ThemeConfig['navs']
+  className?: string
 }) => {
   const title = site.meta.title
   return (
-    <>
-      <header className="flex flex-col my-3">
-        <div className="mb-3">
-          {logo ?? <></>}
-          <Link
-            className="no-underline"
-            href="/"
-            aria-label={`${title} - Back to home`}
-          >
-            <span className="font-logo text-5xl text-black dark:text-white">
-              {title}
-            </span>
-          </Link>
-        </div>
-        <div className="flex flex-row items-center justify-between">
-          <Navigation navs={navs} />
-          <ThemeMode />
-        </div>
-        <hr />
-      </header>
-    </>
+    <header className={'flex flex-col flex-none my-3' + (className ?? '')}>
+      <div className="mb-3">
+        {logo ?? <></>}
+        <Link
+          className="no-underline"
+          href="/"
+          aria-label={`${title} - Back to home`}
+        >
+          <span className="font-logo text-5xl text-black dark:text-white">
+            {title}
+          </span>
+        </Link>
+      </div>
+      <div className="flex flex-row items-center justify-between">
+        <Navigation navs={navs} />
+        <ThemeMode />
+      </div>
+      <hr />
+    </header>
   )
 }

@@ -7,7 +7,7 @@ import { Tags } from 'src/components/meta'
 
 import { notes } from 'src/content/notes'
 import { sortDateDesc } from 'src/utils'
-import { WellTyped } from 'src/components/well-typed'
+import { wellTypedClassName } from 'src/styles/constants'
 
 export const dynamicParams = false
 export const dynamic = 'force-static'
@@ -35,18 +35,20 @@ export default async function Page({ params }: { params: Promise<Params> }) {
 
   return (
     <>
-      <WellTyped className="mb-4 text-black">
-        Things tagged with <span className="font-mono">`{tag}`</span> (
-        {docsByTag.length} records).{' '}
+      <div className={wellTypedClassName + 'mb-4 flex flex-row gap-2'}>
+        <div>
+          Things tagged with <span className="font-mono">`{tag}`</span> (
+          {docsByTag.length} {docsByTag.length === 1 ? 'record' : 'records'}).
+        </div>
         <Link className="no-underline hover:underline" href={`/tags`}>
           Go back ⤴
         </Link>
-      </WellTyped>
+      </div>
       <div className="flex flex-col gap-3">
         {docsByTag.map(doc => {
           const fm = doc.frontmatter
           return (
-            <WellTyped key={doc.metadata.slug}>
+            <div key={doc.metadata.slug} className={wellTypedClassName}>
               <Link
                 className="no-underline hover:underline"
                 href={`/note/${doc.metadata.slug}`}
@@ -66,7 +68,7 @@ export default async function Page({ params }: { params: Promise<Params> }) {
                   />
                 )}
               </span>
-            </WellTyped>
+            </div>
           )
         })}
       </div>

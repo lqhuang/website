@@ -7,6 +7,7 @@ import { ThemeProvider } from 'next-themes'
 
 import { env } from 'src/env/client'
 import { Header } from 'src/theme/header'
+import { Footer } from 'src/theme/footer'
 
 import { themeConfig, site } from 'src/config'
 
@@ -72,7 +73,7 @@ export const dynamicParams = false
 export const dynamic = 'force-static'
 
 export default function RootLayout({ children }: { children: ReactNode }) {
-  const { footer, navs, logo } = themeConfig
+  const { navs, logo, footer } = themeConfig
 
   return (
     <html
@@ -98,10 +99,10 @@ export default function RootLayout({ children }: { children: ReactNode }) {
            ** `65ch` comes from tailwindcss-typography
            ** ref: https://github.com/tailwindlabs/tailwindcss-typography/blob/master/src/styles.js
            */}
-          <div className="container mx-auto flex max-w-[65ch] flex-col px-6">
-            <Header logo={logo} navs={navs} site={site} />
-            <main>{children}</main>
-            {footer}
+          <div className="container mx-auto flex max-w-[65ch] flex-col px-6 min-h-screen">
+            <Header className="flex-none" logo={logo} navs={navs} site={site} />
+            <main className="grow">{children}</main>
+            <Footer className="flex-none" site={site} footer={footer} />
           </div>
         </ThemeProvider>
       </body>

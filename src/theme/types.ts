@@ -26,7 +26,10 @@ export type SiteConfig = {
 export type ThemeConfig = {
   logo?: ReactNode
   darkMode?: boolean
-  footer?: ReactNode
+  footer: {
+    children?: ReactNode
+    lastBuilt?: boolean
+  }
   head?: ({
     meta,
     title,

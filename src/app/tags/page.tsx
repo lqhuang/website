@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import { countBy } from 'es-toolkit'
 
-import { WellTyped } from 'src/components/well-typed'
+import { wellTypedClassName } from 'src/styles/constants'
 import { notes } from 'src/content/notes'
 import { sortDateDesc } from 'src/utils'
 
@@ -22,7 +22,7 @@ export default async function Page() {
 
   return (
     <>
-      <WellTyped className="mb-3">Tag list</WellTyped>
+      <div className={wellTypedClassName + 'mb-3'}>Tag list</div>
       <div className="flex flex-col">
         {sortedEntries.map(([tag, count], i) => (
           <Link

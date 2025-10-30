@@ -5,7 +5,7 @@ import { sortDateDesc } from 'src/utils'
 
 import { allPosts } from 'src/content/posts'
 
-import { WellTyped } from 'src/components/well-typed'
+import { wellTypedClassName } from 'src/styles/constants'
 
 export const dynamicParams = false
 export const dynamic = 'force-static'
@@ -20,7 +20,7 @@ export default function Page({}) {
         .map(post => {
           const { title, tags, created, updated } = post.frontmatter
           return (
-            <WellTyped key={post.metadata.slug}>
+            <section key={post.metadata.slug} className={wellTypedClassName}>
               <Link
                 className="no-underline hover:underline"
                 href={`/post/${post.metadata.slug}`}
@@ -32,7 +32,7 @@ export default function Page({}) {
                 {updated && updated !== created && <>, Updated: {updated}</>}
                 {tags && tags.length > 0 && <Tags tags={tags}></Tags>}
               </span>
-            </WellTyped>
+            </section>
           )
         })}
     </div>

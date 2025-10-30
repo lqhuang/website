@@ -2,7 +2,7 @@ import Link from 'next/link'
 
 import { format } from 'date-fns/format'
 
-import { WellTyped } from 'src/components/well-typed'
+import { wellTypedClassName } from 'src/styles/constants'
 import { Tags } from 'src/components/meta'
 import { PrevNextNav } from 'src/components/pagination'
 
@@ -44,19 +44,23 @@ export default async function Page({ params }: { params: Promise<Params> }) {
       {currPages.map(post => {
         const fm = post.frontmatter
         return (
-          <WellTyped key={post.metadata.slug}>
+          <section
+            className={wellTypedClassName}
+            key={post.metadata.slug}
+            aria-labelledby={post.metadata.stem}
+          >
             <Link
               className="no-underline hover:underline"
               href={`/note/${post.metadata.slug}`}
             >
-              <h1>{fm.title}</h1>
+              <h1 id={post.metadata.stem}>{fm.title}</h1>
             </Link>
             <span>
               <span>date: {format(fm.date, 'yyyy-MM-dd')}</span>
               {fm.tags && fm.tags.length > 0 && <Tags tags={fm.tags} />}
             </span>
             {post.content}
-          </WellTyped>
+          </section>
         )
       })}
       <PrevNextNav

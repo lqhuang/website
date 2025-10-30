@@ -25,7 +25,7 @@ export const Tags = ({
   className?: string
 }) => {
   const tagsLink = (
-    <span className={`ml-1 ${className ?? ''}`}>
+    <>
       {tags
         .map(tag => (
           <Link
@@ -37,13 +37,13 @@ export const Tags = ({
           </Link>
         ))
         .reduce((prev, curr) => join2(prev, curr))}
-    </span>
+    </>
   )
   return (
-    <>
-      <span className={`${className ?? ''}`}>{` · Tags: `}</span>
+    <span className={className ?? ''}>
+      {`Tags: `}
       {tagsLink}
-    </>
+    </span>
   )
 }
 
@@ -58,11 +58,26 @@ export const Meta = ({ date, created, updated, tags }: MetaProps) => {
     (typeof updated === 'string' ? updated : updated.toLocaleDateString())
 
   return (
-    <span className="flex flex-row">
-      {dateString && `Date: ${dateString}`}
-      {createdString && `Created: ${createdString}`}
-      {updatedString && updated !== created && ` · Updated: ${updatedString}`}
+    <div className="flex flex-row text-sm gap-1 font-mono">
+      {dateString && (
+        <>
+          <span>Date: {dateString}</span>
+          <span>·</span>
+        </>
+      )}
+      {createdString && (
+        <>
+          <span>Created: {createdString}</span>
+          <span>·</span>
+        </>
+      )}
+      {updatedString && updated !== created && (
+        <>
+          <span>Updated: {updatedString}</span>
+          <span>·</span>
+        </>
+      )}
       {tags && tags.length > 0 && <Tags tags={tags} />}
-    </span>
+    </div>
   )
 }

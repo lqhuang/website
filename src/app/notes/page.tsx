@@ -3,9 +3,9 @@ import Link from 'next/link'
 import { format } from 'date-fns/format'
 import { groupBy } from 'es-toolkit'
 
-import { WellTyped } from 'src/components/well-typed'
 import { Tags } from 'src/components/meta'
 import { notes } from 'src/content/notes'
+import { wellTypedClassName } from 'src/styles/constants'
 import { sortDateDesc, getYearAndMonth } from 'src/utils'
 
 export const dynamicParams = false
@@ -22,9 +22,9 @@ export default async function Page() {
 
   return (
     <>
-      <WellTyped className="mb-3 text-black dark:text-white">
+      <div className={wellTypedClassName + 'mb-3 text-black dark:text-white'}>
         Record notes from my readings or what interesting things I learned
-      </WellTyped>
+      </div>
       <div className="flex flex-col gap-4">
         {Object.entries(monthGrouped).map(([yearAndMonth, notes], i) => (
           <div key={yearAndMonth}>
@@ -39,12 +39,19 @@ export default async function Page() {
             {notes.map(post => {
               const fm = post.frontmatter
               return (
-                <WellTyped key={post.metadata.slug}>
+                <section
+                  key={post.metadata.slug}
+                  className={wellTypedClassName}
+                  aria-labelledby={post.metadata.stem}
+                >
                   <Link
                     className="no-underline hover:underline"
                     href={`/note/${post.metadata.slug}`}
                   >
-                    <h3 className="text-balance font-normal mt-2 mb-0">
+                    <h3
+                      id={post.metadata.stem}
+                      className="text-balance font-normal mt-2 mb-0"
+                    >
                       {fm.title}
                     </h3>
                   </Link>
@@ -59,7 +66,7 @@ export default async function Page() {
                       />
                     )}
                   </span>
-                </WellTyped>
+                </section>
               )
             })}
           </div>
